@@ -1,0 +1,10 @@
+{% extends 'design/assistant/narrow.html' %}
+{% load i18n bulma_forms %}
+{% block content %}
+    {% bulma_form_errors form %}
+    {% bulma_form_fields form %}
+    {% block before_statistic %}{% endblock %}
+    {% include "design/assistant/statistic.html" %}
+    {% block after_statistic %}{% endblock %}
+    {% bulma_form_submit form %}
+{% endblock %}

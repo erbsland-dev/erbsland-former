@@ -1,0 +1,38 @@
+{% load i18n %}
+<p class="block has-text-weight-bold task-status">
+    {% if task.stop_requested %}
+        {% translate 'Stop Requested' %}
+    {% elif task.status == 0 %}
+        {% translate 'Waiting' %}
+    {% elif task.status == 1 %}
+        {% translate 'Running' %}
+    {% else %}
+        {% translate 'Finished' %}
+    {% endif %}
+</p>
+<p class="block task-text">
+    {% if task.stop_requested %}
+        {% translate 'Waiting for the task to stop...' %}
+    {% elif task.status == 0 %}
+        {% translate 'Queued, waiting for start...' %}
+    {% elif task.status == 1 %}
+        {% blocktranslate with subject=task.get_progress_subject %}
+            Working on {{ subject }} ...
+        {% endblocktranslate %}
+    {% else %}
+        {% blocktranslate with subject=task.get_progress_subject %}
+            {{ subject }} successfully finished.
+        {% endblocktranslate %}
+    {% endif %}
+</p>
+<div class="block content">
+    {% if task.status == 2 %}{# finished #}
+        {% if task.result == 'success' %}
+            <progress class="progress is-primary is-medium" value="100" max="100">100%</progress>
+        {% else %}
+            <progress class="progress is-danger is-medium" value="100" max="100">100%</progress>
+        {% endif %}
+        {% else %}{# started and running #}
+        <progress class="progress is-success is-medium" value="0" max="100">0%</progress>
+    {% endif %}
+</div>

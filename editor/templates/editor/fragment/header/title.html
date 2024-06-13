@@ -1,0 +1,14 @@
+{% load i18n %}
+<div class="level-item">
+    <p class="block title is-size-4 is-size-5-touch has-text-text-invert">
+        <span class="icon-text">
+            <span class="icon">
+                <i class="fas fa-cube"></i>
+            </span>
+            <span>{% translate 'Fragment' %} {{ fragment.position|add:1 }}
+                <span class="has-text-primary-light is-size-6">⁄ {{ fragment_count }}</span>
+                {{ suffix|default:"" }}
+            </span>
+        </span>
+    </p>
+</div>

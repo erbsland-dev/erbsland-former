@@ -1,0 +1,31 @@
+{% load i18n %}
+<label class="block label">{% translate "Selected Documents" %}</label>
+<div class="block document-selection-box">
+    {% for document in selected_documents %}
+        <p><span class="is-path">{{ document.path }}/</span><span class="is-filename">{{ document.name }}</span></p>
+    {% empty %}
+        <p class="is-empty">{% translate "No Documents Selected" %}</p>
+    {% endfor %}
+</div>
+<div class="field is-grouped is-grouped-multiline">
+    <div class="control is-small">
+        <div class="tags has-addons">
+            <span class="tag is-success is-light">Documents</span>
+            <span class="tag is-light">{{ selected_document_count }}</span>
+        </div>
+    </div>
+    <div class="control">
+        <div class="tags has-addons">
+            <span class="tag is-success is-light">Fragments</span>
+            <span class="tag is-light">{{ selected_fragment_count }}</span>
+        </div>
+    </div>
+    {% for name, count in selected_syntax_list %}
+        <div class="control">
+            <div class="tags has-addons">
+                <span class="tag is-info is-light">{{ name }}</span>
+                <span class="tag is-light">{{ count }}</span>
+            </div>
+        </div>
+    {% endfor %}
+</div>

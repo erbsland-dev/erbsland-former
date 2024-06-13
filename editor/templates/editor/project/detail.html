@@ -1,0 +1,82 @@
+{% extends 'editor/project/detail_box_base.html' %}
+{% load i18n design editor level_items %}
+{% block header_items_left %}
+{% endblock %}
+{% block header_items_right %}
+    {% include 'editor/project/main_action.html' %}
+{% endblock %}
+{% block content_before_box %}
+    <div class="level">
+        <div class="level-left">
+            {% include 'editor/project/revision_actions.html' %}
+        </div>
+        <div class="level-right">
+            {% include 'editor/project/actions.html' %}
+        </div>
+    </div>
+    {{ block.super }}
+{% endblock %}
+{% block content %}
+    {% if document_tree.has_documents %}
+        <p class="help block">Click a folder or document to toggle its selection. Use alt/option + click to select just that item.</p>
+        <div class="level">
+            <div class="level-left">
+                <div class="level-item">
+                    <div class="field is-grouped">
+                        <label class="browser-select-cell control" style="padding: 0;"
+                               title="{% translate 'Select/Unselect all documents' %}">
+                            <input id="node_0_checkbox" type="checkbox" name="selected_node" value="0" checked>
+                            <span class="icon is-medium"><i class="far fa-square fa-lg"></i></span>
+                        </label>
+                        <p class="control" style="padding: 0.25em 0;">
+                            <span id="browser_select_count">{{ document_tree.document_count }}</span>
+                            ∕ {{ document_tree.document_count }} {% translate 'documents selected' %}
+                        </p>
+                        <p class="control">
+                            <a id="browser_select_none" class="button is-small">{% translate 'Unselect All' %}</a>
+                        </p>
+                        <p class="control">
+                            <a id="browser_select_all" class="button is-small">{% translate 'Select All' %}</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="level-right">
+                <div class="level-item" style="min-width: 10em;">
+                    <div class="is-flex is-flex-direction-column is-fullwidth" style="min-width: 10em;">
+                        {% if review_states %}
+                            {% fraction_bar review_states %}
+                        {% endif %}
+                        {% if transformation_states %}
+                            {% fraction_bar transformation_states "is-thin" %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% editor_node_row document_tree.root_node %}
+    {% else %}
+        <a class="section is-large is-placeholder-box" href="{% url 'ingest' pk=object.pk %}">
+            <p class="title">
+                <span class="icon">
+                    <i class="fas fa-plus"></i>
+                </span>
+                <span>{% translate 'Import Documents' %}</span>
+            </p>
+        </a>
+    {% endif %}
+{% endblock %}
+{% block content_footer %}{% endblock %}{# remove the footer entirely #}
+{% block end_page_scripts %}
+    {{ block.super }}
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const browser_documents = [
+{% for node in document_tree.node_list %}
+new Design.BrowserDocument({{ node.index }}, "{{ node.name|escapejs }}", {{ node.parent.index|default:0 }}, {% if node.type.name == 'DOCUMENT' %}true{% else %}false{% endif %}),{% endfor %}
+            ];
+            const browser = new Design.BrowserHelper(browser_documents);
+            browser.addEventListeners();
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% load i18n design code %}
+<nav class="level">
+    <div class="level-left">
+        <div class="level-item">
+            <p class="subtitle">
+                <span class="icon">
+                    <i class="fas fa-file-text"></i>
+                </span>
+                <span>{% translate 'Revision Source Text' %}</span>
+            </p>
+        </div>
+    </div>
+    <div class="level-right">
+        <div class="level-item">
+            {% include 'editor/fragment/details/size_tags.html' %}
+        </div>
+    </div>
+</nav>
+{% code_block source_text start_line=fragment.first_line_number %}

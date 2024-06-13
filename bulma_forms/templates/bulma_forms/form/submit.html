@@ -1,0 +1,15 @@
+{% load i18n bulma_forms %}
+<div class="field is-grouped is-grouped-centered mt-5">
+    {% if cancel_url %}
+        <div class="control">
+            <a class="button {{ cancel_class }}" href="{{ cancel_url }}"{% if not cancel_enabled %} disabled{% endif %}>
+                {% bulma_form_button_text text=cancel_text|default:_('Cancel') icon=cancel_icon %}
+            </a>
+        </div>
+    {% endif %}
+    <div class="control">
+        <button class="button {{ submit_class }}" name="action" value="submit"{% if not submit_enabled %} disabled{% endif %}>
+            {% bulma_form_button_text text=submit_text|default:_('Submit') icon=submit_icon %}
+        </button>
+    </div>
+</div>

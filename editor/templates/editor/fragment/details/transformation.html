@@ -1,0 +1,44 @@
+{% load i18n design js_triggers code %}
+<nav class="level">
+    <div class="level-left">
+        <div class="level-item">
+            <p class="subtitle">
+                <span class="icon">
+                    <i class="fas fa-magic-wand-sparkles"></i>
+                </span>
+                <span>{% translate 'Transformation Result' %}</span>
+            </p>
+        </div>
+    </div>
+    <div class="level-right">
+        <div class="level-item">
+            <div class="tags has-addons">
+                <span class="tag is-medium is-dark">Status</span>
+                {% if has_transformation %}
+                    {% if fragment.transformation.status == 1 %}
+                        <span class="tag is-medium is-success">Success</span>
+                    {% else %}
+                        <span class="tag is-medium is-danger">Failure</span>
+                    {% endif %}
+                {% else %}
+                    <span class="tag is-medium is-light">Not Transformed</span>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</nav>
+{% if has_transformation %}
+    {% code_block transformation.text start_line=fragment.first_line_number %}
+    <p class="block subtitle is-size-6 mt-4 mb-4">Transformer Output</p>
+    {% if transformation.output %}
+        {% code_block transformation.output %}
+    {% else %}
+        <div class="section is-placeholder-box">
+            <p>{% translate "There is no output from the transformer." %}</p>
+        </div>
+    {% endif %}
+{% else %}
+    <div class="section is-placeholder-box">
+        <p>{% translate "This fragment was not transformed." %}</p>
+    </div>
+{% endif %}

@@ -1,0 +1,5 @@
+<form{% if form_with_file %} enctype="multipart/form-data"{% endif %} method="post">
+    {% csrf_token %}
+    {% for field in form.hidden_fields %}
+        {{ field }}
+    {% endfor %}

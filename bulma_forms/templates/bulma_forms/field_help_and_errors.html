@@ -1,0 +1,9 @@
+{% load bulma_forms %}
+{% for error in field.errors %}
+    <span class="help is-danger{{ form.error_css_class }}">{{ error }}</span>
+{% endfor %}
+{% if field.help_text %}
+    <p class="help">
+        {{ field.help_text|bulma_flatten_help|safe }}
+    </p>
+{% endif %}

@@ -1,0 +1,11 @@
+{% load i18n design %}
+{% for fragment in paginator_page.object_list %}
+    {% include 'editor/document/fragment/header.html' %}
+    {% include "editor/document/fragment/code_block.html" %}
+{% endfor %}
+{% if paginator.num_pages > 1 %}
+<form class="block" method="post">
+    {% csrf_token %}
+    {% pagination_bar paginator_page %}
+</form>
+{% endif %}

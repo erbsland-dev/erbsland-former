@@ -1,0 +1,99 @@
+{% extends "design/assistant/narrow.html" %}
+{% load i18n design bulma_forms %}
+{% block content %}
+    <p class="subtitle">{% translate "Selected Profile" %}</p>
+    <div class="field is-horizontal">
+        <div class="field-label">
+            <p class="label">{% translate "Profile" %}</p>
+        </div>
+        <div class="field-body">
+            <div class="control">
+                {{ assistant.profile.profile_name }}
+            </div>
+        </div>
+    </div>
+    {% bulma_form_begin form %}
+
+    <p class="subtitle mt-5">{% translate "Further Filter Transformed Fragments" %}</p>
+    {{ form.transformed_states|bulma_horizontal_field }}
+    <div class="field is-horizontal">
+        <div class="field-label">
+            <div class="label">{% translate "Review States" %}</div>
+        </div>
+        <div class="field-body">
+            <div class="field is-horizontal is-narrow">
+                <div class="field-body">
+                    {{ form.review_unprocessed|bulma_field }}
+                    {{ form.review_pending|bulma_field }}
+                    {{ form.review_rejected|bulma_field }}
+                    {{ form.review_approved|bulma_field }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <p class="subtitle mt-5">{% translate "Failure Handling" %}</p>
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <div class="label">{% translate "Consecutive" %}</div>
+        </div>
+        <div class="field-body">
+            <div class="field">
+                <div class="control">
+                    <div class="select">
+                        <select name="{{ form.stop_consecutive_failures.html_name }}">
+                        {% for value, title in failure_choices %}
+                            <option value="{{ value }}"{% is_selected value form.stop_consecutive_failures.value %}>{{ title }}</option>
+                        {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <p class="help">Stop processing when reaching the given number of <strong>consecutive</strong> failures.</p>
+            </div>
+        </div>
+    </div>
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <div class="label">{% translate "Total" %}</div>
+        </div>
+        <div class="field-body">
+            <div class="field">
+                <div class="control">
+                    <div class="select">
+                        <select name="{{ form.stop_total_failures.html_name }}">
+                            {% for value, title in failure_choices %}
+                                <option value="{{ value }}"{% is_selected value form.stop_total_failures.value %}>{{ title }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <p class="help">Stop processing when reaching the given number of <strong>total</strong> failures.</p>
+            </div>
+        </div>
+    </div>
+    <div class="field is-horizontal">
+        <div class="field-label">
+            <div class="label">{% translate "Rollback" %}</div>
+        </div>
+        <div class="field-body">
+            {{ form.rollback_on_failure|bulma_field }}
+        </div>
+    </div>
+
+    <p class="subtitle mt-5">{% translate "After Transformation" %}</p>
+    <div class="field is-horizontal">
+        <div class="field-label">
+            <div class="label">{% translate "No Changes" %}</div>
+        </div>
+        <div class="field-body">
+            <div class="field is-horizontal">
+                <div class="field-body">
+                    {{ form.auto_approve_unchanged|bulma_field }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% bulma_form_end form %}
+    {% bulma_form_submit form %}
+{% endblock %}

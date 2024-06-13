@@ -1,0 +1,18 @@
+{% extends 'design/element/message_with_title.html' %}
+{% load i18n design bulma_forms %}
+{% block message_title %}
+    {% blocktranslate with name=assistant_name %}
+        Running {{ name }} Assistant
+    {% endblocktranslate %}
+{% endblock %}
+{% block message_text %}
+    {% blocktranslate with name=assistant_name user=assistant_user %}
+        The {{ name }} assistant is running for this project, started by {{ user }}, and it has not been finished yet.
+        Please either click on “Continue” to open the assistant and continue your work,
+        or click on “Stop” to abort the task.
+    {% endblocktranslate %}
+{% endblock %}
+{% block message_buttons %}
+    {% bulma_control_button text=_('Stop') button_class='is-danger' url=assistant_stop_url icon='stop' %}
+    {% bulma_control_button text=_('Continue') button_class='is-success' url=assistant_continue_url icon='play' %}
+{% endblock %}

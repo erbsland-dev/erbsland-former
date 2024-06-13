@@ -1,0 +1,11 @@
+{% extends 'bulma_forms/field.html' %}
+{% load bulma_forms %}
+{% block control %}
+    {% if not is_horizontal %}
+        {% include 'bulma_forms/field_label.html' %}
+    {% endif %}
+    <div class="control multiple-checkbox{{ classes.value }}">
+        {{ field }}
+        {% include 'bulma_forms/field_help_and_errors.html' %}
+    </div>
+{% endblock %}

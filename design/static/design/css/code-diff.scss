@@ -1,0 +1,214 @@
+
+@use "bulma-theme";
+@use "bulma/sass/utilities/mixins" as mx;
+
+
+$diff-modes: (
+    "match": (var(--bulma-white-bis), var(--bulma-grey), var(--bulma-white), var(--bulma-white-bis)),
+    "delete": (var(--bulma-diff-delete), var(--bulma-white-bis), var(--bulma-diff-delete-80), var(--bulma-diff-delete-90)),
+    "add": (var(--bulma-diff-add), var(--bulma-white-bis), var(--bulma-diff-add-80), var(--bulma-diff-add-90)),
+);
+
+
+div.code-diff {
+    font-family: var(--bulma-family-code);
+    font-weight: 500;
+    font-size: var(--bulma-size-small);
+    white-space: pre-wrap;
+    border: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+
+    .hunk {
+        display: contents;
+    }
+
+    .line {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: stretch;
+        border-collapse: collapse;
+
+        .line-number {
+            padding: 0 5px 0 5px;
+            text-align: right;
+            width: 4em;
+            min-width: 4em;
+        }
+
+        .line-number.collapse {
+            text-align: center;
+            padding: 0.5em 0;
+            background-color: var(--bulma-diff-collapse-light);
+
+            .icon {
+                color: var(--bulma-diff-collapse);
+            }
+
+            &:hover {
+                background-color: var(--bulma-diff-collapse);
+
+                .icon {
+                    color: var(--bulma-diff-collapse-light);
+                }
+            }
+        }
+
+        .text {
+            padding: 0 10px 0 10px;
+            text-wrap: normal;
+            word-wrap: break-word;
+            flex-grow: 100;
+        }
+    }
+
+    .line.collapse {
+        .text {
+            background-color: var(--bulma-diff-collapse-light);
+            color: var(--bulma-diff-collapse);
+            text-align: center;
+            font-family: var(--bulma-family-primary);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .text.has-no-changes {
+            min-height: 10em;
+            font-size: var(--bulma-size-medium);
+        }
+    }
+}
+
+
+div.code-diff.unified {
+
+    .line {
+        .line-number.collapse {
+            width: 8em;
+            min-width: 8em;
+        }
+
+        .text {
+            width: auto;
+        }
+    }
+
+    @each $name, $colors in $diff-modes {
+        $number-background: nth($colors, 1);
+        $number-text: nth($colors, 2);
+        $text-even: nth($colors, 3);
+        $text-odd: nth($colors, 4);
+        .line.mode-#{$name} {
+            .line-number {
+                background-color: $number-background;
+                color: $number-text;
+            }
+            .text {
+                background-color: $text-even;
+            }
+        }
+        .line:nth-child(odd).mode-#{$name} .text {
+            background-color: $text-odd;
+        }
+    }
+
+    .line.mode-delete .text {
+        text-decoration-color: rgba(0, 0, 0, 0.5);
+        text-decoration-line: line-through;
+    }
+}
+
+
+div.code-diff.split {
+
+    .line {
+
+        .line-number {
+            flex-grow: 0;
+        }
+
+        .line-number.source {
+            background-color: var(--bulma-diff-delete);
+            color: var(--bulma-white-bis);
+        }
+
+        .line-number.destination {
+            background-color: var(--bulma-diff-add);
+            color: var(--bulma-white-bis);
+            border-left: 1px solid var(--bulma-grey-light);
+        }
+
+        .line-number.source.empty, .line-number.destination.empty {
+            background-color: var(--bulma-grey);
+        }
+
+        .text {
+            width: 50%;
+        }
+
+        .text.source {
+            background-color: var(--bulma-diff-delete-light);
+        }
+
+        .text.destination {
+            background-color: var(--bulma-diff-add-light);
+        }
+
+        .text.source.empty, .text.destination.empty {
+            background-color: var(--bulma-grey);
+        }
+    }
+
+    .line.is-match {
+        .line-number {
+            background-color: var(--bulma-white-bis);
+            color: var(--bulma-grey-light);
+        }
+        .text {
+            background-color: inherit;
+        }
+    }
+}
+
+div.code-diff-changes {
+    display: flex;
+    flex-direction: row;
+
+    .count {
+        padding: 0 1em;
+    }
+
+    .bar {
+        display: flex;
+        flex-direction: row;
+        width: 10em;
+        overflow: hidden;
+
+        .bar-section {
+            border: solid 1px var(--bulma-white);
+            border-collapse: collapse;
+            height: 1.5em;
+
+            &:first-child {
+                border-top-left-radius: var(--bulma-radius-large);
+                border-bottom-left-radius: var(--bulma-radius-large);
+            }
+
+            &:last-child {
+                border-top-right-radius: var(--bulma-radius-large);
+                border-bottom-right-radius: var(--bulma-radius-large);
+            }
+        }
+    }
+}
+
+
+@include mx.mobile {
+    div.code-unified-diff {
+        font-size: var(--bulma-size-small);
+    }
+}
+

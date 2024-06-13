@@ -1,0 +1,26 @@
+{% load i18n static design %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}" class="theme-light">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Language" content="{{ LANGUAGE_CODE }}">
+    <title>{% block page_title %}{% include 'design/page/html_title.html' %}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="{% static 'design/images/favicon.ico' %}" sizes="32x32">
+    <link rel="icon" href="{% static 'design/images/favicon.svg' %}" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="{% static 'design/images/favicon-180.png' %}">
+    <script src="{% url 'javascript-catalog' %}"></script>
+    <script src="{% static 'design/js/index.bundle.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'design/css/style.css' %}"/>
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+{% block body %}{% endblock %}
+{% block modals %}{% endblock %}
+{% block end_page_scripts %}{% endblock %}
+{% block message_area %}
+    {% include "design/message/overlay.html" %}
+{% endblock %}
+{% include_page_end_scripts %}
+</body>
+</html>

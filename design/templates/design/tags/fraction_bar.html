@@ -1,0 +1,9 @@
+{% spaceless %}
+<div class="fraction-bar {{ style }}">
+    {% for entry in fraction_bar_counts.as_list %}
+        {% if entry.count > 0 %}
+            <div class="fraction-bar-entry {{ entry.color_class }}" style="flex-grow: {{ entry.count }}" title="{{ entry.get_label }}"></div>
+        {% endif %}
+    {% endfor %}
+</div>
+{% endspaceless %}

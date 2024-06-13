@@ -1,0 +1,20 @@
+{% extends "design/assistant/checks.html" %}
+{% load i18n bulma_forms %}
+{% block before_checks %}
+    <p class="subtitle is-4">
+        {% blocktranslate with document_count_text=selected_document_count_text fragment_count_text=selected_fragment_count_text %}
+            Transform <strong>{{ document_count_text }}</strong> with <strong>{{ fragment_count_text }}</strong>
+        {% endblocktranslate %}
+    </p>
+    <hr>
+{% endblock %}
+{% block before_form_submit %}
+    {% if not has_transformer_profiles %}
+        <p class="block">
+            <a class="button is-success is-full" href="{% url 'transformer_create' %}">
+                {% translate 'Add Transformer Profile' %}
+            </a>
+        </p>
+    {% endif %}
+    {% include "editor/project/selected_documents_block.html" %}
+{% endblock %}

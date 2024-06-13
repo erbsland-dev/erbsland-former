@@ -1,0 +1,17 @@
+{% extends 'design/assistant/wide.html' %}
+{% load i18n bulma_forms %}
+{% block content %}
+    {% if documents.count > 1 %}
+        {% include 'editor/ingest/preview_documents.html' %}
+    {% endif %}
+
+    <div class="block">
+        {% bulma_form_submit form %}
+    </div>
+    
+    {% include 'editor/ingest/preview_fragments.html' %}
+
+    <div class="block">
+        {% bulma_form_submit form %}
+    </div>
+{% endblock %}

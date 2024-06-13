@@ -1,0 +1,6 @@
+{% load code %}
+{% if diff_mode == 'unified' %}
+    {% code_diff_unified diff %}
+{% else %}
+    {% code_diff_split diff %}
+{% endif %}

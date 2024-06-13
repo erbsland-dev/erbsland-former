@@ -1,0 +1,11 @@
+{% load i18n js_triggers %}
+<div class="level-item">
+    <p class="buttons has-addons">
+        <a class="button{% if diff_mode == 'unified' %} is-primary is-selected{% endif %}" title="{% translate 'Unified Difference View' %}" {% action_button_trigger 'diff_mode' 'unified' %}>
+            Unified
+        </a>
+        <a class="button{% if diff_mode == 'split' %} is-primary is-selected{% endif %}" title="{% translate 'Split View' %}" {% action_button_trigger 'diff_mode' 'split' %}>
+            Split
+        </a>
+    </p>
+</div>

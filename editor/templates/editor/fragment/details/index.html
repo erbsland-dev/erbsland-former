@@ -1,0 +1,28 @@
+{% extends 'editor/project/detail_box_base.html' %}
+{% load i18n design %}
+{% block header_title %}
+    {% include 'editor/fragment/header/title.html' with suffix=_('Details') %}
+{% endblock %}
+{% block header_items_right %}
+    <div class="level-item">
+        <a class="button is-success" href="{% url 'fragment' pk=fragment.pk %}">
+            <span class="icon-text">
+                <span class="icon">
+                    <i class="fas fa-arrow-left"></i>
+                </span>
+                <span>{% translate 'Back to Review' %}</span>
+            </span>
+        </a>
+    </div>
+{% endblock %}
+{% block content %}
+    <div class="block mb-6">
+        {% include 'editor/fragment/details/source.html' %}
+    </div>
+    <div class="block mb-6">
+        {% include 'editor/fragment/details/transformation.html' %}
+    </div>
+    <div class="block mb-6">
+        {% include 'editor/fragment/details/edit.html' %}
+    </div>
+{% endblock %}

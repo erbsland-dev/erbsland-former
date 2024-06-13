@@ -1,0 +1,22 @@
+<p class="{% block title_classes %}title is-size-4 has-text-primary-invert{% endblock %}">
+    {% if page_icon_name %}
+    <span class="icon-text">
+        <span class="icon"><i class="fas fa-{{ page_icon_name }}"></i></span>&nbsp;
+    {% endif %}
+        <span title="{{ page_title }}">
+            {% if page_title_prefix %}
+                <span class="is-title-prefix">{{ page_title_prefix }}:</span>
+            {% endif %}
+            {% if display_full_title %}
+                {{ page_title }}
+            {% else %}
+                {{ page_title|truncatechars:30 }}
+            {% endif %}
+            {% if page_title_suffix %}
+                <span class="is-title-suffix">{{ page_title_suffix }}</span>
+            {% endif %}
+        </span>
+    {% if page_icon_name %}
+    </span>
+    {% endif %}
+</p>

@@ -1,0 +1,60 @@
+{% load i18n design level_items js_triggers %}
+<div class="level-item">
+    <div class="dropdown is-right is-hoverable">
+        <div class="dropdown-trigger">
+            <a class="button is-primary" {% disable_if disable_review %} aria-haspopup="true" aria-controls="review-action-dropdown">
+                <span>{% translate "Change Review States" %}</span>
+                <span class="icon"><i class="fas fa-angle-down" aria-hidden="true"></i></span>
+            </a>
+        </div>
+        {% if not disable_review %}
+            <div class="dropdown-menu" id="review-action-dropdown" role="menu">
+                <div class="dropdown-content">
+                    {% for b in review_buttons %}
+                        <a class="dropdown-item {{ b.color_class }}" {% disable_if disable_review %} {% action_button_trigger "review" b.action_value %}>
+                            <span class="icon"><i class="fas fa-{{ b.selection_icon }}"></i></span>
+                            <span class="icon"><i class="fas fa-arrow-right"></i></span>
+                            <span class="icon"><i class="fas fa-{{ b.state_icon }}"></i></span>
+                            <span>{{ b.label }}</span>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+<div class="level-item">
+    <div class="dropdown is-right is-hoverable">
+        <div class="dropdown-trigger">
+            <a class="button is-primary" aria-haspopup="true" aria-controls="project-action-dropdown">
+                <span>{% translate "Project Actions" %}</span>
+                <span class="icon"><i class="fas fa-angle-down" aria-hidden="true"></i></span>
+            </a>
+        </div>
+        <div class="dropdown-menu" id="project-action-dropdown" role="menu">
+            <div class="dropdown-content">
+                {% url 'ingest' pk=object.pk as button_url %}
+                <a class="dropdown-item" {% if not disable_import %}href="{{ button_url }}"{% endif %} {% disable_if disable_import %}>
+                    <span class="icon"><i class="fas fa-file-import"></i></span>
+                    <span>{% translate "Import Documents" %}</span>
+                </a>
+                <a class="dropdown-item" {% if not disable_transformation %}{% action_button_trigger "start_transformation" %}{% endif %} {% disable_if disable_transformation %}>
+                    <span class="icon"><i class="fas fa-magic-wand-sparkles"></i></span>
+                    <span>{% translate "Start Transformation" %}</span>
+                </a>
+                <a class="dropdown-item" {% if not disable_review %}{% action_button_trigger "review" "start" %}{% endif %} {% disable_if disable_review %}>
+                    <span class="icon"><i class="fas fa-file-circle-check"></i></span>
+                    <span>{% translate "Review Changes" %}</span>
+                </a>
+                <a class="dropdown-item" {% if not disable_new_revision %}{% action_button_trigger "new_revision" %}{% endif %}{% disable_if disable_new_revision %}>
+                    <span class="icon"><i class="fas fa-code-commit"></i></span>
+                    <span>{% translate "Add New Revision" %}</span>
+                </a>
+                <a class="dropdown-item" {% if not disable_export %}{% action_button_trigger "export" %}{% endif %} {% disable_if disable_export %}>
+                    <span class="icon"><i class="fas fa-file-export"></i></span>
+                    <span>{% translate "Export Documents" %}</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

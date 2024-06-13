@@ -1,0 +1,47 @@
+{% extends 'editor/project/detail_box_base.html' %}
+{% load i18n static design level_items %}
+{% block header_items_right %}
+    {% translate 'Back to Project' as button_text %}
+    {% action_button text=button_text action_trigger="back" icon="arrow-left" is_main=False %}
+{% endblock %}
+{% block content %}
+    <div class="revisions">
+    {% for revision in revision_rows %}
+        <div class="revision-row">
+            <div class="revision-number">{{ revision.number }}</div>
+            {% static "/editor/revision-"|add:revision.tile_name|add:".svg" as url %}
+            <div class="revision-tile" style="background-image: url({{ url }})">&nbsp;</div>
+            <div class="revision-links">
+                {% if revision.outs %}
+                    <div>
+                        <span class="icon-text">
+                            <span class="icon"><i class="fas fa-arrow-right"></i></span>
+                            <span>{{ revision.outs }}</span>
+                        </span>
+                    </div>
+                {% endif %}
+                {% if revision.ins %}
+                    <div>
+                        <span class="icon-text">
+                            <span class="icon"><i class="fas fa-arrow-left"></i></span>
+                            <span>{{ revision.ins }}</span>
+                        </span>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="revision-label">{{ revision.label }}</div>
+            <div class="revision-action">
+                <div class="buttons">
+                    <a class="button is-primary is-hidden-mobile" href="{{ revision.url }}">
+                        <span>{% translate "View" %}</span>
+                        <span class="icon"><i class="fas fa-arrow-right"></i></span>
+                    </a>
+                    <a class="button is-primary is-hidden-tablet" href="{{ revision.url }}" title="{% translate 'View Revision' %}">
+                        <span class="icon"><i class="fas fa-arrow-right"></i></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+{% endblock %}

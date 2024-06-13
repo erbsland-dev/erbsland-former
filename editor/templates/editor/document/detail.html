@@ -1,0 +1,35 @@
+{% extends 'editor/project/detail_box_base.html' %}
+{% load i18n design %}
+{% block header_title %}
+<div class="level-item">
+    <p class="block title is-size-4 is-size-5-touch has-text-text-invert">
+        <span class="icon-text">
+            <span class="icon">
+                <i class="fas fa-file"></i>
+            </span>
+            <span class="is-hidden-desktop" title="{{ document.path }}">
+                {{ document.get_shortened_path }}
+            </span>
+            <span class="is-hidden-touch" title="{{ document.name }}">
+                <span class="is-path-folder">
+                    {{ document.folder }}{% if document.folder %}/{% endif %}
+                </span>
+                <span class="is-path-name">
+                    {{ document.name }}
+                </span>
+            </span>
+        </span>
+    </p>
+</div>
+{% endblock %}
+{% block header_items_left %}
+<div class="level-item">
+    <span class="tag is-primary">{{ document_syntax }}</span>
+</div>
+{% endblock %}
+{% block header_items_right %}
+    {% include 'design/tree_navigation/level_item.html' %}
+{% endblock %}
+{% block content %}
+    {% include 'editor/document/fragments.html' %}
+{% endblock %}

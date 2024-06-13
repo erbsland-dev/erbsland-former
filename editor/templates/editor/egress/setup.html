@@ -1,0 +1,13 @@
+{% extends "design/assistant/checks.html" %}
+{% load i18n %}
+{% block before_checks %}
+    <p class="subtitle is-4{% if not is_latest_revision %} as-text-danger-dark{% endif %}">
+    {% blocktranslate with count=selected_document_count_text revision=selected_revision %}
+        Export <strong>{{ count }}</strong> of the <strong>{{ revision }}</strong>
+    {% endblocktranslate %}
+    </p>
+    <hr>
+{% endblock %}
+{% block before_form_submit %}
+    {% include "editor/project/selected_documents_block.html" %}
+{% endblock %}

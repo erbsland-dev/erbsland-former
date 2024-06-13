@@ -1,0 +1,19 @@
+{% load design js_triggers %}
+<p class="level-item">
+    <a class="button {{ button_classes }}"
+            {% if action_trigger %}{% action_button_trigger action_trigger action_value %}{% endif %}
+            {% if modal_trigger %}{% modal_trigger modal_trigger %}{% endif %}
+            {% if url %}href="{{ url }}"{% endif %}
+            {% disable_if is_disabled %}>
+        {% if icon_classes %}
+        <span class="icon-text">
+            <span class="icon">
+                <i class="{{ icon_classes }}"></i>
+            </span>
+            <span>{{ text }}</span>
+        </span>
+        {% else %}
+            {{ text }}
+        {% endif %}
+    </a>
+</p>

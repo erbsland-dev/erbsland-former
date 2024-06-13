@@ -1,0 +1,17 @@
+<table class="table is-size-7 is-striped is-fullwidth">
+{% for field in table_fields %}
+    <tr>
+        {% if field.icon_name %}
+            <td>
+                <span class="icon-text">
+                    <span class="icon"><i class="fas fa-{{ field.icon_name }}"></i></span>
+                    <span>{{ field.title }}</span>
+                </span>
+            </td>
+        {% else %}
+            <td>{{ field.title }}</td>
+        {% endif %}
+        <td class="field-{{ field.name }} has-text-right has-text-weight-semibold">{{ field.placeholder }}</td>
+    </tr>
+{% endfor %}
+</table>

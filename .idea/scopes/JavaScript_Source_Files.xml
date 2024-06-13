@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="JavaScript Source Files" pattern="file:*//js_src/*.js" />
+</component>

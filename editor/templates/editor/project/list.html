@@ -1,0 +1,32 @@
+{% extends 'design/detail/cards.html' %}
+{% load i18n level_items %}
+{% block header_items_right %}
+    {% translate "Add New Project" as button_text %}
+    {% url "project_create" as button_url %}
+    {% action_button text=button_text url=button_url icon="plus" is_main=has_no_projects %}
+{% endblock %}
+{% block content %}
+    {% if projects %}
+        <div class="is-flex is-justify-content-space-around is-flex-wrap-wrap">
+            {% for project in projects %}
+                {% include 'editor/project/card.html' %}
+            {% endfor %}
+        </div>
+    {% else %}
+        <a class="section is-large is-placeholder-box is-white" href="{% url "project_create" %}">
+            <p class="title">
+                <span class="icon-text">
+                    <span class="icon"><i class="fas fa-plus"></i></span>
+                    <span>{% translate "Add New Project" %}</span>
+                </span>
+            </p>
+        </a>
+    {% endif %}
+{% endblock %}
+{% block footer_items %}
+    {% if projects %}
+        {% translate "Add New Project" as button_text %}
+        {% url "project_create" as button_url %}
+        {% action_button text=button_text url=button_url icon="plus" is_main=has_no_projects %}
+    {% endif %}
+{% endblock %}

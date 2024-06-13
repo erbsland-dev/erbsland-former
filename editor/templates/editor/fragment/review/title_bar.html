@@ -1,0 +1,47 @@
+{% load i18n code %}
+<div class="level block">
+    <div class="level-left">
+        <div class="level-item">
+            <h1 class="block subtitle is-4">
+                {% if has_potential_changes %}
+                <span class="icon-text">
+                    <span>{{ diff.src_label }}</span>
+                    <span class="icon"><i class="fas fa-arrow-right"></i></span>
+                    <span>{{ diff.dst_label }}</span>
+                </span>
+                {% else %}
+                    {% translate "Unchanged Source" %}
+                {% endif %}
+            </h1>
+        </div>
+        {% if fragment.has_transformation and not fragment.has_edit %}
+        <div class="level-item">
+            {% include "editor/fragment/review/transformation_status_tag.html" %}
+        </div>
+        {% endif %}
+    </div>
+</div>
+<div class="level block">
+    <div class="level-left">
+        <div class="level-item">
+            {% code_diff_changes diff %}
+        </div>
+        <div class="level-item">
+            {% code_diff_collapse_buttons diff %}
+        </div>
+    </div>
+    <div class="level-right">
+        {% include 'editor/fragment/review/diff_mode_buttons.html' %}
+        <div class="level-item">
+            <a class="button" title="{% translate 'View all details of this document fragment.' %}" href="{% url 'fragment_details' pk=fragment.pk %}">
+                <span class="icon-text">
+                    <span>{% translate 'View Details' %}</span>
+                    <span class="icon">
+                        <i class="fas fa-arrow-right"></i>
+                    </span>
+                </span>
+            </a>
+        </div>
+        {% include 'editor/fragment/review/edit_button.html' %}
+    </div>
+</div>

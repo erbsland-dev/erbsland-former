@@ -1,0 +1,15 @@
+{% load i18n editor design js_triggers %}
+<form action="#fragment-{{ fragment.position }}" method="post">
+{% csrf_token %}
+<input type="hidden" name="fragment_id" value="{{ fragment.pk }}">
+<div class="buttons has-addons">
+    {% for state in review_states %}
+        <button class="button{% if fragment.review_state == state %} is-{{ state.name|lower }} is-selected{% endif %}"
+                {% action_button_trigger 'update_review_state' state restore_scroll_pos=True %} title="{{ state.label }}">
+            <span class="icon {% if fragment.review_state == state %}has-text-text-invert{% else %}has-text-{{ state.name|lower }}{% endif %}">
+                <i class="fas fa-{{ state.icon_name }}"></i>
+            </span>
+        </button>
+    {% endfor %}
+</div>
+</form>

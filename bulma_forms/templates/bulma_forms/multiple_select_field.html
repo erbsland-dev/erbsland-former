@@ -1,0 +1,12 @@
+{% extends 'bulma_forms/field.html' %}
+{% block control %}
+    {% if not is_horizontal %}
+        {% include 'bulma_forms/field_label.html' %}
+    {% endif %}
+    <div class="control{{ classes.value }}">
+        <span class="select is-multiple{{ classes.value }}{% if field.errors|length > 0 %} is-danger{% endif %}">
+            {{ field }}
+        </span>
+        {% include 'bulma_forms/field_help_and_errors.html' %}
+    </div>
+{% endblock %}

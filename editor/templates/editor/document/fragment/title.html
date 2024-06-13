@@ -1,0 +1,15 @@
+{% load i18n %}
+<div class="level-item mr-5">
+    <p class="title is-5">
+        <span class="icons has-text-dark">
+            <span class="icon has-text-primary">
+                <i class="fas fa-cube"></i>
+            </span>
+            <span>
+                {% translate 'Fragment' %}
+                {{ fragment.position|add:1 }}
+                <span class="has-text-grey-light is-size-6">⁄ {{ fragment_count }}</span> :
+            </span>
+        </span>
+    </p>
+</div>

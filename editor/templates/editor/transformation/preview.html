@@ -1,0 +1,63 @@
+{% extends "design/assistant/wide.html" %}
+{% load i18n bulma_forms js_triggers design %}
+{% block content %}
+    {% if not document_id %}
+    <p class="block subtitle">
+        {% blocktranslate with document_count=selected_document_count_text fragment_count=selected_fragment_count_text %}
+        Selected <strong>{{ document_count }}</strong> with <strong>{{ fragment_count }}</strong>
+        {% endblocktranslate %}
+    </p>
+        {% if documents %}
+            <div class="document-preview-list">
+            {% for entry in documents %}
+                <a class="row" href="{% url "transformation_preview_document" pk=project.pk document_id=entry.document.id %}">
+                    <div class="fragment-count" title="{% blocktranslate with count=entry.count %}{{ count }} selected fragments in this document{% endblocktranslate %}">
+                        <span class="tag is-primary is-medium">{{ entry.count }}</span>
+                    </div>
+                    <div class="document-name">
+                        <span class="is-path is-hidden-mobile">{{ entry.document.folder }}/</span><span class="is-filename">{{ entry.document.name }}</span>
+                    </div>
+                    <div title="{% translate 'Click to see fragments and preview transformation.' %}">
+                        <span class="icon-text">
+                            <span class="icon-text">
+                                <span class="is-hidden-mobile is-hidden-tablet-only">{% translate "View Fragments" %}</span>
+                                <span class="icon">
+                                    <i class="fas fa-arrow-right"></i>
+                                </span>
+                            </span>
+                        </span>
+                    </div>
+                </a>
+            {% endfor %}
+            </div>
+        {% else %}
+            <div class="message is-danger">
+                <div class="message-header">
+                    <p>{% translate "No Fragments Match Your Criteria" %}</p>
+                </div>
+                <div class="message-body has-text-white">
+                    <p>
+                        {% blocktranslate %}
+                            No fragments and documents match your criteria.
+                            Click on the back button to review your selection.
+                        {% endblocktranslate %}
+                    </p>
+                </div>
+            </div>
+        {% endif %}
+    {% else %}
+    <p class="block subtitle">
+        {% translate "Selected Fragments for Document:" %} {{ document.name }}
+    </p>
+    {% for fragment in fragments %}
+        <nav class="level mb-2 mt-4">
+            <div class="level-left">
+                {% include "editor/document/fragment/title.html" %}
+                {% include "editor/document/fragment/tags.html" %}
+            </div>
+        </nav>
+        {% include "editor/document/fragment/code_block.html" %}
+    {% endfor %}
+    {% endif %}
+    {% bulma_form form %}
+{% endblock %}

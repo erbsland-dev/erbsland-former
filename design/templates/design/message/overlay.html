@@ -1,0 +1,28 @@
+{% load i18n %}
+{% if messages %}
+<div id="notification-container" class="notification-container">
+    {% for message in messages %}
+        <div class="notification is-{{ message.tags }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const notificationContainer = document.getElementById('notification-container');
+        // Show the notification with animation
+        setTimeout(() => {
+            notificationContainer.classList.add('show');
+        }, 100); // Small delay to trigger the transition
+        // Automatically hide the notification after 5 seconds
+        setTimeout(() => {
+            notificationContainer.classList.remove('show');
+        }, 5100); // Slightly longer to allow transition to complete
+        (document.querySelectorAll('.notification') || []).forEach(($notification) => {
+            $notification.addEventListener('click', () => {
+                notificationContainer.classList.remove('show');
+            });
+        });
+    });
+</script>
+{% endif %}

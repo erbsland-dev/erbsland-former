@@ -1,0 +1,30 @@
+{
+  "name": "erbsland_former",
+  "version": "1.0.0",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": ">=6.4.0"
+  },
+  "devDependencies": {
+    "bulma": ">=1.0.0",
+    "webpack": ">=5.88.2",
+    "webpack-cli": ">=5.1.4",
+    "@codemirror/view": ">=6.21.3",
+    "@codemirror/commands": ">=6.3.0",
+    "@codemirror/lang-cpp": ">=6.0.2",
+    "@codemirror/lang-markdown": ">=6.2.2",
+    "@codemirror/lang-python": ">=6.1.3",
+    "@codemirror/language": ">=6.9.1",
+    "@codemirror/state": ">=6.2.1",
+    "@codemirror/lint": ">=6.4.2",
+    "@codemirror/search": ">=6.5.4",
+    "@codemirror/autocomplete": ">=6.9.2",
+    "@codemirror/legacy-modes": ">=6.3.3",
+    "codemirror": ">=6.0.1",
+    "@lezer/common": ">=1.1.0"
+  },
+  "scripts": {
+    "css-build": "node-sass --omit-source-map-url editor/static/editor/css/style.scss editor/static/editor/css/style.css",
+    "css-watch": "npm run css-build -- --watch",
+    "start": "npm run css-watch"
+  }
+}

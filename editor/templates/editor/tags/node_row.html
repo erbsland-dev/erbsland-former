@@ -1,0 +1,73 @@
+{% load i18n editor design %}
+{% if node.is_root %}{# root node #}
+    <div class="browser-box">
+        {% for child in node.children %}
+            {% editor_node_row child %}
+        {% endfor %}
+    </div>
+{% else %}
+    {% if node.type == "folder" %}
+        <div class="browser-row has-text-gray {% if alternate_background %}has-alt-background{% endif %}">
+    {% else %}
+        <div class="browser-row has-text-black {% if alternate_background %}has-alt-background{% endif %}">
+    {% endif %}
+<label class="browser-select-cell">
+    <input id="node_{{ node.index }}_checkbox" type="checkbox" name="selected_node" value="{{ node.index }}"
+           checked>
+    <span class="icon is-medium">
+        <i class="far fa-square fa-lg"></i>
+    </span>
+</label>
+{% for _ in levels %}
+    <div class="browser-indent"></div>
+{% endfor %}
+<label class="browser-handle">
+    {% if node.children %}
+        <input id="node_{{ node.index }}_unfolded" type="checkbox" name="unfolded_node"
+               value="{{ node.index }}" checked>
+        <span class="icon is-medium">
+            <i class="fas fa-chevron-right"></i>
+        </span>
+    {% else %}
+        &nbsp;
+    {% endif %}
+</label>
+{% if node.type == "folder" %}
+<div class="browser-name browser-elide">
+    <span class="icon-text has-text-grey">
+        <span class="icon">
+            <i class="fas fa-folder"></i>
+        </span>
+        <span>{{ node.name }}</span>
+    </span>
+</div>
+{% else %}
+<a class="link browser-name browser-elide" href="{% url 'document' pk=node.document_id %}">
+    <span class="icon-text">
+        <span class="icon"><i class="fas fa-file"></i></span>
+        <span>{{ node.name }}</span>
+        <span class="icon browser-document-arrow"><i class="fas fa-arrow-right fa-fade"></i></span>
+    </span>
+</a>
+<div class="browser-document-type is-hidden-tablet-only is-hidden-mobile">
+    <div class="tags">
+        <span class="tag is-info is-light" title="{% translate "Document Syntax" %}">{{ node.document_syntax }}</span>
+        <span class="tag is-primary is-light" title="{% translate "Fragment Count" %}">{{ node.fragment_count }}</span>
+    </div>
+</div>
+{% endif %}
+<div class="browser-review-status">
+    {% fraction_bar node.review_states %}
+    {% fraction_bar node.transformation_states "is-thin" %}
+</div>
+{% if node.type == "document" %}
+    </div>
+{% else %}
+    </div>
+    <div id="node_{{ node.index }}_folding_box" class="browser-folding-box">
+        {% for child in node.children %}
+            {% editor_node_row child %}
+        {% endfor %}
+    </div>
+{% endif %}
+{% endif %}

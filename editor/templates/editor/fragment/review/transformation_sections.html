@@ -1,0 +1,70 @@
+{% load i18n code design js_triggers %}
+{% if has_transformation %}
+    <div class="card mt-5">
+        <div class="card-header has-background-primary-40">
+            <p class="card-header-title is-size-5 has-text-weight-normal has-text-primary-invert">
+                <span class="icons">
+                    <span class="has-text-weight-semibold">{% translate "Transformation:" %}</span>
+                    <span>{% translate "Output" %}</span>
+                    <span class="ml-3">
+                        {% include "editor/fragment/review/transformation_status_tag.html" %}
+                    </span>
+                </span>
+            </p>
+            <a class="card-header-icon has-text-primary-invert">
+                <span class="icon">
+                    <i class="fas fa-angle-down" aria-hidden="true"></i>
+                </span>
+            </a>
+        </div>
+        <div class="card-content" style="padding: 0.5em;">
+            {% if transformation.output %}
+                {% code_block transformation.output %}
+            {% else %}
+                <div class="section is-placeholder-box">
+                    <p>{% translate "There is no output from the transformer." %}</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    {% if transformation.is_failure %}
+        <div class="card mt-5">
+            <div class="card-header has-background-primary-40">
+                <p class="card-header-title is-size-5 has-text-weight-normal has-text-primary-invert">
+                <span class="icons">
+                    <span class="has-text-weight-semibold">{% translate "Transformation:" %}</span>
+                    <span>{% translate "Failure Reason" %}</span>
+                </span>
+                </p>
+                <a class="card-header-icon has-text-primary-invert">
+                <span class="icon">
+                    <i class="fas fa-angle-down" aria-hidden="true"></i>
+                </span>
+                </a>
+            </div>
+            <div class="card-content" style="padding: 0.5em;">
+                {% code_block transformation.failure_reason %}
+            </div>
+        </div>
+    {% endif %}
+    {% if transformation.failure_input %}
+        <div class="card mt-5">
+            <div class="card-header has-background-primary-40">
+                <p class="card-header-title is-size-5 has-text-weight-normal has-text-primary-invert">
+                <span class="icons">
+                    <span class="has-text-weight-semibold">{% translate "Transformation:" %}</span>
+                    <span>{% translate "Input" %}</span>
+                </span>
+                </p>
+                <a class="card-header-icon has-text-primary-invert">
+                <span class="icon">
+                    <i class="fas fa-angle-down" aria-hidden="true"></i>
+                </span>
+                </a>
+            </div>
+            <div class="card-content" style="padding: 0.5em;">
+                {% code_block transformation.failure_input %}
+            </div>
+        </div>
+    {% endif %}
+{% endif %}

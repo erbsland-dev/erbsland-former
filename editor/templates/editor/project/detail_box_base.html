@@ -1,0 +1,7 @@
+{% extends 'design/detail/box.html' %}
+{# A box template for all detail views in the project. #}
+{% block content_before_box %}
+    {% if assistant %}
+        {% include 'editor/project/running_task_message.html' %}
+    {% endif %}
+{% endblock %}

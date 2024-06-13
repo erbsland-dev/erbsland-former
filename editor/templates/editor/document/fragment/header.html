@@ -1,0 +1,27 @@
+{% load i18n editor design %}
+<nav id="fragment-{{ fragment.position }}" class="level mb-2">
+    <div class="level-left">
+        {% include "editor/document/fragment/title.html" %}
+        {% include "editor/document/fragment/tags.html" %}
+        {% if fragment.context %}
+            <div class="tag is-primary" title="{{ fragment.context }}">Context Info</div>
+        {% endif %}
+    </div>
+    <div class="level-right">
+        <div class="level-item">
+            {% include 'editor/document/fragment/review_buttons.html' %}
+        </div>
+        <div class="level-item">
+            <p class="control">
+                <a class="button is-primary" href="{% url 'fragment' pk=fragment.pk %}">
+                    <span class="icons">
+                        <span>{% translate 'Review' %}</span>
+                        <span class="icon">
+                            <i class="fas fa-arrow-right"></i>
+                        </span>
+                    </span>
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>

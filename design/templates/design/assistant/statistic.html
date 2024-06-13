@@ -1,0 +1,19 @@
+{% if statistic %}
+    <table class="block table is-striped is-bordered is-fullwidth">
+        {% for value in statistic.values %}
+            <tr class="{{ value.field.get_background_color }}">
+                {% if value.field.icon_name %}
+                    <td>
+                    <span class="icon-text {{ value.field.get_text_color }}">
+                        <span class="icon"><i class="fas fa-{{ value.field.icon_name }}"></i></span>
+                        <span>{{ value.field.title }}</span>
+                    </span>
+                    </td>
+                {% else %}
+                    <td class="{{ value.field.get_text_color }}">{{ value.field.title }}</td>
+                {% endif %}
+                <td class="has-text-right has-text-weight-semibold {{ value.field.get_text_color }}">{{ value.text }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endif %}

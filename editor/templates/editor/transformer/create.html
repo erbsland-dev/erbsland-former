@@ -1,0 +1,5 @@
+{% extends 'design/narrow_page.html' %}
+{% load i18n static bulma_forms %}
+{% block content %}
+    {% bulma_form form submit_text=_("Add Transformer Profile") cancel_page='transformer' %}
+{% endblock %}

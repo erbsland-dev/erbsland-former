@@ -1,0 +1,10 @@
+{% spaceless %}
+    <div class="code-block {{ style }}">
+        {% for number, line in lines %}
+            <div class="code-block-line">
+                <div class="code-block-number">{{ number }}</div>
+                <div class="code-block-text">{{ line }}</div>
+            </div>
+        {% endfor %}
+    </div>
+{% endspaceless %}

@@ -1,0 +1,32 @@
+{% extends 'design/detail/cards.html' %}
+{% load i18n static editor level_items %}
+{% block header_items_right %}
+    {% translate "Add Transformer Profile" as button_text %}
+    {% url "transformer_create" as button_url %}
+    {% action_button text=button_text url=button_url icon="plus" is_main=has_no_transformers %}
+{% endblock %}
+{% block content %}
+    {% if transformer_list %}
+        <div class="is-flex is-flex-wrap-wrap">
+        {% for transformer in transformer_list %}
+            {% include 'editor/transformer/card.html' %}
+        {% endfor %}
+        </div>
+    {% else %}
+        <a class="section is-large is-placeholder-box is-white" href="{% url "transformer_create" %}">
+            <p class="title">
+                <span class="icon-text">
+                    <span class="icon"><i class="fas fa-plus"></i></span>
+                    <span>{% translate "Add Transformer Profile" %}</span>
+                </span>
+            </p>
+        </a>
+    {% endif %}
+{% endblock %}
+{% block footer_items %}
+    {% if transformer_list %}
+        {% translate "Add Transformer Profile" as button_text %}
+        {% url "transformer_create" as button_url %}
+        {% action_button text=button_text url=button_url icon="plus" is_main=has_no_transformers %}
+    {% endif %}
+{% endblock %}

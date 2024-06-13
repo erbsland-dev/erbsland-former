@@ -1,0 +1,24 @@
+{% extends 'design/modal/form.html' %}
+{% load i18n bulma_forms %}
+{% block before_box %}
+    {% if user.is_authenticated %}
+        <div class="notification is-warning">
+            <button class="delete"></button>
+            <p>
+                {% blocktranslate trimmed %}
+                    You are authenticated as {{ user.username }}, but are not authorized to access this page. Would you
+                    like to login to a different account?
+                {% endblocktranslate %}
+            </p>
+        </div>
+    {% endif %}
+    {{ block.super }}
+{% endblock %}
+{% block content %}
+    {{ block.super }}
+{% endblock %}
+{% block after_box %}
+    <p class="block has-text-centered">
+        <a class="is-link has-text-primary-invert" href="{% url 'password_reset' %}">{% translate 'Forgotten your password or username?' %}</a>
+    </p>
+{% endblock %}

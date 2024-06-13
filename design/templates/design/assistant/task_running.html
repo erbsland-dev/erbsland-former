@@ -1,0 +1,10 @@
+{% extends 'design/assistant/narrow.html' %}
+{% load static %}
+{% block extra_head %}
+    {{ block.super }}
+    <script src="{% url 'javascript-catalog' %}"></script>
+    <script src="{% static 'tasks/js/task_update.js' %}"></script>
+{% endblock %}
+{% block content %}
+    {% include 'tasks/task_status.html' %}
+{% endblock %}

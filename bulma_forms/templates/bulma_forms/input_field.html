@@ -1,0 +1,16 @@
+{% extends 'bulma_forms/field.html' %}
+{% load bulma_forms %}
+{% block control %}
+    {% if not is_horizontal %}
+        {% include 'bulma_forms/field_label.html' %}
+    {% endif %}
+    <div class="control{% if classes.left_icon %} has-icons-left{% endif %}">
+        {{ field|bulma_render_with_class:'input' }}
+        {% if classes.left_icon %}
+        <span class="icon is-small is-left">
+            <i class="fas fa-{{ classes.left_icon }}"></i>
+        </span>
+        {% endif %}
+        {% include 'bulma_forms/field_help_and_errors.html' %}
+    </div>
+{% endblock %}

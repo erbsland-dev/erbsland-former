@@ -1,0 +1,52 @@
+{% load i18n js_triggers design %}
+<div class="level-item">
+    <div class="dropdown is-right">
+        <div class="dropdown-trigger">
+            <button class="button {% if not fragment.has_edit %}is-primary{% endif %}" {% dropdown_trigger 'new-edit-menu' %}>
+                <span>{% translate 'Action' %}</span>
+                <span class="icon is-small">
+                    <i class="fas fa-angle-down" aria-hidden="true"></i>
+                </span>
+            </button>
+        </div>
+        <div class="dropdown-menu" id="new-edit-menu" role="menu">
+            <div class="dropdown-content">
+                <a class="dropdown-item" {% action_button_trigger 'copy_source' %}{% disable_if fragment.has_edit %}>
+                    {% translate 'Copy source unchanged' %}
+                </a>
+                <hr class="dropdown-divider">
+                <a class="dropdown-item" {% action_button_trigger 'new_edit' 'source_text' %}{% disable_if fragment.has_edit %}>
+                    {% translate 'New edit from source' %}
+                </a>
+                <a class="dropdown-item" {% action_button_trigger 'new_edit' 'transformation_text' %}{% disable_if_not has_transformation %}{% disable_if fragment.has_edit %}>
+                    {% translate 'New edit from transformed text' %}
+                </a>
+                <a class="dropdown-item" {% action_button_trigger 'new_edit' 'transformation_output' %}{% disable_if_not has_transformation %}{% disable_if fragment.has_edit %}>
+                    {% translate 'New edit from transformer output' %}
+                </a>
+                <hr class="dropdown-divider">
+                <a class="dropdown-item" {% action_button_trigger 'new_edit' '' %}{% disable_if fragment.has_edit %}>
+                    {% translate 'New edit from scratch' %}
+                </a>
+                <hr class="dropdown-divider">
+                <a class="dropdown-item" href="{% url 'fragment_edit' pk=fragment.pk %}"{% disable_if_not fragment.has_edit %}>{% translate 'Modify existing edit' %}</a>
+                <hr class="dropdown-divider">
+                <a class="dropdown-item has-text-danger" {% action_button_trigger 'revert' 'all' %}{% disable_if_not fragment.has_edit_and_transformation %}>
+                    {% translate 'Remove transformation and edit' %}
+                </a>
+                <a class="dropdown-item has-text-danger" {% action_button_trigger 'revert' 'edit' %}{% disable_if_not fragment.has_edit %}>
+                    {% translate 'Remove edit' %}
+                </a>
+                <a class="dropdown-item has-text-danger" {% action_button_trigger 'revert' 'transformation' %}{% disable_if_not fragment.has_transformation %}>
+                    {% translate 'Remove transformation' %}
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% if fragment.has_edit %}
+<div class="level-item">
+    <a class="button is-primary" href="{% url 'fragment_edit' pk=fragment.pk %}">{% translate 'Modify Edit' %}</a>
+</div>
+{% endif %}
+

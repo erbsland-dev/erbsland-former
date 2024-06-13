@@ -1,0 +1,16 @@
+{% extends 'design/detail/base.html' %}
+{# This is the detail page for cards on a coloured background. #}
+{% block detail_page_content %}
+    {% block content %}{% endblock %}
+    <section class="section">
+        <nav class="level has-text-text-invert">
+            <div class="level-left">
+                {% block footer_items_left %}{% endblock %}
+            </div>
+            {% block footer_items %}{% endblock %}
+            <div class="level-right">
+                {% block footer_items_right %}{% endblock %}
+            </div>
+        </nav>
+    </section>
+{% endblock %}

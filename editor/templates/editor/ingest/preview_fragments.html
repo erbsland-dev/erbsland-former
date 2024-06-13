@@ -1,0 +1,74 @@
+{% load i18n design code %}
+<div class="box has-background-primary">
+    <h1 class="subtitle is-5 has-text-white-ter">
+        {% blocktranslate with number=document_number count=document_count name=document.path %}
+            <strong class="has-text-white">Document {{ number }} / {{ count }}</strong> — <span>{{ name }}</span>
+        {% endblocktranslate %}
+    </h1>
+    <div class="block field is-grouped is-grouped-multiline">
+        <div class="control">
+            <div class="tags has-addons">
+                <span class="tag is-background-primary-80">{% translate "Document Syntax" %}</span>
+                <span class="tag is-background-primary-40 has-text-white-ter has-text-weight-semibold">{{ document.document_syntax_verbose_name }}</span>
+            </div>
+        </div>
+        <div class="control">
+            <div class="tags has-addons">
+                <span class="tag is-background-primary-80">{% translate "Line Endings" %}</span>
+                <span class="tag is-background-primary-40 has-text-white-ter has-text-weight-semibold">{{ document.line_endings|upper }}</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="block">
+    {% if paginator.num_pages > 1 %}
+        {% pagination_bar paginator_page style='is-small' %}
+    {% endif %}
+    {% for fragment in paginator_page.object_list %}
+        <div class="field is-grouped is-grouped-multiline">
+            <label class="label">
+                {% blocktranslate with position=fragment.position|add:1 count=paginator.count %}
+                    Fragment {{ position }} / {{ count }}:
+                {% endblocktranslate %}
+            </label>
+            <div class="control is-expanded"></div>
+            <div class="control">
+                <div class="tags has-addons">
+                    <span class="tag is-info">Bytes</span>
+                    <span class="tag is-light">{{ fragment.size_bytes }}</span>
+                </div>
+            </div>
+            <div class="control">
+                <div class="tags has-addons">
+                    <span class="tag is-info">Characters</span>
+                    <span class="tag is-light">{{ fragment.size_characters }}</span>
+                </div>
+            </div>
+            <div class="control">
+                <div class="tags has-addons">
+                    <span class="tag is-info">Words</span>
+                    <span class="tag is-light">{{ fragment.size_words }}</span>
+                </div>
+            </div>
+            <div class="control">
+                <div class="tags has-addons">
+                    <span class="tag is-info">Lines</span>
+                    <span class="tag is-light">{{ fragment.size_lines }}</span>
+                </div>
+            </div>
+            <div class="control">
+                |
+            </div>
+            <div class="control">
+                <div class="tags has-addons">
+                    <span class="tag is-dark has-text-weight-bold">{{ size_unit }}</span>
+                    <span class="tag is-primary has-text-weight-bold">{{ fragment.size }}</span>
+                </div>
+            </div>
+        </div>
+        {% code_block fragment.text fragment.first_line_number %}
+    {% endfor %}
+    {% if paginator.num_pages > 1 %}
+        {% pagination_bar paginator_page style='is-small' %}
+    {% endif %}
+</div>

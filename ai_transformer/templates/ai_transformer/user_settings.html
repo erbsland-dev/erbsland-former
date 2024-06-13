@@ -1,0 +1,95 @@
+{% load i18n design %}
+{% if not settings.user_overrides_allowed %}
+    <div class="notification is-info">
+        {% translate "User overrides for the team-id and/or API key are not allowed on this server." %}
+    </div>
+{% endif %}
+
+<div class="field is-horizontal">
+    <div class="field-label is-normal">
+        <label class="label" for="ai_api_key">{% translate "API Key" %}</label>
+    </div>
+    <div class="field-body">
+        <div class="field">
+            <div class="control has-icons-right">
+                <input class="input is-family-monospace {% if settings.has_server_api_key %}is-success{% endif %}" id="ai_api_key" name="ai_api_key" type="password" value="{{ settings.api_key.text }}" placeholder="sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" {% disable_if_not settings.user_overrides_allowed %}>
+                <span id="ai_api_key_toggle" class="icon is-small is-right" style="pointer-events: all; cursor: pointer;"><i class="fas fa-eye"></i></span>
+            </div>
+            {% if settings.has_server_api_key %}
+            <p class="help is-success">
+                <span class="icon-text">
+                    <span class="icon"><i class="fas fa-check-circle"></i></span>
+                    <span>{% translate "There is server-wide key set. Leave this field empty to use the server settings." %}</span>
+                </span>
+            </p>
+            {% endif %}
+            <p class="help">
+                {% blocktranslate %}
+                    Specify the API key that is used for all requests to the server.
+                    Please replace any user or organization wide keys with project keys.
+                {% endblocktranslate %}
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="field is-horizontal">
+    <div class="field-label is-normal">
+        <label class="label" for="ai_organization_id">{% translate "Organization ID" %}</label>
+    </div>
+    <div class="field-body">
+        <div class="field">
+            <div class="control">
+                <input class="input is-family-monospace {% if settings.has_server_api_key %}is-success{% endif %}" id="ai_organization_id" name="ai_organization_id" type="text" value="{{ settings.organization_id }}" placeholder="org-xxxxxxxxxxxxxxxxxxxxxxxxx" {% disable_if_not settings.user_overrides_allowed %}>
+            </div>
+            {% if settings.has_server_organization_id %}
+            <p class="help is-success">
+                <span class="icon-text">
+                    <span class="icon"><i class="fas fa-check-circle"></i></span>
+                    <span>{% translate "There is server-wide organization identifier set. Leave this field empty to use the server settings." %}</span>
+                </span>
+            </p>
+            {% endif %}
+            <p class="help">
+                {% translate "For users who belong to multiple organizations you can pass an organization identifier that is used for all API requests." %}
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="field is-horizontal">
+    <div class="field-label is-normal">
+        <label class="label" for="ai_project_id">{% translate "Project-ID" %}</label>
+    </div>
+    <div class="field-body">
+        <div class="field">
+            <div class="control">
+                <input class="input is-family-monospace {% if settings.has_server_api_key %}is-success{% endif %}" id="ai_project_id" name="ai_project_id" type="text" value="{{ settings.project_id }}" placeholder="proj_xxxxxxxxxxxxxxxxxxxxxxxxx" {% disable_if_not settings.user_overrides_allowed %}>
+            </div>
+            {% if settings.has_server_project_id %}
+            <p class="help is-success">
+                <span class="icon-text">
+                    <span class="icon"><i class="fas fa-check-circle"></i></span>
+                    <span>{% translate "There is server-wide project identifier set. Leave this field empty to use the server settings." %}</span>
+                </span>
+            </p>
+            {% endif %}
+            <p class="help">
+                {% translate "You can pass a project identifier that is used for all API requests." %}
+            </p>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const ai_api_key_toggle = document.getElementById('ai_api_key_toggle');
+        const ai_api_key = document.getElementById('ai_api_key');
+        ai_api_key_toggle.addEventListener('click', function (e) {
+            const type = ai_api_key.getAttribute('type') === 'password' ? 'text' : 'password';
+            ai_api_key.setAttribute('type', type);
+            this.querySelector('i').classList.toggle('fa-eye');
+            this.querySelector('i').classList.toggle('fa-eye-slash');
+        });
+    });
+</script>

@@ -1,0 +1,8 @@
+<script>
+    function codeDiffShowHunk(index) {
+        $toHide = document.getElementById(`hunk-collapse-${index}`)
+        $toShow = document.getElementById(`hunk-lines-${index}`)
+        $toHide.classList.add('is-hidden')
+        $toShow.classList.remove('is-hidden')
+    }
+</script>

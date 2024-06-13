@@ -1,0 +1,45 @@
+{% extends 'editor/project/detail_box_base.html' %}
+{% load i18n design code %}
+{% block header_title %}
+    {% include 'editor/fragment/header/title.html' with suffix=_('Edit') %}
+{% endblock %}
+{% block header_items_right %}
+    <div class="level-item">
+        <button name="action" value="edit_delete" class="button is-outlined is-white">
+            {% translate 'Delete this Edit' %}
+        </button>
+    </div>
+    <div class="level-item">
+        <button name="action" value="edit_cancel" class="button is-outlined is-white">
+            {% translate 'Cancel' %}
+        </button>
+    </div>
+    <div class="level-item">
+        <button name="action" value="edit_save" class="button is-success">
+            {% translate 'Save Changes' %}
+        </button>
+    </div>
+{% endblock %}
+{% block content %}
+    {% if fragment.has_edit %}
+        <div class="block">
+            {% code_editor 'edit_text' syntax_format=document_syntax initial_text=edit.text first_line_number=fragment.first_line_number %}
+        </div>
+        <p class="block subtitle is-size-6 mt-4 mb-4">Notes</p>
+        <div class="block">
+            {% code_editor 'edit_notes' initial_text=edit.notes style='is-notes' %}
+        </div>
+        <div class="field is-grouped is-grouped-centered">
+            <p class="control">
+                <button name="action" value="edit_cancel" class="button is-light">Cancel</button>
+            </p>
+            <p class="control">
+                <button name="action" value="edit_save" class="button is-success">Save Changes</button>
+            </p>
+        </div>
+    {% else %}
+        <div class="section is-placeholder-box">
+            <p>{% translate "There is no edit for this fragment." %}</p>
+        </div>
+    {% endif %}
+{% endblock %}

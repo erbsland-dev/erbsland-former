@@ -1,0 +1,34 @@
+{% extends 'design/modal/base.html' %}
+{% load bulma_forms %}
+{% block content_container %}
+    {% if form %}
+        {% bulma_form_begin form %}
+    {% endif %}
+    <div class="columns is-centered">
+        <div class="column is-two-thirds is-half-widescreen">
+            <section class="section">
+                {% if page_title %}
+                    {% include "design/modal/_page_title.html" %}
+                {% endif %}
+            </section>
+            {% block before_box %}
+                {% if form %}
+                    {% bulma_form_errors form %}
+                {% endif %}
+            {% endblock %}
+            <div class="box ml-4 mr-4">
+                {% block box_title %}{% endblock %}
+                {% block content %}
+                    {% if form %}
+                        {% bulma_form_fields form %}
+                        {% bulma_form_submit form %}
+                    {% endif %}
+                {% endblock %}
+            </div>
+            {% block after_box %}{% endblock %}
+        </div>
+    </div>
+    {% if form %}
+        {% bulma_form_end form %}
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,36 @@
+{% load i18n design js_triggers %}
+<div class="level-item">
+    <div class="buttons has-addons">
+        {% for state in review_states %}
+            <button class="button action-button{% if fragment.review_state == state %} is-{{ state.name|lower }} is-selected{% else %} is-dark{% endif %}" {% if has_running_tasks %}disabled{% else %}{% action_button_trigger 'update_review_state' state.value %}{% endif %} title="{{ state.label }}">
+                <span class="icon {% if fragment.review_state == state %}has-text-text-invert{% else %}has-text-{{ state.name|lower }}{% endif %}">
+                    <i class="fas fa-{{ state.icon_name }}"></i>
+                </span>
+            </button>
+        {% endfor %}
+    </div>
+</div>
+{% if fragment.is_pending or fragment.is_rejected %}{# only show when either in pending or rejected state. #}
+<div class="level-item">
+    <div class="buttons">
+        <button class="button action-button is-white is-outlined" {% action_button_trigger 'goto_next_review' %} title="{% translate "Skip this, and jump to the next fragment to review." %}">
+            <span class="icons">
+                <span>{% translate "Skip" %}</span>
+                <span class="icon">
+                    <i class="fas fa-step-forward"></i>
+                </span>
+            </span>
+        </button>
+        {% for state in review_and_next_states %}
+            <button class="button action-button is-{{ state.name|lower }}" {% if fragment.review_state == state or has_running_tasks %}disabled{% else %}{% action_button_trigger 'update_review_state_goto_next' state %}{% endif %} title="{% translate "Update review state and jump to the next fragment to review." %}">
+                <span class="icons">
+                    <span>{{ state.action_label }}</span>
+                    <span class="icon">
+                        <i class="fas fa-step-forward"></i>
+                    </span>
+                </span>
+            </button>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}

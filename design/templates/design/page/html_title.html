@@ -1,0 +1,1 @@
+{% block title %}{% if breadcrumbs_title %}{{ breadcrumbs_title }}{% else %}{{ page_title }}{% endif %} {% for breadcrumb in breadcrumbs %}| {{ breadcrumb.name }} {% endfor %}{% endblock %}

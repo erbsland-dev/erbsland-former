@@ -1,0 +1,28 @@
+{% load i18n design bulma_forms %}
+<article class="message{% block message_class %} is-warning{% endblock %}">
+    <div class="message-header">
+        {% block message_header %}
+            <p>{% block message_title %}Title{% endblock %}</p>
+        {% endblock %}
+        {% block message_delete_button %}
+            <button class="delete" aria-label="delete"></button>{% endblock %}
+    </div>
+    <div class="message-body has-background">
+        {% block message_body %}
+            <div class="content">
+                {% block message_text %}
+                    Text...
+                {% endblock %}
+            </div>
+            {% block message_button_group %}
+            <div class="block">
+                <div class="field is-grouped{% block message_button_group_classes %} is-grouped-right{% endblock %}">
+                    {% block message_buttons %}
+                        {% bulma_control_button text=_('Continue') url='#' icon='play' %}
+                    {% endblock %}
+                </div>
+            </div>
+            {% endblock %}
+        {% endblock %}
+    </div>
+</article>

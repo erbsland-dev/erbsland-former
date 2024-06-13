@@ -1,0 +1,23 @@
+{% extends "design/assistant/base.html" %}
+{% load bulma_forms %}
+{% block layout_begin %}
+    <div class="container">
+{% endblock %}
+{% block assistant_page_content %}
+    <div class="box ml-4 mr-4">
+        {% if intro_text %}
+            <div class="content block">
+                <p>{{ intro_text }}</p>
+            </div>
+        {% endif %}
+        {% block content %}
+            {% if form %}
+                {% bulma_form_fields form %}
+                {% bulma_form_submit form %}
+            {% endif %}
+        {% endblock %}
+    </div>
+{% endblock %}
+{% block layout_end %}
+    </div>
+{% endblock %}

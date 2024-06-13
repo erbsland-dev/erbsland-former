@@ -1,0 +1,77 @@
+{% load i18n bulma_forms design js_triggers code %}
+<h2 class="subtitle">Regular Expression Definitions</h2>
+{% for definition in settings.definitions %}
+{% with field_prefix="ret_definition"|with_index:forloop.counter|add:"." %}
+    <div class="card block">
+        <header class="card-header has-background-re-transformer-30 has-text-text-invert">
+            <p class="card-header-title has-text-text-invert">
+                {{ forloop.counter }}. Regular Expression
+            </p>
+            <p class="card-header-icon">
+                <i class="fas fa-code"></i>
+            </p>
+        </header>
+        <div class="card-content">
+            <div class="field is-horizontal">
+                <div class="field-label">
+                    <label class="label">Pattern</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <p class="control is-expanded">
+                            {% code_editor form_field_name=field_prefix|add:"pattern" initial_text=definition.pattern style="is-auto-height" %}
+                        </p>
+                        <input type="hidden" name="{{ field_prefix|add:"order" }}" value="{{ forloop.counter }}">
+                    </div>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label">
+                    <p class="label">Flags</p>
+                </div>
+                <div class="field-body is-grouped">
+                {% with index=forloop.counter %}
+                    {% for entry in definition.flags %}
+                    <div class="control mr-4 is-nowrap">
+                        <label class="checkbox">
+                            <input type="checkbox" name="{{ field_prefix|add:entry.name }}" {% checked_if entry.value %}>
+                            <code>{{ entry.letter }}</code>: {{ entry.title }}
+                        </label>
+                    </div>
+                    {% endfor %}
+                {% endwith %}
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label">
+                    <label class="label">Replacement</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <p class="control is-expanded">
+                            {% code_editor form_field_name=field_prefix|add:"replacement" initial_text=definition.replacement style="is-auto-height" %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="card-footer">
+        {% with list_forloop=forloop %}
+            {% for action in card_list_actions %}
+            <a class="card-footer-item {{ action.color_classes }}" {% disable_if_action_flag action.disabled_if list_forloop %}{% action_button_trigger action.action_name list_forloop.counter %} title="{{ action.title }}">
+                <span class="icon"><i class="fas fa-{{ action.icon_name }}"></i></span>
+                <span class="is-hidden-touch">{{ action.title }}</span>
+            </a>
+            {% endfor %}
+        {% endwith %}
+        </footer>
+    </div>
+{% endwith %}
+{% endfor %}
+<a class="section has-text-centered is-placeholder-box" {% action_button_trigger "add" %}>
+    <h2 class="subtitle icon-text">
+        <span class="icon"><i class="fas fa-plus"></i></span>
+        <span>{% translate "Add Regular Expression" %}</span>
+    </h2>
+</a>
+

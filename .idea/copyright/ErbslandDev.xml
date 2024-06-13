@@ -1,0 +1,7 @@
+<component name="CopyrightManager">
+  <copyright>
+    <option name="allowReplaceRegexp" value="Tobias Erbsland" />
+    <option name="notice" value="Copyright © &amp;#36;originalComment.match(&quot;Copyright © (\d+)&quot;, 1, &quot;-&quot;, &quot;&amp;#36;today.year&quot;)&amp;#36;today.year Tobias Erbsland https://erbsland.dev/ and EducateIT GmbH https://educateit.ch/&#10;According to the copyright terms specified in the file &quot;COPYRIGHT.md&quot;. &#10;SPDX-License-Identifier: GPL-3.0-or-later" />
+    <option name="myName" value="ErbslandDev" />
+  </copyright>
+</component>

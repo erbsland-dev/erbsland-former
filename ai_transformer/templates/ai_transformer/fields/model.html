@@ -1,0 +1,65 @@
+{% load i18n design editor code humanize %}
+<div class="field is-horizontal">
+    <div class="field-label is-normal">
+        <label class="label" for="ai_model">{% translate "Model" %}</label>
+    </div>
+    <div class="field-body">
+        <div class="control">
+            <div class="select">
+                <select id="ai_model" name="ai_model">
+                    {% for model in model_list %}
+                        <option {% if model.identifier == settings.model %}selected{% endif %}
+                                value="{{ model.identifier }}"
+                                data-context-window="{{ model.context_window|intcomma }}"
+                                data-maximum-output="{{ model.maximum_output|intcomma }}"
+                                data-price-input="{{ model.price_input|floatformat:2 }}"
+                                data-price-output="{{ model.price_output|floatformat:2 }}">{{ model.verbose_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="control ml-4">
+            <table class="table is-striped is-narrow is-bordered is-fullwidth is-size-7">
+                <tr>
+                    <td class="is-2">{% translate "Context Window:" %}</td>
+                    <td><strong id="ai_info_context_window">x</strong>&nbsp;{% translate "Tokens" %}</td>
+                </tr>
+                <tr>
+                    <td class="is-2">{% translate "Maximum Output:" %}</td>
+                    <td><strong id="ai_info_maximum_output">x</strong>&nbsp;{% translate "Tokens" %}</td>
+                </tr>
+                <tr>
+                    <td class="is-2">{% translate "Input Pricing:" %}</td>
+                    <td><strong id="ai_info_price_input">x</strong>&nbsp;{% translate "USD per 1M Tokens" %}</td>
+                </tr>
+                <tr>
+                    <td class="is-2">{% translate "Output Pricing:" %}</td>
+                    <td><strong id="ai_info_price_output">x</strong>&nbsp;{% translate "USD per 1M Tokens" %}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const modelSelect = document.getElementById('ai_model');
+        const contextWindowInput = document.getElementById('ai_info_context_window');
+        const maximumOutputInput = document.getElementById('ai_info_maximum_output');
+        const priceInputInput = document.getElementById('ai_info_price_input');
+        const priceOutputInput = document.getElementById('ai_info_price_output');
+
+        function updateModelInfo() {
+            const selectedOption = modelSelect.options[modelSelect.selectedIndex];
+            contextWindowInput.innerText = selectedOption.getAttribute('data-context-window');
+            maximumOutputInput.innerText = selectedOption.getAttribute('data-maximum-output');
+            priceInputInput.innerText = selectedOption.getAttribute('data-price-input');
+            priceOutputInput.innerText = selectedOption.getAttribute('data-price-output');
+        }
+
+        modelSelect.addEventListener('change', updateModelInfo);
+
+        // Initialize the fields with the selected model's information
+        updateModelInfo();
+    });
+</script>
+

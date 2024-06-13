@@ -1,0 +1,8 @@
+{% load i18n design js_triggers %}
+{# All elements are automatically updated by the JavaScript that requests the task status. #}
+<div id="task_{{ task.pk }}">
+    {% include "tasks/elements/title.html" %}
+    {% include "tasks/elements/progress.html" %}
+    {% include "tasks/elements/status_table.html" %}
+    {% include "tasks/elements/button_and_model.html" %}
+</div>

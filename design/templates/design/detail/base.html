@@ -1,0 +1,26 @@
+{% extends 'design/page.html' %}
+{# The detail_page template has a navigation bar with an object title/icon and a box for the content. #}
+{# The page top bar and the content box is enclosed in a neutral POST form #}
+{# There is space for elements in the title bar. #}
+{% block main %}
+<div class="container">
+    <form method="post">
+        {% csrf_token %}
+        <nav class="level has-text-primary-invert">
+            <div class="level-left">
+                {% block header_title %}
+                <div class="level-item">
+                    {% include "design/page/page_title.html" %}
+                </div>
+                {% endblock %}
+                {% block header_items_left %}{% endblock %}
+            </div>
+            {% block header_items %}{% endblock %}
+            <div class="level-right">
+                {% block header_items_right %}{% endblock %}
+            </div>
+        </nav>
+        {% block detail_page_content %}{% endblock %}
+    </form>
+</div>
+{% endblock %}

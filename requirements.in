@@ -1,0 +1,15 @@
+# Primary packages required for the front and backend.
+django
+humanize
+cryptography
+redis
+hiredis
+celery
+# Required for token size calculations
+tiktoken
+# Required when using OpenAI language model actions.
+openai
+# If you use a MariaDB or MySQL database, add `mysqlclient` to the requirements.
+# mysqlclient
+# Required for the regex transformer
+regex

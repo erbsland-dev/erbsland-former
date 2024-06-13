@@ -1,0 +1,25 @@
+{% load i18n %}
+<a class="navbar-item" href="https://erbsland.dev/" target="_blank">
+    <span class="icon-text">
+        <span class="icon">
+            <i class="fas fa-book"></i>
+        </span>
+        <span><abbr title="{% translate 'Documentation' %}">{% translate 'Docs' %}</abbr></span>
+    </span>
+</a>
+<a class="navbar-item" href="{% url 'transformer' %}">
+    <span class="icon-text">
+        <span class="icon">
+            <i class="fas fa-magic-wand-sparkles"></i>
+        </span>
+        <span>{% translate 'Transformer' %}</span>
+    </span>
+</a>
+<a class="navbar-item" href="{% url "user_settings" %}">
+    <span class="icon-text">
+        <span class="icon">
+            <i class="fas fa-gear"></i>
+        </span>
+        <span>{% translate 'User Settings' %}</span>
+    </span>
+</a>

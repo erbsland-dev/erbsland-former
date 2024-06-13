@@ -1,0 +1,66 @@
+{% load i18n design editor code humanize %}
+{% include "ai_transformer/fields/model.html" %}
+
+<div class="field is-horizontal">
+    <div class="field-label is-normal">
+        <label class="label" for="ai_system_prompt">{% translate "System Prompt" %}</label>
+    </div>
+    <div class="field-body">
+        <div class="field">
+            <div class="control">
+                {% code_editor form_field_name="ai_system_prompt" initial_text=settings.system_prompt style="is-auto-height" %}
+            </div>
+            <p class="help">
+                {% blocktranslate %}
+                    If defined, the system prompt is added as the first entry in every request. Use it to explain how
+                    the language model shall act and respond. While you can use all placeholders in this prompt, keeping
+                    a consistent system prompt for one transformation will lead to better results.
+                {% endblocktranslate %}
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="field is-horizontal">
+    <div class="field-label is-normal">
+        <label class="label" for="ai_prompt">{% translate "Prompt" %}</label>
+    </div>
+    <div class="field-body">
+        <div class="field">
+            <div class="control">
+                {% code_editor form_field_name="ai_prompt" initial_text=settings.prompt style="is-auto-height" %}
+            </div>
+            <p class="help">
+                {% blocktranslate %}
+                    Define your user prompt that is added as last entry in the request for the language model. Use
+                    the placeholders described below to insert the processed text fragment in the desired format.
+                {% endblocktranslate %}
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="field is-horizontal">
+    <div class="field-label">
+        <label class="label" for="ai_chat_history">{% translate "Chat History" %}</label>
+    </div>
+    <div class="field-body">
+        <div class="control">
+            <label class="checkbox">
+                <input type="checkbox" id="ai_chat_history" name="ai_chat_history" {% checked_if settings.chat_history %}>
+                {% translate "Include previous requests/responses in each request" %}
+            </label>
+        </div>
+    </div>
+</div>
+
+<div class="field is-horizontal">
+    <div class="field-label is-normal">
+        <label class="label" for="ai_chat_history_token_limit">{% translate "Request Token Limit" %}</label>
+    </div>
+    <div class="field-body">
+        <div class="control">
+            <input id="ai_chat_history_token_limit" name="ai_chat_history_token_limit" class="input" type="number" value="{{ settings.chat_history_token_limit }}">
+        </div>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+{% load i18n design js_triggers code %}
+<nav class="level">
+    <div class="level-left">
+        <div class="level-item">
+            <p class="subtitle">
+                    <span class="icon">
+                        <i class="fas fa-user"></i>
+                    </span>
+                <span>{% translate 'Manual Edit' %}</span>
+            </p>
+        </div>
+    </div>
+</nav>
+{% if has_edit %}
+    {% code_block edit.text %}
+    <p class="block subtitle is-size-6 mt-4 mb-4">Notes</p>
+    {% if edit.notes %}
+        {% code_block edit.notes %}
+    {% else %}
+        <div class="section is-placeholder-box">
+            <p>{% translate "There are no notes for this edit." %}</p>
+        </div>
+    {% endif %}
+{% else %}
+    <div class="section is-placeholder-box">
+        <p>{% translate "There is no manual edit for this fragment." %}</p>
+    </div>
+{% endif %}

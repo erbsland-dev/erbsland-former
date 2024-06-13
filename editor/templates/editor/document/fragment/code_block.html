@@ -1,0 +1,8 @@
+{% load design code %}
+{% if fragment.has_edit %}
+    {% code_block fragment.edit.text fragment.first_line_number %}
+{% elif fragment.has_transformation %}
+    {% code_block fragment.transformation.text fragment.first_line_number %}
+{% else %}
+    {% code_block fragment.text fragment.first_line_number %}
+{% endif %}

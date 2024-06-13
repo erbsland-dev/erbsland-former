@@ -1,0 +1,19 @@
+{% extends 'design/modal/base.html' %}
+{% load bulma_forms %}
+{% block content_container %}
+    {% bulma_form_begin form %}
+    <div class="columns is-centered">
+        <div class="column is-10">
+            <section class="section is-question has-text-centered">
+                {% if page_title %}
+                    {% include "design/modal/_page_title.html" with display_full_title=True %}
+                {% endif %}
+                <p class="is-size-5">{{ warning_text }}</p>
+            </section>
+            {% bulma_form_errors form %}
+            {% bulma_form_fields form %}
+            {% bulma_form_submit form %}
+        </div>
+    </div>
+    {% bulma_form_end form %}
+{% endblock %}

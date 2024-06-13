@@ -1,0 +1,20 @@
+{% load i18n %}
+<div class="level-item is-hidden-touch">
+    <span class="tags">
+        {% if fragment.has_text_changes %}
+            <span class="tag is-warning">{% translate "Has Text Changes" %}</span>
+        {% endif %}
+        {% if fragment.has_transformation %}
+            <span class="tag is-primary">{% translate "Transformed" %}</span>
+        {% endif %}
+        {% if fragment.has_edit %}
+            <span class="tag is-warning">{% translate "Edited" %}</span>
+        {% endif %}
+    </span>
+</div>
+<div class="level-item">
+    <span class="tags has-addons">
+        <span class="tag is-dark">{% translate 'Review' %}</span>
+        <span class="tag has-text-weight-bold is-{{ fragment.review_state_identifier }}">{{ fragment.review_state_label }}</span>
+    </span>
+</div>

@@ -1,0 +1,93 @@
+{% load i18n js_triggers humanize %}
+<div class="column is-flex-grow-1 is-flex-shrink-1" style="min-width: 400px;">
+    <div class="card">
+        <a class="card-header {{ transformer.transformer.get_title_background_color_class }} has-text-text-invert" href="{% url 'transformer_edit' pk=transformer.pk %}">
+            <p class="card-header-title has-text-text-invert" title="{{ transformer.profile_name }}">
+                {{ transformer.profile_name|truncatechars:35 }}
+            </p>
+            <p class="card-header-icon has-text-text-invert">
+                <span>{{ transformer.transformer.get_short_name }}</span>
+                <span class="icon">
+                    <i class="fas fa-{{ transformer.transformer.get_icon_name }}"></i>
+                </span>
+            </p>
+        </a>
+        <div class="card-content">
+            <div class="content">
+                {% if transformer.description %}
+                    <div class="field">
+                        <p class="label">{% translate 'Description' %}</p>
+                        <div class="control">
+                            <p>{{ transformer.description }}</p>
+                        </div>
+                    </div>
+                {% endif %}
+                <div class="field">
+                    <p class="label">{% translate 'Transformer Type' %}</p>
+                    <div class="control">
+                        <p>{{ transformer.get_transformer_verbose_name }}</p>
+                    </div>
+                </div>
+                <div class="field">
+                    <p class="label">{% translate 'Metadata' %}</p>
+                    <div class="control">
+                        <p>Created:
+                            <time datetime="{{ transformer.created.isoformat }}" title="{{ transformer.created|date:'Y-m-d H:i:s' }}">{{ transformer.created|naturaltime }}</time>
+                            <br>
+                            Last Modified:
+                            <time datetime="{{ transformer.modified.isoformat }}" title="{{ transformer.modified|date:'Y-m-d H:i:s' }}">{{ transformer.modified|naturaltime }}</time>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="card-footer">
+            <a class="card-footer-item" style="flex-grow: 20;" {% action_button_trigger "edit" transformer.pk %}>
+                <span class="icon-text">
+                    <span class="icon">
+                        <i class="fa-solid fa-pen"></i>
+                    </span>
+                    <span>{% translate 'Edit' %}</span>
+                </span>
+            </a>
+            <div class="card-footer-item dropdown is-hoverable is-up is-right">
+                <div class="dropdown-trigger">
+                    <a class="block" aria-haspopup="true" aria-controls="card-dropdown-{{ transformer.pk }}">
+                        <span class="icon is-small">
+                            <i class="fas fa-ellipsis-vertical" aria-hidden="true"></i>
+                        </span>
+                    </a>
+                </div>
+                <div class="dropdown-menu" id="card-dropdown-{{ transformer.pk }}" role="menu">
+                    <div class="dropdown-content mr-3">
+                        <a class="dropdown-item has-text-danger" {% action_button_trigger "delete" transformer.pk %}>
+                            <span class="icon-text">
+                                <span class="icon">
+                                    <i class="fa-solid fa-trash"></i>
+                                </span>
+                                <span>{% translate 'Delete' %}</span>
+                            </span>
+                        </a>
+                        <hr class="dropdown-divider">
+                        <a class="dropdown-item" {% action_button_trigger "rename" transformer.pk %}>
+                            <span class="icon-text">
+                                <span class="icon">
+                                    <i class="fa-solid fa-edit"></i>
+                                </span>
+                                <span>{% translate 'Rename' %}</span>
+                            </span>
+                        </a>
+                        <a class="dropdown-item" {% action_button_trigger "duplicate" transformer.pk %}>
+                            <span class="icon-text">
+                                <span class="icon">
+                                    <i class="fa-solid fa-copy"></i>
+                                </span>
+                                <span>{% translate 'Duplicate' %}</span>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>

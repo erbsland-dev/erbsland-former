@@ -1,0 +1,23 @@
+{% load i18n %}
+{% spaceless %}
+    {% include "design/tags/_code_diff_script.html" %}
+    <div class="code-diff split {{ style }}">
+    {% for hunk in diff.hunks %}
+        {% if hunk.hidden %}
+        {% include 'design/tags/_code_diff_collapsed_lines.html' %}
+        <div id="hunk-lines-{{ forloop.counter0 }}" class="hunk collapsed-lines is-hidden">
+        {% else %}
+        <div class="hunk">
+        {% endif %}
+        {% for diff_line in hunk.lines %}
+            <div class="line{% if diff_line.is_match %} is-match{% endif %}">
+                <div class="line-number source{% if not diff_line.src_line %} empty{% endif %}">{{ diff_line.src_line|default:"" }}</div>
+                <div class="text source{% if not diff_line.src_line %} empty{% endif %}">{{ diff_line.src_text|default:"&nbsp;" }}</div>
+                <div class="line-number destination{% if not diff_line.dst_line %} empty{% endif %}">{{ diff_line.dst_line|default:"" }}</div>
+                <div class="text destination{% if not diff_line.dst_line %} empty{% endif %}">{{ diff_line.dst_text|default:"&nbsp;" }}</div>
+            </div>
+        {% endfor %}
+        </div>
+    {% endfor %}
+    </div>
+{% endspaceless %}

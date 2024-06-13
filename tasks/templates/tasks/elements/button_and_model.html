@@ -1,0 +1,65 @@
+{% load i18n js_triggers %}
+<div class="field is-grouped is-grouped-centered mt-5">
+    <div class="control">
+        <a class="button task-reload is-hidden is-success" href="{{ request.path }}">
+                <span class="icon">
+                    <i class="fas fa-rotate-right"></i>
+                </span>
+            <span>{% translate 'Reload' %}</span>
+        </a>
+        <a class="button task-continue {% if task.result == 'failed' or task.result == 'stopped' %}is-danger{% else %}is-success{% endif %} {% if task.status != 2 %}is-hidden{% endif %}"
+           href="{% if task.get_next_url %}{{ task.get_next_url }}{% else %}{{ request.path }}{% endif %}">
+            <span class="icon"><i class="fa-solid fa-sync fa-spin"></i></span>
+            <span>{% translate 'Continue' %}</span>
+            <span class="icon"><i class="fas fa-play"></i></span>
+        </a>
+        {% with task_id_str=task.pk|stringformat:'s' %}
+            <a class="button task-stop-open {% if task.status == 2 %}is-hidden{% endif %}"
+                    {% modal_trigger 'task_stop_dialog_'|add:task_id_str %}>
+        {% endwith %}
+        <span class="icon"><i class="fas fa-stop"></i></span>
+        <span>
+                {% blocktranslate with subject=task.get_progress_subject %}
+                    Stop {{ subject }} …
+                {% endblocktranslate %}
+                </span>
+        </a>
+    </div>
+</div>
+<div id="task_stop_dialog_{{ task.pk }}" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title">Stop {{ task.get_progress_subject }}?</p>
+            <button class="delete" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body">
+            <div class="content">
+                {% blocktranslate with subject=task.get_progress_subject|lower %}
+                    <h3>Would you like to stop the ongoing {{ subject }}?</h3>
+                    <p>Clicking "Stop" will send a signal to stop the current process. Keep in mind that
+                        prematurely stopping the {{ subject }} may lead to unpredictable side effects.</p>
+                {% endblocktranslate %}
+            </div>
+        </section>
+        <footer class="modal-card-foot">
+            <div class="buttons">
+                <button class="button is-danger task-stop">
+                    <span class="icon"><i class="fas fa-stop"></i></span>
+                    <span>{% translate 'Stop' %}</span>
+                </button>
+                <button class="button is-success modal-close-button">
+                    <span>{% translate 'Continue' %}</span>
+                    <span class="icon"><i class="fas fa-play"></i></span>
+                </button>
+            </div>
+        </footer>
+    </div>
+</div>
+{% csrf_token %}
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const csrf_token = document.querySelector('[name=csrfmiddlewaretoken]').value;
+        new TaskStatusHandler("{{ task.pk }}", csrf_token, "{% url 'task_api' %}")
+    });
+</script>

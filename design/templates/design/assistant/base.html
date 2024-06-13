@@ -1,0 +1,26 @@
+{% extends 'design/page.html' %}
+{% load bulma_forms %}
+{# The assistant page template has a title with a line of steps below. #}
+{# The content of box is enclosed in a neutral POST form #}
+{% block main %}
+    <div class="container">
+        {% if form %}
+            {% bulma_form_begin form %}
+        {% endif %}
+        {% block layout_begin %}{% endblock %}
+        {% block title_section %}
+        <section class="section {% block title_section_classes %}{% endblock %}">
+            {% include "design/assistant/_page_title.html" %}
+            {% include "design/assistant/_steps.html" %}
+        </section>
+        {% endblock %}
+        {% if form %}
+            {% bulma_form_errors form %}
+        {% endif %}
+        {% block assistant_page_content %}{% endblock %}
+        {% block layout_end %}{% endblock %}
+        {% if form %}
+            {% bulma_form_end form %}
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% load design js_triggers %}
+<form class="block" method="post">
+    {% csrf_token %}
+    <nav class="pagination {{ pagination_style }}" role="navigation" aria-label="pagination">
+        <button class="pagination-previous button" {% action_button_trigger 'goto_page' pagination_previous_value %}{% disable_if_not pagination_previous_value %}>
+            <span class="icon">
+                <i class="fas fa-arrow-left"></i>
+            </span>
+        </button>
+        <button class="pagination-next button" {% action_button_trigger 'goto_page' pagination_next_value %}{% disable_if_not pagination_next_value %}>
+            <span class="icon">
+                <i class="fas fa-arrow-right"></i>
+            </span>
+        </button>
+        <ul class="pagination-list">
+            {% for page in pagination_list %}
+                <li>
+                    {% if page.label %}
+                        <button class="pagination-link button{% is_current_if page.is_current %}" {% action_button_trigger 'goto_page' page.value %}>
+                            {{ page.label }}
+                        </button>
+                    {% else %}
+                        <span class="pagination-ellipsis">&hellip;</span>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </nav>
+</form>

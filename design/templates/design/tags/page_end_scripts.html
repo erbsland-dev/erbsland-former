@@ -1,0 +1,11 @@
+<!-- page end scripts -->
+{% for url in page_end_scripts.includes %}
+<script src="{{ url }}"></script>
+{% endfor %}
+{% if page_end_scripts.code %}
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+{{ page_end_scripts.code|safe }}
+});
+</script>
+{% endif %}

@@ -1,0 +1,161 @@
+
+/** Styles for the file browser in the project. */
+
+@use "bulma-theme";
+@use "bulma/sass/utilities/mixins" as mx;
+
+
+.browser-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    background: transparent;
+
+    &.has-alt-background {
+        background: var(--bulma-white-ter);
+    }
+
+    .browser-indent {
+        width: 1.8rem;
+        min-width: 1.8rem;
+        padding: 0.3em 0;
+    }
+
+    .browser-name {
+        flex-grow: 10;
+        flex-shrink: 1;
+        padding: 0.5em 0.25em;
+        color: var(--bulma-grey-dark);
+
+        span {
+            flex-wrap: nowrap;
+        }
+
+        .browser-document-arrow {
+            visibility: hidden;
+        }
+
+        &:hover {
+            color: var(--bulma-black);
+
+            .browser-document-arrow {
+                visibility: inherit;
+            }
+        }
+    }
+
+    .browser-elide {
+        white-space: nowrap !important;
+        overflow: hidden !important;
+
+        span, a {
+            text-overflow: ellipsis !important;
+        }
+    }
+
+    .browser-handle {
+        display: block;
+        width: 2em;
+        min-width: 2em;
+        padding: 0.2em 0;
+        cursor: pointer;
+
+        input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            width: 0;
+            height: 0;
+
+            &:checked ~ .icon i::before {
+                font: var(--fa-font-solid);
+                content: "\f078";
+            }
+        }
+
+        .icon {
+            color: var(--bulma-grey-light);
+        }
+
+        &:hover input ~ .icon {
+            color: var(--bulma-black);
+        }
+    }
+
+    .browser-document-type {
+        padding: 0 0.25em;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    .browser-review-status {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        padding: 0.5em 0;
+        width: 10em;
+        min-width: 10em;
+        flex-shrink: 0;
+    }
+}
+
+
+.browser-select-cell {
+    display: block;
+    width: 2em;
+    min-width: 2em;
+    padding: 0.2em 0;
+    cursor: pointer;
+
+    .icon {
+        color: var(--bulma-grey-light);
+    }
+
+    input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        width: 0;
+        height: 0;
+
+        &:checked ~ .icon {
+            color: var(--bulma-primary);
+        }
+
+        &:checked ~ .icon i::before {
+            font: var(--fa-font-solid);
+            content: "\f14a";
+        }
+
+        &:indeterminate ~ .icon {
+            color: var(--bulma-grey);
+        }
+
+        &:indeterminate ~ .icon i::before {
+            font: var(--fa-font-solid);
+            content: "\f146";
+        }
+    }
+
+    &:hover input ~ .icon {
+        color: var(--bulma-black);
+    }
+}
+
+
+@include mx.mobile {
+    .browser-row {
+        .browser-indent {
+            width: 0.5rem;
+            min-width: 0.5rem;
+        }
+
+        .browser-review-status {
+            width: 4em;
+            min-width: 4em;
+        }
+    }
+}
+

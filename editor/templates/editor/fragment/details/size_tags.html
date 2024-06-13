@@ -1,0 +1,32 @@
+<div class="field is-grouped">
+    <div class="control is-hidden-touch">
+        <div class="tags has-addons">
+            <span class="tag is-info">Bytes</span>
+            <span class="tag is-light">{{ object.size_bytes }}</span>
+        </div>
+    </div>
+    <div class="control is-hidden-touch">
+        <div class="tags has-addons">
+            <span class="tag is-info">Characters</span>
+            <span class="tag is-light">{{ object.size_characters }}</span>
+        </div>
+    </div>
+    <div class="control is-hidden-mobile">
+        <div class="tags has-addons">
+            <span class="tag is-info">Words</span>
+            <span class="tag is-light">{{ object.size_words }}</span>
+        </div>
+    </div>
+    <div class="control is-hidden-mobile">
+        <div class="tags has-addons">
+            <span class="tag is-info">Lines</span>
+            <span class="tag is-light">{{ object.size_lines }}</span>
+        </div>
+    </div>
+    <div class="control">
+        <div class="tags has-addons">
+            <span class="tag is-dark has-text-weight-bold">{{ size_unit }}</span>
+            <span class="tag is-primary has-text-weight-bold">{{ object.size }}</span>
+        </div>
+    </div>
+</div>

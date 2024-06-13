@@ -1,0 +1,21 @@
+{% extends 'design/modal/page.html' %}
+{% load i18n static bulma_forms %}
+{% block content %}
+    <div class="columns is-centered">
+        <div class="column is-6-tablet is-5-desktop is-4-widescreen">
+            <article class="message">
+                <div class="message-header">
+                    {% block title %}<p>{{ page_title }}</p>{% endblock %}
+                </div>
+                <div class="message-body content">
+                    {% block message_content %}
+                        {% if message_text %}
+                        <p>{{ message_text }}</p>
+                        {% endif %}
+                    {% endblock %}
+                    {% bulma_form form %}
+                </div>
+            </article>
+        </div>
+    </div>
+{% endblock %}

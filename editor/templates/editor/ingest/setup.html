@@ -1,0 +1,93 @@
+{% extends 'design/assistant/wide.html' %}
+{% load i18n design bulma_forms %}
+{% block content %}
+    <p class="block is-size-5">{% translate 'Size Settings' %}</p>
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label" for="size_unit_select">{% translate "Unit for Size" %}</label>
+        </div>
+        <div class="field-body">
+            <div class="control">
+                <div class="select{% if form.size_unit.errors|length > 0 %} is-danger{% endif %}">
+                    <select id="size_unit_select" name="{{ form.size_unit.html_name }}">
+                        {% for detail in size_unit_details %}
+                            <option value="{{ detail.name }}" {% is_selected detail.name form.size_unit.value %} data-unit="{{ detail.unit_name }}" data-minimum="{{ detail.minimum_fragment_size }}" data-maximum="{{ detail.maximum_fragment_size }}">{{ detail.verbose_name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                {% for error in form.size_unit.errors %}
+                    <span class="help is-danger{{ form.error_css_class }}">{{ error }}</span>
+                {% endfor %}
+                <p class="help">{% translate "Select the unit for all size calculations of the imported documents." %}</p>
+            </div>
+        </div>
+    </div>
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label" for="id_ingest-minimum_fragment_size">{% translate "Fragment Size" %}</label>
+        </div>
+        <div class="field-body">
+            <div class="control">
+                <div class="field">
+                    {{ form.minimum_fragment_size|bulma_render_with_class:"input" }}
+                    <p class="help">{% translate "Minimum size" %}</p>
+                </div>
+            </div>
+            <div class="control is-text-aligned-with-input">
+                <div class="icon-text">
+                    <span class="is-size-unit-text">Unit</span>
+                    <span class="icon"><i class="fas fa-arrow-right"></i></span>
+                </div>
+            </div>
+            <div class="control">
+                <div class="field">
+                    {{ form.maximum_fragment_size|bulma_render_with_class:"input" }}
+                    <p class="help">{% translate "Maximum size" %}</p>
+                </div>
+            </div>
+            <div class="control is-text-aligned-with-input">
+                <p class="is-size-unit-text">Unit</p>
+            </div>
+        </div>
+    </div>
+    <p class="block is-size-5">{% translate 'Documents to Import into the Latest Revision' %}</p>
+    {% bulma_formset form.documents column_classes='is-3,is-5,is-2,is-2' value_classes='is-family-code,is-family-code,,' %}
+    {% bulma_form_submit form %}
+{% endblock %}
+{% block end_page_scripts %}
+    {{ block.super }}
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    let $sizeUnitSelect = document.getElementById("size_unit_select");
+
+    function getSelectedOption() {
+        return $sizeUnitSelect.options[$sizeUnitSelect.selectedIndex];
+    }
+
+    function updateUnitFromSelect() {
+        const selectedOption = getSelectedOption();
+        const unit = selectedOption.dataset.unit;
+        document.querySelectorAll(".is-size-unit-text").forEach($element => {
+            $element.innerText = unit;
+        });
+    }
+
+    function updateMinMaxFromSelect() {
+        let selectedOption = getSelectedOption();
+        let minimum = selectedOption.dataset.minimum;
+        let maximum = selectedOption.dataset.maximum;
+        let $minElement = document.querySelector("input[name='{{ form.minimum_fragment_size.html_name }}']");
+        let $maxElement = document.querySelector("input[name='{{ form.maximum_fragment_size.html_name }}']");
+        $minElement.value = minimum;
+        $maxElement.value = maximum;
+    }
+
+    $sizeUnitSelect.addEventListener("change", (event) => {
+        updateUnitFromSelect();
+        updateMinMaxFromSelect();
+    });
+
+    updateUnitFromSelect();
+})
+</script>
+{% endblock %}

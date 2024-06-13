@@ -1,0 +1,15 @@
+{% extends 'editor/project/detail_box_base.html' %}
+{% load i18n design code js_triggers %}
+{% block header_title %}
+    {% include 'editor/fragment/header/title.html' with suffix=_('Review') %}
+{% endblock %}
+{% block header_items_right %}
+    {% include 'editor/fragment/review/review_buttons.html' %}
+    {% include 'design/tree_navigation/level_item.html' %}
+{% endblock %}
+{% block content %}
+    {% include "editor/fragment/review/title_bar.html" %}
+    {% include "editor/fragment/review/diff_section.html" %}
+    {% include "editor/fragment/review/edit_sections.html" %}
+    {% include "editor/fragment/review/transformation_sections.html" %}
+{% endblock %}

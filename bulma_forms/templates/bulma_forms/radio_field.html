@@ -1,0 +1,15 @@
+{% extends 'bulma_forms/field.html' %}
+{% block control %}
+    {% if not is_horizontal %}
+        {% include 'bulma_forms/field_label.html' %}
+    {% endif %}
+    <div class="control {{ classes.value }}">
+        {% for choice in field %}
+            <label class="radio{{ classes.label }}">
+                {{ choice.tag }}
+                {{ choice.choice_label }}
+            </label>
+        {% endfor %}
+        {% include 'bulma_forms/field_help_and_errors.html' %}
+    </div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'design/base.html' %}
+{% block body %}
+    <div class="columns is-flex-direction-column is-fullheight-100vh">
+        <header class="column is-narrow m-0 p-0">
+            {% block header %}
+                {% include 'design/header/layout.html' %}
+                {% include 'design/breadcrumbs/layout.html' %}
+            {% endblock %}
+        </header>
+        <div class="column has-background-primary-40 p-4">
+            {% block main %}{% endblock %}
+        </div>
+        <footer class="column is-narrow footer m-0 p-3">
+            {% block footer %}
+                <div class="content has-text-centered">
+                    {% include 'design/page/copyright.html' %}
+                </div>
+            {% endblock %}
+        </footer>
+    </div>
+{% endblock %}

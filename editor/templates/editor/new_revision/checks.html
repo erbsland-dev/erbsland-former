@@ -1,0 +1,10 @@
+{% extends "design/assistant/checks.html" %}
+{% load i18n %}
+{% block before_checks %}
+    {% if is_latest_revision %}
+        <p class="subtitle is-4">Create a New Revision Based on the <strong>Latest One</strong></p>
+    {% else %}
+        <p class="subtitle is-4 has-text-danger-dark">Restoring <strong>Revision {{ revision.number }}</strong></p>
+    {% endif %}
+    <hr>
+{% endblock %}

@@ -1,0 +1,4 @@
+{% load bulma_forms %}
+{% for field in form.visible_fields %}
+    {{ field|bulma_field }}
+{% endfor %}

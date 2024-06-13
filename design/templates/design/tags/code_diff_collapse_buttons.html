@@ -1,0 +1,40 @@
+{% load i18n %}
+<script>
+    function toggleCodeDiffHunks(expand = true) {
+        const collapsedLines = document.querySelectorAll(".code-diff .hunk.collapsed-lines");
+        const collapsedMessage = document.querySelectorAll(".code-diff .hunk.collapsed-message");
+
+        collapsedLines.forEach($div => {
+            if (expand) {
+                $div.classList.remove('is-hidden');
+            } else {
+                $div.classList.add('is-hidden');
+            }
+        });
+
+        collapsedMessage.forEach($div => {
+            if (expand) {
+                $div.classList.add('is-hidden');
+            } else {
+                $div.classList.remove('is-hidden');
+            }
+        });
+    }
+
+    // Usage
+    function codeDiffExpandAllHunks() {
+        toggleCodeDiffHunks(true);
+    }
+
+    function codeDiffCollapseAllHunks() {
+        toggleCodeDiffHunks(false);
+    }
+</script>
+<div class="buttons">
+    <a class="button is-small" onclick="codeDiffExpandAllHunks()" title="{% translate "Expand all hunks" %}">
+        <i class="fas fa-up-right-and-down-left-from-center"></i>
+    </a>
+    <a class="button is-small" onclick="codeDiffCollapseAllHunks()" title="{% translate "Collapse all hunks" %}">
+        <i class="fas fa-down-left-and-up-right-to-center"></i>
+    </a>
+</div>

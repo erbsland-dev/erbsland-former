@@ -1,0 +1,14 @@
+<div class="field{% if is_horizontal %} is-horizontal{% endif %}">
+    {% if is_horizontal %}
+    <div class="field-label is-normal">
+        {% include "bulma_forms/field_label.html" %}
+    </div>
+    <div class="field-body">
+        <div class="field">
+    {% endif %}
+    {% block control %}{% endblock %}
+    {% if is_horizontal %}
+        </div>
+    </div>
+    {% endif %}
+</div>

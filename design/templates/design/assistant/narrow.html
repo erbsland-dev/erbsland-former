@@ -1,0 +1,26 @@
+{% extends "design/assistant/base.html" %}
+{% load bulma_forms %}
+{% block title_section_classes %}has-text-centered{% endblock %}
+{% block layout_begin %}
+    <div class="columns is-centered">
+        <div class="column is-10 is-8-widescreen">
+{% endblock %}
+{% block assistant_page_content %}
+    <div class="box ml-4 mr-4">
+        {% if intro_text %}
+            <div class="content block">
+                <p class="is-size-5">{{ intro_text }}</p>
+            </div>
+        {% endif %}
+        {% block content %}
+            {% if form %}
+                {% bulma_form_fields form %}
+                {% bulma_form_submit form %}
+            {% endif %}
+        {% endblock %}
+    </div>
+{% endblock %}
+{% block layout_end %}
+        </div>
+    </div>
+{% endblock %}

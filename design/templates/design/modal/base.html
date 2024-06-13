@@ -1,0 +1,28 @@
+{% extends 'design/base.html' %}
+{% block body %}
+    <section class="hero is-primary is-fullheight">
+        <div class="hero-head">
+            {% block content_header %}
+                <div class="p-4 is-flex is-justify-content-center">
+                    <a class="has-text-primary-invert" href="{% url 'home' %}">
+                        {% include 'design/page/logo.html' %}
+                    </a>
+                </div>
+            {% endblock %}
+        </div>
+        <div class="hero-body">
+            {% block content_body %}
+                <div class="container">
+                    {% block content_container %}{% endblock %}
+                </div>
+            {% endblock %}
+        </div>
+        <div class="hero-foot">
+            {% block content_footer %}
+                <div class="p-4 content has-text-centered">
+                    {% include 'design/modal/copyright.html' %}
+                </div>
+            {% endblock %}
+        </div>
+    </section>
+{% endblock %}

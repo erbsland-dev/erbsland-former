@@ -1,0 +1,74 @@
+{% load i18n humanize %}
+<div class="column is-full-mobile is-3-fullhd is-4-desktop is-6-tablet">
+    <div class="card">
+        <header class="card-header has-background-dark has-text-text-invert">
+            <h1 class="card-header-title has-text-text-invert" title="{{ project.name }}">
+                {{ project.name|truncatechars:35 }}
+            </h1>
+            <a class="card-header-icon has-text-text-invert" href="{% url 'project' pk=project.pk %}">
+                <span class="icon">
+                    <i class="fas fa-folder-tree"></i>
+                </span>
+            </a>
+        </header>
+        <div class="card-content">
+            <div class="content">
+                <div class="field">
+                    <p class="label">{% translate 'Information' %}</p>
+                    <div class="control">
+                        {% translate 'Current Revision:' %} <strong>{{ project.get_latest_revision_number }}</strong><br>
+                        {% translate 'Documents:' %} <strong>{{ project.get_document_count }}</strong>
+                    </div>
+                </div>
+                {% if project.description %}
+                <div class="field">
+                    <p class="label">{% translate 'Description' %}</p>
+                    <div class="control">
+                        <p>{{ project.description }}</p>
+                    </div>
+                </div>
+                {% endif %}
+                <div class="field">
+                    <p class="label">{% translate 'Metadata' %}</p>
+                    <div class="control">
+                        <p>
+                            {% translate "Created:" %}
+                            <time datetime="{{ project.created.isoformat }}" title="{{ project.created|date:'Y-m-d H:i:s' }}">{{ project.created|naturaltime }}</time>
+                            <br>
+                            {% translate "Last Modified:" %}
+                            <time datetime="{{ project.modified.isoformat }}" title="{{ project.modified|date:'Y-m-d H:i:s' }}">{{ project.modified|naturaltime }}</time>
+                        </p>
+                    </div>
+                </div>
+                <div class="field">
+                    <p class="label">{% translate 'Tags' %}</p>
+                    <div class="control">
+                        <div class="tags are-small">
+                            {% if project.owner == user %}
+                                <span class="tag is-link">{% translate 'Project Owner' %}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="card-footer">
+            <a class="card-footer-item" href="{% url 'project_delete' pk=project.pk %}">
+                <span class="icon-text">
+                    <span class="icon">
+                        <i class="fa-solid fa-trash"></i>
+                    </span>
+                    <span>{% translate 'Delete' %}</span>
+                </span>
+            </a>
+            <a class="card-footer-item" href="{% url 'project' pk=project.pk %}">
+                <span class="icon-text">
+                    <span class="icon">
+                        <i class="fa-solid fa-edit"></i>
+                    </span>
+                    <span>{% translate 'Edit' %}</span>
+                </span>
+            </a>
+        </footer>
+    </div>
+</div>

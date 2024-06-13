@@ -1,0 +1,22 @@
+{% extends 'design/detail/base.html' %}
+{# This is the detail page for form based content in a white box. #}
+{% block detail_page_content %}
+    {% block content_before_box %}{% endblock %}
+    <div class="box">
+        {% block content %}{% endblock %}
+        {% block content_footer %}
+        <section class="section">
+            <nav class="level">
+                <div class="level-left">
+                    {% block footer_items_left %}{% endblock %}
+                </div>
+                {% block footer_items %}{% endblock %}
+                <div class="level-right">
+                    {% block footer_items_right %}{% endblock %}
+                </div>
+            </nav>
+        </section>
+        {% endblock %}
+    </div>
+    {% block content_after_box %}{% endblock %}
+{% endblock %}

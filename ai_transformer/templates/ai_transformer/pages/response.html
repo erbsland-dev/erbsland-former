@@ -1,0 +1,188 @@
+{% load i18n design js_triggers editor code humanize %}
+<div class="card block">
+    <header class="card-header has-background-ai-transformer-40 has-text-text-invert">
+        <p class="card-header-title has-text-text-invert">
+            {% translate "Pattern for Extracting the Result from Output" %}
+        </p>
+        <p class="card-header-icon">
+            <i class="fas fa-code"></i>
+        </p>
+    </header>
+    <div class="card-content">
+        <div class="field is-horizontal">
+            <div class="field-label">
+                <label class="label" for="ai_extract_result.pattern">{% translate "Pattern" %}</label>
+            </div>
+            <div class="field-body">
+                <div class="field">
+                    <div class="control">
+                        {% code_editor form_field_name="ai_extract_result.pattern" initial_text=settings.extract_result.pattern style="is-auto-height" %}
+                    </div>
+                    <p class="help">
+                        {% blocktranslate %}
+                            Regular expression to extract only a part of the transformed text from the result.
+                            The first group must contain the result. If it does not match, or if it isn't defined,
+                            the transformer copies the whole output from the model as transformation result.
+                        {% endblocktranslate %}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="field is-horizontal">
+            <div class="field-label">
+                <p class="label">{% translate "Flags" %}</p>
+            </div>
+            <div class="field-body is-grouped">
+                {% with index=forloop.counter %}
+                    {% for entry in settings.extract_result.flags %}
+                        <div class="control mr-4 is-nowrap">
+                            <label class="checkbox">
+                                <input type="checkbox" name="{{ "ai_extract_result."|add:entry.name }}" {% checked_if entry.value %}>
+                                <code>{{ entry.letter }}</code>: {{ entry.title }}
+                            </label>
+                        </div>
+                    {% endfor %}
+                {% endwith %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="field is-horizontal">
+    <div class="field-label">
+        <label class="label" for="ai_fix_surrounding_newlines">{% translate "Newlines" %}</label>
+    </div>
+    <div class="field-body">
+        <div class="field">
+            <div class="control">
+                <label class="checkbox">
+                    <input type="checkbox" id="ai_fix_surrounding_newlines" name="ai_fix_surrounding_newlines" {% checked_if settings.fix_surrounding_newlines %}>
+                    {% translate "Fix the surrounding newlines of the response." %}
+                </label>
+            </div>
+            <p class="help">
+                {% blocktranslate %}
+                    If this option is activated, the number and formatting for surrounding empty lines of the
+                    result is changed to match the original text. This reduces the differences between the 
+                    original and processed result and simplifies the extraction of the result. Empty lines are
+                    considered as lines that only consist of spaces and tabs, ending in a newline character.
+                {% endblocktranslate %}
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="field is-horizontal">
+    <div class="field-label is-normal">
+        <label class="label" for="ai_max_tokens">{% translate "Max Tokens" %}</label>
+    </div>
+    <div class="field-body">
+        <div class="field">
+            <div class="control">
+                <input id="ai_max_tokens" name="ai_max_tokens" class="input" type="number" min="0" max="100000000" value="{{ settings.max_tokens }}">
+            </div>
+            <p class="help">
+                {% blocktranslate %}
+                    The maximum numbers of tokens for the result. When set to zero, no output token limit is sent
+                    with the request.
+                {% endblocktranslate %}
+            </p>
+        </div>
+    </div>
+</div>
+
+<h2 class="subtitle block">{% translate "Result Detectors:" %}</h2>
+
+{% for result_detector in settings.result_detectors %}
+{% with field_prefix="ai_result_detector"|with_index:forloop.counter|add:"." %}
+<div class="card block">
+    <header class="card-header has-background-ai-transformer-40 has-text-text-invert">
+        <p class="card-header-title has-text-text-invert">
+            {% blocktranslate with count=forloop.counter %}
+                {{ count }}. Result Detector
+            {% endblocktranslate %}
+        </p>
+        <p class="card-header-icon">
+            <i class="fas fa-code"></i>
+        </p>
+    </header>
+    <div class="card-content">
+        <div class="field is-horizontal">
+            <div class="field-label">
+                <label class="label">{% translate "Pattern" %}</label>
+            </div>
+            <div class="field-body">
+                <div class="field">
+                    <p class="control is-expanded">
+                        {% code_editor form_field_name=field_prefix|add:"pattern" initial_text=result_detector.pattern style="is-auto-height" %}
+                    </p>
+                    <input type="hidden" name="{{ field_prefix|add:"order" }}" value="{{ forloop.counter }}">
+                </div>
+            </div>
+        </div>
+        <div class="field is-horizontal">
+            <div class="field-label">
+                <p class="label">{% translate "Flags" %}</p>
+            </div>
+            <div class="field-body is-grouped">
+                {% with index=forloop.counter %}
+                    {% for entry in result_detector.flags %}
+                        <div class="control mr-4 is-nowrap">
+                            <label class="checkbox">
+                                <input type="checkbox" name="{{ field_prefix|add:entry.name }}" {% checked_if entry.value %}>
+                                <code>{{ entry.letter }}</code>: {{ entry.title }}
+                            </label>
+                        </div>
+                    {% endfor %}
+                {% endwith %}
+            </div>
+        </div>
+        <div class="field is-horizontal">
+            <div class="field-label">
+                <label class="label" for="{{ field_prefix|add:"action" }}">{% translate "Action" %}</label>
+            </div>
+            <div class="field-body">
+                <div class="field">
+                    <div class="select">
+                        <select id="{{ field_prefix|add:"action" }}" name="{{ field_prefix|add:"action" }}">
+                            {% for entry in result_action_labels %}
+                                <option value="{{ entry.action }}" {% is_selected entry.action result_detector.action %}>{{ entry.label }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="field is-horizontal">
+            <div class="field-label">
+                <label class="label">{% translate "Invert" %}</label>
+            </div>
+            <div class="field-body">
+                <div class="field">
+                    <label class="checkbox">
+                        <input type="checkbox" name="{{ field_prefix|add:"invert" }}" {% checked_if result_detector.invert %}/>
+                        Execute this action if the regular expression <strong>does not</strong> match.
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="card-footer">
+        {% with list_forloop=forloop %}
+            {% for action in card_list_actions %}
+                <a class="card-footer-item {{ action.color_classes }}" {% disable_if_action_flag action.disabled_if list_forloop %}{% action_button_trigger "result_detector_"|add:action.action_name list_forloop.counter %} title="{{ action.title }}">
+                    <span class="icon"><i class="fas fa-{{ action.icon_name }}"></i></span>
+                    <span class="is-hidden-touch">{{ action.title }}</span>
+                </a>
+            {% endfor %}
+        {% endwith %}
+    </footer>
+</div>
+{% endwith %}
+{% endfor %}
+<a class="section has-text-centered is-placeholder-box" {% action_button_trigger "result_detector_add" %}>
+    <h2 class="subtitle icon-text">
+        <span class="icon"><i class="fas fa-plus"></i></span>
+        <span>{% translate "Add Result Detector" %}</span>
+    </h2>
+</a>

@@ -1,0 +1,43 @@
+{% load i18n design js_triggers %}
+{% if no_api_key_set %}
+<div class="notification is-warning">
+    <div class="level">
+        <div class="level-left">
+            <div class="level-item">
+                {% blocktranslate %}
+                    There is no API Key set and this transformer profile will not work, until you set one.
+                {% endblocktranslate %}
+            </div>
+        </div>
+        <div class="level-right">
+            <div class="level-item">
+                <a class="button is-black is-outlined" href="{% url "user_settings" setting_page="gpt_edit" %}">
+                    <span>{% translate "User Settings" %}</span>
+                    <span class="icon">
+                        <i class="fas fa-arrow-right"></i>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+<div class="tabs">
+    <input type="hidden" name="ai_current_page" value="{{ ai_current_page }}">
+    <ul>
+        <li class="{% is_active "ai_prompt_page" ai_current_page is_default=True %}"><a {% tab_trigger page_id="ai_prompt_page" %}>{% translate "Prompt" %}</a></li>
+        <li class="{% is_active "ai_response_page" ai_current_page %}"><a {% tab_trigger page_id="ai_response_page" %}>{% translate "Response" %}</a></li>
+        <li class="{% is_active "ai_advanced_page" ai_current_page %}"><a {% tab_trigger page_id="ai_advanced_page" %}>{% translate "Advanced Settings" %}</a></li>
+    </ul>
+</div>
+<div class="tabs-content">
+    <div class="tabs-page {% is_active "ai_prompt_page" ai_current_page is_default=True %}" id="ai_prompt_page">
+        {% include "ai_transformer/pages/prompt.html" %}
+    </div>
+    <div class="tabs-page {% is_active "ai_response_page" ai_current_page %}" id="ai_response_page">
+        {% include "ai_transformer/pages/response.html" %}
+    </div>
+    <div class="tabs-page {% is_active "ai_advanced_page" ai_current_page %}" id="ai_advanced_page">
+        {% include "ai_transformer/pages/advanced.html" %}
+    </div>
+</div>

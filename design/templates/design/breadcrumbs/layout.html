@@ -1,0 +1,21 @@
+{% load i18n design %}
+<div style="position: relative;">
+    <nav class="breadcrumb is-centered p-3 has-background-white-bis m-0" aria-label="breadcrumbs">
+        <ul>
+            <li>
+                {% include 'design/breadcrumbs/home.html' %}
+            </li>
+            {% for d in breadcrumbs %}
+                <li>
+                    <a href="{{ d.url }}" title="{{ d.name }}">{{ d.name|truncatechars:30 }}</a>
+                </li>
+            {% endfor %}
+            {% if not is_home %}
+                <li class="is-active">
+                    <a aria-current="page" title="{{ breadcrumbs_title }}">{{ breadcrumbs_title|truncatechars:30 }}</a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+    <div class="is-float-left ml-3 is-size-7" style="opacity: 0.2; position: absolute; top: 50%; left: 1rem; transform: translateY(-50%);" aria-hidden="true">V:&nbsp;{% app_version %}</div>
+</div>

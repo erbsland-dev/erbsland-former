@@ -1,0 +1,31 @@
+{% extends "design/assistant/done.html" %}
+{% load i18n %}
+{% block before_statistic %}
+<div class="level">
+    <div class="level-left">
+        <div class="level-item">
+            <p class="subtitle is-4">
+                {% if not assistant.failure_reason %}
+                    {% translate "Successfully Transformed the Fragments" %}
+                {% else %}
+                    {% translate "Transformation Failed without Rollback" %}
+                {% endif %}
+            </p>
+        </div>
+    </div>
+    <div class="level-right">
+        <div class="level-item">
+            {% if not assistant.failure_reason %}
+                <span class="icon is-large has-text-success is-size-2"><i class="fas fa-check-circle"></i></span>
+            {% else %}
+                <span class="icon is-large has-text-danger is-size-2"><i class="fas fa-xmark-circle"></i></span>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% if assistant.failure_reason %}
+<div class="box has-background-danger has-text-danger-invert content">
+    {{ assistant.failure_reason }}
+</div>
+{% endif %}
+{% endblock %}

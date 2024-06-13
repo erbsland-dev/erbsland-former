@@ -1,0 +1,15 @@
+{% if icon %}
+    {% if not icon_on_the_right_side %}
+    <span class="icon">
+        <i class="fas fa-{{ icon }}"></i>
+    </span>
+    {% endif %}
+    <span>{{ text }}</span>
+    {% if icon_on_the_right_side %}
+    <span class="icon">
+        <i class="fas fa-{{ icon }}"></i>
+    </span>
+    {% endif %}
+{% else %}
+    {{ text }}
+{% endif %}

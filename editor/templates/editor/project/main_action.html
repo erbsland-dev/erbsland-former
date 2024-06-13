@@ -1,0 +1,56 @@
+{% load i18n design level_items js_triggers %}
+{# There is always a single main action displayed, based on the project state. #}
+<div class="level-item">
+    {% if main_action == "import" %}
+        {% translate 'Import Documents' as button_text %}
+        {% url 'ingest' pk=project.pk as button_url %}
+        {% action_button text=button_text url=button_url is_disabled=disable_import icon="file-import" is_main=True %}
+    {% endif %}
+    {% if main_action == "transformation" %}
+        {% translate 'Start Transformation' as button_text %}
+        {% action_button text=button_text action_trigger="start_transformation" is_disabled=disable_transformation icon="magic-wand-sparkles" is_main=True %}
+    {% endif %}
+    {% if main_action == "review" %}
+        {% if has_pending_reviews and has_rejected_reviews %}
+        <div class="dropdown is-right is-hoverable">
+            <div class="dropdown-trigger">
+        {% endif %}
+                {% if has_pending_reviews %}
+                <a class="button is-approved" aria-haspopup="true" aria-controls="project-action-dropdown" {% disable_if disable_review %} {% action_button_trigger "review" "start_pending" %}>
+                    <span class="icon"><i class="fas fa-file-circle-check"></i></span>
+                    <span>{% translate 'Review Pending Fragments' %}</span>
+                    <span class="icon"><i class="fas fa-arrow-right"></i></span>
+                </a>
+                {% else %}
+                <a class="button is-rejected" aria-haspopup="true" aria-controls="project-action-dropdown" {% disable_if disable_review %} {% action_button_trigger "review" "start_rejected" %}>
+                    <span class="icon"><i class="fas fa-file-circle-xmark"></i></span>
+                    <span>{% translate 'Review Rejected Fragments' %}</span>
+                    <span class="icon"><i class="fas fa-arrow-right"></i></span>
+                </a>
+                {% endif %}
+        {% if has_pending_reviews and has_rejected_reviews %}
+            </div>
+            <div class="dropdown-menu" id="project-action-dropdown" role="menu">
+                <div class="dropdown-content">
+                    <a class="dropdown-item" {% disable_if disable_review %} {% action_button_trigger "review" "start_pending" %}>
+                        <span class="icon"><i class="fas fa-file-circle-check"></i></span>
+                        <span>{% translate 'Review Pending Fragments' %}</span>
+                    </a>
+                    <a class="dropdown-item" {% disable_if disable_review %} {% action_button_trigger "review" "start_rejected" %}>
+                        <span class="icon"><i class="fas fa-file-circle-xmark"></i></span>
+                        <span>{% translate 'Review Rejected Fragments' %}</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    {% endif %}
+    {% if main_action == "new_revision_and_export" %}
+        <div class="buttons">
+            {% translate 'Add New Revision' as button_text %}
+            {% action_button text=button_text action_trigger="new_revision" is_disabled=disable_new_revision icon="code-commit" is_main=False %}
+            {% translate 'Export Documents' as button_text %}
+            {% action_button text=button_text action_trigger="export" is_disabled=disable_export icon="file-export" is_main=True %}
+        </div>
+    {% endif %}
+</div>

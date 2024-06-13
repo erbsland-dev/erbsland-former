@@ -1,0 +1,29 @@
+{% load i18n static %}
+<form method="post">{# enclose the top navigation bar in a form, to allow POST actions from the menu #}
+    {% csrf_token %}
+    <nav class="navbar pl-4 pt-3 pr-4" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            {% block navigation_logo %}
+            <a class="navbar-item" href="{% url 'home' %}">
+                {% include 'design/page/logo.html' %}
+            </a>
+            {% endblock %}
+
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="main-navbar">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+
+        <div id="main-navbar" class="navbar-menu">
+            <div class="navbar-start">
+                {% include 'design/header/left.html' %}
+            </div>
+
+            <div class="navbar-end">
+                {% include 'design/header/right.html' %}
+            </div>
+        </div>
+    </nav>
+</form>

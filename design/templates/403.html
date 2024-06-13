@@ -1,0 +1,9 @@
+{% extends 'design/modal/page.html' %}
+{% load i18n %}
+{% block content %}
+    <h1 class="title has-text-centered">{% translate 'Access Denied' %}</h1>
+    <h2 class="subtitle has-text-centered">{{ exception }}</h2>
+    <div class="buttons is-centered">
+        <a class="button is-success" href="{% url 'home' %}">Back to Home</a>
+    </div>
+{% endblock %}

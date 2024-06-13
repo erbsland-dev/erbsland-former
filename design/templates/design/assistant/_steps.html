@@ -1,0 +1,24 @@
+<p class="subtitle mt-4 has-text-primary-invert">
+<span class="icon-text">
+{% for s in step_definitions %}
+    {% if not s.is_transition %}
+        {% if s.without_transition %}
+            <span class="icon"><i class="fas fa-arrow-right"></i></span>
+        {% endif %}
+        {% if s.value_name == step_value_name %}
+            <span class="has-text-primary-invert has-text-weight-bold">{{ s.label }}</span>
+        {% else %}
+            <span class="has-text-primary-invert">{{ s.label }}</span>
+        {% endif %}
+    {% else %}
+        <span class="icon">
+            {% if s.value_name == step_value_name %}
+                <i class="fas fa-cog fa-spin"></i>
+            {% else %}
+                <i class="fas fa-arrow-right"></i>
+            {% endif %}
+        </span>
+    {% endif %}
+{% endfor %}
+</span>
+</p>

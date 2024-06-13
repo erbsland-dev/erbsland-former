@@ -1,0 +1,30 @@
+{% extends 'design/detail/box.html' %}
+{% load i18n design level_items %}
+{% block header_items_right %}
+    {% translate "Save" as button_text %}
+    {% action_button text=button_text is_main=True icon="save" action_trigger="save" %}
+{% endblock %}
+{% block content %}
+    {% if setting_pages %}
+        <div class="tabs">
+            <ul>
+                {% for setting_page in setting_pages %}
+                    <li {% if setting_page.name == selected_setting_page %}class="is-active"{% endif %}>
+                        <a href="{% url "user_settings" setting_page=setting_page.name %}">{{ setting_page.verbose_name }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% include selected_setting_template %}
+    {% else %}
+        <div class="section is-large is-placeholder-box">
+            <p class="title">
+                {% translate "No User Settings Available" %}
+            </p>
+        </div>
+    {% endif %}
+{% endblock %}
+{% block footer_items %}
+    {% translate "Save" as button_text %}
+    {% action_button text=button_text is_main=True icon="save" action_trigger="save" %}
+{% endblock %}

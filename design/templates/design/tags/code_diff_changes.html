@@ -1,0 +1,15 @@
+{% load i18n %}
+<div class="code-diff-changes {{ style }}">
+    <span class="count" title="{% translate "Total Changes" %}">{{ diff.total_changes }}</span>
+    <div class="bar">
+        {% if diff.add_count > 0 %}
+            <div class="bar-section has-background-diff-add" style="flex-grow: {{ diff.add_count }}" title="{% translate 'Added Lines' %}"></div>
+        {% endif %}
+        {% if diff.delete_count > 0 %}
+            <div class="bar-section has-background-diff-delete" style="flex-grow: {{ diff.delete_count }}" title="{% translate 'Removed Lines' %}"></div>
+        {% endif %}
+        {% if diff.match_count > 0 %}
+            <div class="bar-section has-background-grey" style="flex-grow: {{ diff.match_count }}" title="{% translate 'Unchanged Lines' %}"></div>
+        {% endif %}
+    </div>
+</div>

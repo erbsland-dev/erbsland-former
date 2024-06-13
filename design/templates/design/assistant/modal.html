@@ -1,0 +1,17 @@
+{% extends "design/modal/page.html" %}
+{% load bulma_forms %}
+{% block content %}
+<form method="post">
+    <div class="columns is-centered">
+        <div class="column is-two-thirds is-half-widescreen">
+            <section class="section has-text-centered">
+                {% include "design/assistant/_page_title.html" %}
+                {% if intro_text %}
+                    <p class="subtitle">{{ intro_text }}</p>
+                {% endif %}
+            </section>
+            {% bulma_form form %}
+        </div>
+    </div>
+</form>
+{% endblock %}

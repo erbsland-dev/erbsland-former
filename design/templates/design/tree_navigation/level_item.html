@@ -1,0 +1,28 @@
+{% load i18n design js_triggers %}
+<div class="level-item">
+    <div class="buttons has-addons">
+        <button class="button is-primary" {% action_button_trigger 'goto_previous' %} title="{{ tree_nav.previous_title }}" {% disable_if_not tree_nav.has_previous %}>
+            <span class="icon">
+                {% if tree_nav.has_previous_sibling %}
+                    <i class="fas fa-backward-step"></i>
+                {% else %}
+                    <i class="fas fa-backward"></i>
+                {% endif %}
+            </span>
+        </button>
+        <button class="button is-primary" {% action_button_trigger 'goto_parent' %} title="{{ tree_nav.parent_title }}">
+            <span class="icon">
+                <i class="fas fa-turn-up"></i>
+            </span>
+        </button>
+        <button class="button is-primary" {% action_button_trigger 'goto_next' %} title="{{ tree_nav.next_title }}"{% disable_if_not tree_nav.has_next %}>
+            <span class="icon">
+                {% if tree_nav.has_next_sibling %}
+                    <i class="fas fa-forward-step"></i>
+                {% else %}
+                    <i class="fas fa-forward"></i>
+                {% endif %}
+            </span>
+        </button>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+
+/** The customizations to create a unique Bulma theme */
+
+@use "bulma/sass" with (
+    $custom-colors: (
+        "unprocessed": #62838a,
+        "pending": #3488db,
+        "rejected": #c54a3f,
+        "approved": #2abe69,
+        "diff-add": #b5d960,
+        "diff-delete": #ec955e,
+        "diff-collapse": #74cde1,
+        "success": #2abe69,
+        "info": #549ef1,
+        "ai-transformer": #893dcf,
+        "re-transformer": #4c3dba,
+    ),
+    $orange: #ea921e,
+    $yellow: #f1cb0e,
+    $green: #2abe69,
+    $turquoise: #1abcbc,
+    $blue: #3488db,
+    $purple: #9b49bb,
+    $red: #c54a3f,
+    $primary: #4D7EB3,
+    $family-sans-serif: ('Fira Sans', sans-serif),
+    $family-monospace: ('Fira Mono', monospace),
+    $navbar-breakpoint: 769px,
+);
+

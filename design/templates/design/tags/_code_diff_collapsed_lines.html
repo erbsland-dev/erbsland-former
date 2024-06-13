@@ -1,0 +1,19 @@
+{% load i18n %}
+{% spaceless %}
+<div id="hunk-collapse-{{ forloop.counter0 }}" class="hunk collapsed-message">
+    <a class="line collapse" onclick="codeDiffShowHunk({{ forloop.counter0 }})">
+        <div class="line-number collapse" title="{% translate 'Expand' %}">
+            <span class="icon">
+                <i class="fas fa-arrows-up-down"></i>
+            </span>
+        </div>
+        {% with line_count=hunk.lines|length %}
+            {% if diff.total_changes == 0 %}
+                <div class="text has-no-changes"><div>{% blocktranslate %}There are no changes. Click to show {{ line_count }} unchanged lines.{% endblocktranslate %}</div></div>
+            {% else %}
+                <div class="text"><div>{% blocktranslate %}Click to show {{ line_count }} unchanged lines.{% endblocktranslate %}</div></div>
+            {% endif %}
+        {% endwith %}
+    </a>
+</div>
+{% endspaceless %}

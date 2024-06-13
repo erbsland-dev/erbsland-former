@@ -1,0 +1,29 @@
+{% extends 'design/assistant/narrow.html' %}
+{% load i18n bulma_forms %}
+{% block content %}
+    <hr>
+    <a id="egress_download_button" class="button is-success is-fullwidth is-medium" href="{% url "egress_download" pk=project.pk %}">
+        {% translate "Download Export" %}
+    </a>
+    <hr>
+    {% bulma_form_errors form %}
+    {% bulma_form_fields form %}
+    {% bulma_form_submit form %}
+{% endblock %}
+{% block end_page_scripts %}
+    {{ block.super }}
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let downloadButton = document.getElementById('egress_download_button');
+            let submitButton = document.querySelector('form button[value="submit"]');
+            downloadButton.addEventListener("click", function() {
+                setTimeout(function() {
+                    downloadButton.classList.remove('is-success');
+                    downloadButton.classList.add('is-outline');
+                    submitButton.classList.remove('is-outline');
+                    submitButton.classList.add('is-success');
+                }, 3000); // 3000 milliseconds = 3 seconds
+            })
+        });
+    </script>
+{% endblock %}

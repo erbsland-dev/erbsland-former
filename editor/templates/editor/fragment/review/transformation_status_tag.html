@@ -1,0 +1,6 @@
+{% load i18n %}
+{% if transformation.is_failure %}
+    <span class="tag is-danger">{% translate "Failed" %}</span>
+{% else %}
+    <span class="tag is-success">{% translate "Succeeded" %}</span>
+{% endif %}

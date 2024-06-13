@@ -1,0 +1,39 @@
+{% load bulma_forms %}
+{{ formset.management_form }}
+{% if formset|length > 0 %}
+    <table class="table is-striped is-narrow is-fullwidth">
+        <thead>
+        <tr>
+            <th>
+                <div class="columns">
+                    {% for label, column_classes in formset_labels %}
+                        <div class="column is-hidden-mobile is-size-7 {{ column_classes }}">
+                            {{ label }}
+                        </div>
+                    {% endfor %}
+                </div>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for form in formset %}
+            <tr>
+                <td>
+                    {% for field in form.hidden_fields %}
+                        {{ field }}
+                    {% endfor %}
+                    <div class="columns">
+                        {% for field in form.visible_fields %}
+                            <div class="column {{ field.column_classes }}">
+                                {{ field|bulma_field }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    No entries.
+{% endif %}

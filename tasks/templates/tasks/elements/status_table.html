@@ -1,0 +1,9 @@
+<div class="content block">
+    <div class="columns task-status-fields">
+    {% for table_fields in task.get_status_field_columns %}
+        <div class="column">
+            {% include "tasks/elements/_status_table_fields.html" %}
+        </div>
+    {% endfor %}
+    </div>
+</div>

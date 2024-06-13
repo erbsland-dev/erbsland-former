@@ -1,0 +1,15 @@
+{% extends 'design/detail/box.html' %}
+{% load i18n design level_items %}
+{% block header_items_right %}
+    {% translate "Rename" as button_text %}
+    {% action_button text=button_text is_main=False icon="edit" action_trigger="rename_profile" %}
+    {% translate "Save and Close" as button_text %}
+    {% action_button text=button_text is_main=True icon="save" action_trigger="save_and_close" %}
+{% endblock %}
+{% block content %}
+    {% include settings_template %}
+{% endblock %}
+{% block footer_items %}
+    {% translate "Save and Close" as button_text %}
+    {% action_button text=button_text is_main=True icon="save" action_trigger="save_and_close" %}
+{% endblock %}
