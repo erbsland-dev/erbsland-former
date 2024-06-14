@@ -244,9 +244,12 @@ package-lock.json
 # the node modules
 node_modules/
 
-# Ignore the map files
+# Ignore the CSS and JS map files
 *.css.map
 *.js.map
+
+# Ignore the uncompressed CSS file. Only add the minified version to the respository.
+design/static/design/css/style.css
 
 # Ignore the 'working_dir' directory.
 /working_dir/

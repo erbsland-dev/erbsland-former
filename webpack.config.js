@@ -1,4 +1,6 @@
 const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 module.exports = [
     {
@@ -7,32 +9,58 @@ module.exports = [
             modules: ['./node_modules']
         },
         entry: {
-            'index': './design/static/design/js_src/index.js',
+            'design': {
+                import: './design/style/js/design.js',
+            },
+            'editor': {
+                import: './design/style/js/editor.js',
+            },
         },
-        devtool: 'source-map',
+        //devtool: 'source-map',
         output: {
             filename: '[name].bundle.js',
             path: path.resolve(__dirname, 'design/static/design/js'),
-            library: 'Design',
+            library: {
+                name: '[name]',
+                type: 'var',
+            },
             clean: true,
         }
     },
     {
-        mode: 'development',
+        mode: 'production',
         resolve: {
             modules: ['./node_modules']
         },
         entry: {
-            'editor': {
-                import: './design/static/design/js_src/editor.js',
-            },
+            'style': './design/style/css/style.scss'
         },
-        devtool: 'source-map',
         output: {
-            filename: '[name].bundle.js',
-            path: path.resolve(__dirname, 'design/static/design/js'),
-            library: 'Editor',
-            clean: false
-        }
+            filename: '[name].css.js',
+            path: path.resolve(__dirname, 'design/static/design/css'),
+        },
+        module: {
+            rules: [
+                {
+                    test: /\.scss$/,
+                    use: [
+                        MiniCssExtractPlugin.loader,
+                        'css-loader',
+                        'sass-loader'
+                    ],
+                },
+            ],
+        },
+        plugins: [
+            new MiniCssExtractPlugin({
+                filename: '[name].min.css',
+            }),
+        ],
+        optimization: {
+            minimizer: [
+                `...`,
+                new CssMinimizerPlugin(),
+            ],
+        },
     }
 ];

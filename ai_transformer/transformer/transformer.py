@@ -36,7 +36,7 @@ class AiTransformer(TransformerBase):
     user_settings_class = AiUserSettingsHandler
     profile_settings_class = AiProfileSettingsHandler
     processor_class = AiProcessor
-    title_background_color_class = "has-background-ai-transformer-40"
+    title_background_color_class = "has-background-ai-transformer-dark"
     short_name = "GPT"
     icon_name = "hat-wizard"
     status_fields = [

@@ -31,10 +31,10 @@ class TransformationStateCounts(FractionBarCounts):
     ]
 
     STATE_COLOR_CLASSES = {
-        TransformationState.SOURCE: "has-background-unprocessed-70",
-        TransformationState.SUCCESS: "has-background-approved-70",
-        TransformationState.FAILED: "has-background-rejected-70",
-        TransformationState.EDITED: "has-background-warning-70",
+        TransformationState.SOURCE: "has-background-unprocessed-light",
+        TransformationState.SUCCESS: "has-background-approved-light",
+        TransformationState.FAILED: "has-background-rejected-light",
+        TransformationState.EDITED: "has-background-warning-light",
     }
 
     def __init__(self, initialize_with_zero: bool = False):

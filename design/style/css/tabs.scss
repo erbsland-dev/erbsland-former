@@ -1,0 +1,29 @@
+
+@use "bulma-theme";
+
+.tabs-box {
+    @extend %block;
+    display: flex;
+    flex-direction: column;
+
+    .tabs-content {
+        border-color: var(--bulma-tabs-border-bottom-color);
+        border-style: var(--bulma-tabs-border-bottom-style);
+        border-width: var(--bulma-tabs-border-bottom-width);
+        border-top: none;
+        padding: 0.75em;
+        border-collapse: collapse;
+    }
+}
+
+.tabs-content {
+    @extend %block;
+    .tabs-page {
+        display: none;
+
+        &.is-active {
+            display: block;
+        }
+    }
+}
+

@@ -1,0 +1,20 @@
+
+/** The customizations to create a unique Bulma theme */
+
+@use "bulma/sass" with (
+    $custom-colors: (
+        "success": (#21ae5c, #ffffff),
+    ),
+    $orange: #ea921e,
+    $yellow: #f1cb0e,
+    $green: #2abe69,
+    $turquoise: #1abcbc,
+    $blue: #3488db,
+    $purple: #9b49bb,
+    $red: #c54a3f,
+    $primary: #4D7EB3,
+    $info: #549ef1,
+    $family-sans-serif: ('Fira Sans', sans-serif),
+    $family-monospace: ('Fira Mono', monospace),
+    $navbar-breakpoint: 769px,
+);

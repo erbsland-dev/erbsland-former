@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="Style Source Files" pattern="file[erbsland-former-dev]:design/style//*" />
+</component>

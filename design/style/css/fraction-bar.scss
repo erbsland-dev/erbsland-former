@@ -1,0 +1,40 @@
+
+@use "bulma-theme";
+
+.fraction-bar {
+    display: flex;
+    flex-direction: row;
+    min-width: 4em;
+    width: 100%;
+    overflow: hidden;
+}
+
+.fraction-bar-entry {
+    border: solid 1px var(--bulma-white);
+    border-collapse: collapse;
+    height: 0.9rlh;
+
+    &:first-child {
+        border-top-left-radius: var(--bulma-radius-large);
+        border-bottom-left-radius: var(--bulma-radius-large);
+    }
+
+    &:last-child {
+        border-top-right-radius: var(--bulma-radius-large);
+        border-bottom-right-radius: var(--bulma-radius-large);
+    }
+}
+
+.fraction-bar.is-thin .fraction-bar-entry {
+    height: 0.4rlh;
+
+    &:first-child {
+        border-top-left-radius: var(--bulma-radius-small);
+        border-bottom-left-radius: var(--bulma-radius-small);
+    }
+
+    &:last-child {
+        border-top-right-radius: var(--bulma-radius-small);
+        border-bottom-right-radius: var(--bulma-radius-small);
+    }
+}
