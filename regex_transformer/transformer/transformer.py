@@ -19,6 +19,6 @@ class RegExTransformer(TransformerBase):
     version = 1
     profile_settings_class = RegExProfileSettingsHandler
     processor_class = RegExProcessor
-    title_background_color_class = "has-background-re-transformer-40"
+    title_background_color_class = "has-background-re-transformer-dark"
     short_name = "RE"
     icon_name = "code"

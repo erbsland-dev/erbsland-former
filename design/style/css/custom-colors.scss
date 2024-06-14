@@ -1,0 +1,54 @@
+
+$unprocessed: #62838a;
+$pending: #3488db;
+$rejected: #c54a3f;
+$approved: #2abe69;
+$diff-add: #b5d960;
+$diff-delete: #ec955e;
+$diff-collapse: #74cde1;
+$ai-transformer: #8542bc;
+$re-transformer: #4d40b1;
+
+
+$custom-colors: (
+    "unprocessed": $unprocessed,
+    "pending": $pending,
+    "rejected": $rejected,
+    "approved": $approved,
+    "diff-add": $diff-add,
+    "diff-delete": $diff-delete,
+    "diff-collapse": $diff-collapse,
+    "ai-transformer": $ai-transformer,
+    "re-transformer": $re-transformer,
+);
+
+
+@each $name, $color in $custom-colors {
+    .has-text-#{$name} {
+        color: $color;
+    }
+    .has-text-#{$name}-dark {
+        color: darken($color, 15%);
+    }
+    .has-background-#{$name} {
+        background-color: $color;
+    }
+    .has-background-#{$name}-light {
+        background-color: lighten($color, 25%);
+    }
+    .has-background-#{$name}-dark {
+        background-color: darken($color, 15%);
+    }
+
+    .button.is-#{$name}, .tag.is-#{$name} {
+        background-color: darken($color, 5%);
+        border-color: darken($color, 5%);
+        color: #fcfcfc;
+    }
+
+    .button.is-#{$name}:hover {
+        background-color: darken($color, 10%);
+        border-color: darken($color, 10%);
+        color: #fff;
+    }
+}

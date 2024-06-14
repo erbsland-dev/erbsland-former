@@ -73,9 +73,9 @@
         document.addEventListener('DOMContentLoaded', () => {
             const browser_documents = [
 {% for node in document_tree.node_list %}
-new Design.BrowserDocument({{ node.index }}, "{{ node.name|escapejs }}", {{ node.parent.index|default:0 }}, {% if node.type.name == 'DOCUMENT' %}true{% else %}false{% endif %}),{% endfor %}
+new design.BrowserDocument({{ node.index }}, "{{ node.name|escapejs }}", {{ node.parent.index|default:0 }}, {% if node.type.name == 'DOCUMENT' %}true{% else %}false{% endif %}),{% endfor %}
             ];
-            const browser = new Design.BrowserHelper(browser_documents);
+            const browser = new design.BrowserHelper(browser_documents);
             browser.addEventListeners();
         });
     </script>

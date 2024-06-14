@@ -1,6 +1,6 @@
 {% load i18n design js_triggers editor code humanize %}
 <div class="card block">
-    <header class="card-header has-background-ai-transformer-40 has-text-text-invert">
+    <header class="card-header has-background-ai-transformer-dark has-text-text-invert">
         <p class="card-header-title has-text-text-invert">
             {% translate "Pattern for Extracting the Result from Output" %}
         </p>
@@ -96,7 +96,7 @@
 {% for result_detector in settings.result_detectors %}
 {% with field_prefix="ai_result_detector"|with_index:forloop.counter|add:"." %}
 <div class="card block">
-    <header class="card-header has-background-ai-transformer-40 has-text-text-invert">
+    <header class="card-header has-background-ai-transformer-dark has-text-text-invert">
         <p class="card-header-title has-text-text-invert">
             {% blocktranslate with count=forloop.counter %}
                 {{ count }}. Result Detector

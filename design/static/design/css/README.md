@@ -1,0 +1,1 @@
+All files in this directory were generated using Webpack. They are part of the repository to simplify the installation of the application and reduce dependencies. Rebuild them with `npx webpack build`. Please read the documentation for details.

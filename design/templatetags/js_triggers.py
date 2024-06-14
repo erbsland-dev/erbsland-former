@@ -30,7 +30,7 @@ def modal_trigger(context: RenderContext, target: str):
     :param context: The context.
     :param target: The identifier of the modal dialogue.
     """
-    page_end_scripts(context).add_code_once("Design.activateModalOverlayTriggers();")
+    page_end_scripts(context).add_code_once("design.activateModalOverlayTriggers();")
     return format_html('data-modal-trigger="{}"', target)
 
 
@@ -53,7 +53,7 @@ def action_button_trigger(
     :param form_url: An alternative URL for the form to be submitted. This will allow you to enclose HTML code
         with a single very plain form tag `<form method="post">`, direction certain actions to alternate URLs.
     """
-    page_end_scripts(context).add_code_once("Design.activateActionButtonTriggers();")
+    page_end_scripts(context).add_code_once("design.activateActionButtonTriggers();")
     result = format_html(' data-action-trigger="{}" data-action-value="{}" ', action_name, action_value)
     if restore_scroll_pos:
         result += format_html('data-restore-scroll-pos="1" ')
@@ -83,7 +83,7 @@ def action_select_trigger(context: RenderContext, action_name: str, restore_scro
     :param action_name: The name of the action, submitted in the field `action`.
     :param restore_scroll_pos: Set to `True` if the scroll position shall be restored after the action was clicked.
     """
-    page_end_scripts(context).add_code_once("Design.activateActionButtonTriggers();")
+    page_end_scripts(context).add_code_once("design.activateActionButtonTriggers();")
     result = format_html(' data-action-trigger="{}" data-action-event="change" ', action_name)
     if restore_scroll_pos:
         result += format_html('data-restore-scroll-pos="1" ')
@@ -112,7 +112,7 @@ def dropdown_trigger(context: RenderContext, menu_id: str):
     :param context: The context.
     :param menu_id: The ID of the menu element.
     """
-    page_end_scripts(context).add_code_once("Design.activateDropdownButtonTriggers();")
+    page_end_scripts(context).add_code_once("design.activateDropdownButtonTriggers();")
     return format_html(' aria-haspopup="true" aria-controls="{}" data-dropdown-trigger="1"', menu_id)
 
 
@@ -144,5 +144,5 @@ def tab_trigger(context: RenderContext, page_id: str):
     </div>
     ```
     """
-    page_end_scripts(context).add_code_once("Design.activateTabTriggers();")
+    page_end_scripts(context).add_code_once("design.activateTabTriggers();")
     return format_html(' data-tab-page="{}"', page_id)
