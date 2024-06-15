@@ -37,7 +37,7 @@ BACKEND_ENCRYPTION_KEY = "backend-insecure-DuJcyCCAEXtelpSUCIwYlQCZaZ3Xfwfo4Le3b
 DEBUG = False
 
 # Limit your instance to hosts in your local network.
-ALLOWED_HOSTS = ["localhost"]
+ALLOWED_HOSTS = [".localhost", "127.0.0.1", "[::1]"]
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -76,6 +76,7 @@ CACHES = {
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 STATIC_URL = "static/"
+STATIC_ROOT = "/var/www/erbsland-former/static/"
 
 # Email settings, required for password reset.
 # https://docs.djangoproject.com/en/4.2/topics/email/#smtp-backend
@@ -84,6 +85,9 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = "former@example.com"
 EMAIL_HOST_PASSWORD = "******"
 EMAIL_SUBJECT_PREFIX = "ErbslandFORMER: "
+
+# The working directory for handling temporary files.
+BACKEND_WORKING_DIR = "/var/www/erbsland-former/working_dir"
 
 # [remove]
 # Remove these lines from your local settings file
