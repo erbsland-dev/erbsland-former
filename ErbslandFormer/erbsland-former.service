@@ -1,0 +1,16 @@
+[Unit]
+Description=ErbslandFORMER Celery Service
+After=network.target
+
+[Service]
+Type=forking
+User=erbsland_former
+Group=erbsland_former
+WorkingDirectory=/var/www/erbsland-former/app/
+Environment="DJANGO_SETTINGS_MODULE=ErbslandFormer.my_settings"
+ExecStart=/usr/bin/env bash -c 'source /var/www/erbsland-former/venv/bin/activate && exec python3 -m celery -A tasks.celery_app worker --loglevel=info'
+ExecStop=/usr/bin/env bash -c 'source /var/www/erbsland-former/venv/bin/activate && exec python3 -m celery -A tasks.celery_app control shutdown'
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
