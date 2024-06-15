@@ -21,6 +21,8 @@ Each edit is tracked per fragment, with a review system to keep track on the cha
     chapters/preface
     chapters/step-by-step-installation
     chapters/sysadmin-installation
+    chapters/update-installation
+    chapters/settings
     chapters/screenshots
 
 Indices and tables

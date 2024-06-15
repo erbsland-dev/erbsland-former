@@ -1,4 +1,7 @@
 
+.. index::
+    !single: Preface
+
 =======
 Preface
 =======

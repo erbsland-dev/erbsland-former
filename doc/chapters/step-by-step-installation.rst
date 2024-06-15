@@ -1,5 +1,7 @@
 
 .. _step-by-step-installation:
+.. index::
+    single: Installation; Step by Step
 
 ==========================
 Installation, Step by Step
@@ -587,7 +589,7 @@ After these commands, the background service for *ErbslandFORMER* will automatic
 
 You should see output similar to the example below. Look for the line ``celery@erbsland-former ready.``, indicating that *Celery* has started successfully and is ready to accept commands from the frontend. Also, check for ``Connected to redis://127.0.0.1:6379//`` to ensure the background process successfully connected to the *Redis* server.
 
-.. code-block:: log
+.. code-block::
 
     (...): [2024-06-15 07:26:33,056: INFO/MainProcess] celery@erbsland-former ready.
     (...): [2024-06-15 07:26:33,048: INFO/MainProcess] mingle: all alone

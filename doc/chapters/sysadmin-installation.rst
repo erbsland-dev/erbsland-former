@@ -1,5 +1,7 @@
 
 .. _sysadmin-installation:
+.. index::
+    single: Installation; for System Administrators
 
 ======================================
 Installation for System Administrators
@@ -40,7 +42,7 @@ Application Directory Structure
 
 Preferably in ``/var/www/erbsland-former``, create the following directory structure:
 
-.. code-block:: plain
+.. code-block::
 
     ├───◆ /var/www/erbsland-former
         ├───◆ app            # Application files / Configuration (via git clone)

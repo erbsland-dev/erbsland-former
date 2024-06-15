@@ -1,4 +1,7 @@
 
+.. index::
+    !single: Screenshots
+
 Screenshots
 ===========
 
