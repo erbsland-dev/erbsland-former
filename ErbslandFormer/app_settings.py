@@ -14,7 +14,7 @@ from django.contrib.messages import constants as message_constants
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-APP_VERSION = "0.9.3-beta"
+APP_VERSION = "0.9.4-beta"
 
 INSTALLED_APPS = [
     "editor.apps.EditorConfig",
