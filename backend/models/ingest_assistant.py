@@ -13,6 +13,10 @@ from backend.tools.validators import identifier_validator
 from tasks.models.task import Task, TaskParameter
 
 
+def get_storage():
+    return working_storage
+
+
 class IngestAssistant(ProjectAssistant):
     """
     An ingest operation.
@@ -20,7 +24,7 @@ class IngestAssistant(ProjectAssistant):
     This object holds all information that is required for the ingest operation.
     """
 
-    uploaded_file = models.FileField(upload_to="uploads/", storage=working_storage)
+    uploaded_file = models.FileField(upload_to="uploads/", storage=get_storage())
     """The uploaded file that is the source for this ingest operation."""
 
     minimum_fragment_size = models.PositiveBigIntegerField(verbose_name=_("Minimum Fragment Size"), default=0)

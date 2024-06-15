@@ -6,5 +6,17 @@ from django.core.files.storage import FileSystemStorage
 
 from django.conf import settings
 
-working_storage = FileSystemStorage(location=settings.BACKEND_WORKING_DIR)
+
+class BackendWorkingStorage(FileSystemStorage):
+    """
+    The backend working storage.
+
+    This class is a workaround to prevent that absolute paths are stored in migrations.
+    """
+
+    def __init__(self):
+        super().__init__(location=settings.BACKEND_WORKING_DIR)
+
+
+working_storage = BackendWorkingStorage()
 """The storage for the working directory that is used while importing and exporting files."""
