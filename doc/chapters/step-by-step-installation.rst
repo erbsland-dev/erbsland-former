@@ -1,9 +1,9 @@
 
 .. _step-by-step-installation:
 
-=========================
-Step by Step Installation
-=========================
+==========================
+Installation, Step by Step
+==========================
 
 This guide provides a detailed step-by-step process for installing the *ErbslandFORMER* application on an *Ubuntu Server 24.04 LTS* in a small company environment. The target audience of this guide are people experienced working on a command shell with knowledge how to install a Linux distribution on a computer or in a virtual machine.
 
