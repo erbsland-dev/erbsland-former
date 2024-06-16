@@ -396,12 +396,12 @@ Below is an example of the unedited configuration file. The lines you need to ch
     raise ValueError("\n" + "!" * 78 + "\n!!!\n!!!   Do not use the settings template!\n!!!\n" + "!" * 78)
     # [/remove]
 
-1. In line 28: Replace the text between the quotes with the *secret key* you generated.
-2. In line 34: Replace the text between the quotes with the *backend encryption key* you generated.
-3. In line 57: Replace the ``***`` with the password for the database user you created earlier.
-4. In line 79: Verify that this path points to the ``static`` dir you created earlier.
-5. In line 90: Verify that this path points to the ``working_dir`` dir you created earlier.
-4. Lines 92-95: Remove these lines. They are there to prevent the application from starting without proper configuration.
+1.  In line 28: Replace the text between the quotes with the *secret key* you generated.
+2.  In line 34: Replace the text between the quotes with the *backend encryption key* you generated.
+3.  In line 57: Replace the ``***`` with the password for the database user you created earlier.
+4.  In line 79: Verify that this path points to the ``static`` dir you created earlier.
+5.  In line 90: Verify that this path points to the ``working_dir`` dir you created earlier.
+6.  Lines 92-95: Remove these lines. They are there to prevent the application from starting without proper configuration.
 
 As last step, change the permissions of the application configuration so it can only be read by the application user.
 
