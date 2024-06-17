@@ -6,7 +6,9 @@
 Preface
 =======
 
-Welcome to the documentation of the *ErbslandFORMER*.
+Welcome to the documentation for *ErbslandFORMER*. This guide will help you understand and utilize the application effectively.
+
+For a basic overview of the application, start with the :ref:`quick-start` chapter. If you are ready to begin setting up the application, you can proceed directly to the :ref:`installation` section.
 
 Key Features
 ============
@@ -18,6 +20,7 @@ Key Features
 - Integrated LLM processor using OpenAI's API, supporting models like GPT-4o, GPT-4 and GPT-3.5.
 - Integrated regular expression processor for pattern-based document transformation.
 - Import and export capabilities for single documents or ZIP files with folder structures.
+- Integrated user management, with a superuser, admin users and regular users.
 
 Requirements
 ============
