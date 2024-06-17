@@ -3,7 +3,7 @@ Description=ErbslandFORMER Celery Service
 After=network.target
 
 [Service]
-Type=forking
+Type=simple
 User=erbsland_former
 Group=erbsland_former
 WorkingDirectory=/var/www/erbsland-former/app/

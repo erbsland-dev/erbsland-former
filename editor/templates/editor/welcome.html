@@ -5,18 +5,20 @@
     <div class="column is-two-thirds is-half-widescreen">
         <section class="hero">
             <div class="hero-body has-text-centered">
-                <p class="subtitle has-text-text-invert is-size-3"><span class="logo">Erbsland<em>FORMER</em></span></p>
+                <p class="subtitle has-text-text-invert is-size-2"><span class="logo">Erbsland<em>FORMER</em></span></p>
                 <p class="title has-text-text-invert is-size-1">{% translate 'Welcome!' %}</p>
             </div>
         </section>
-        <article class="card">
-            <div class="card-content content">
-                <p class="subtitle has-text-centered">You are not logged in.</p>
+        <article class="box">
+            <div class="content">
+                <p class="subtitle is-size-4 has-text-centered">You are not logged in.</p>
             </div>
-            <div class="card-footer">
-                <a class="card-footer-item is-success" href="{% url 'login' %}">
-                    {% translate 'Log in' %}
-                </a>
+            <div class="level">
+                <div class="level-item">
+                    <a class="button is-success is-large" href="{% url 'login' %}">
+                        {% translate 'Log in' %}
+                    </a>
+                </div>
             </div>
         </article>
     </div>

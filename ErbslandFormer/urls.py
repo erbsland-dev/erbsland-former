@@ -10,7 +10,6 @@ urlpatterns = i18n_patterns(
     path("", include("editor.urls")),
     path("", include("design.urls")),
     path("task/", include("tasks.urls")),
-    # path("admin/", admin.site.urls),
     path("accounts/", include("bulma_auth.urls")),
     prefix_default_language=False,
 )

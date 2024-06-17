@@ -13,7 +13,7 @@ from design.views.generic import PageView
 from django.utils.translation import gettext_lazy as _
 
 
-class TransformerListView(LoginRequiredMixin, ActionPageView):
+class TransformerListView(ActionPageView):
     """
     A view displaying a list with all transformers created by the current user.
     """
@@ -39,9 +39,6 @@ class TransformerListView(LoginRequiredMixin, ActionPageView):
             transformer = TransformerProfile.objects.get(pk=int(self.action_value))
             transformer.duplicate()
         return None
-
-    def is_settings_page(self):
-        return True
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

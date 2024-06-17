@@ -40,12 +40,8 @@ class BreadcrumbMixin(TitleMixin):
         return self.breadcrumbs.copy()  # Make a copy in case the list is modified in a subclass.
 
     def is_home(self) -> bool:
-        return False
-
-    def is_settings_page(self):
         """
-        Overwrite this to indicate a settings page. For settings pages, the initial position in
-        the breadcrumbs bar is just an icon, without the text, to avoid confusing text lines.
+        For the home view, the text "Home" is displayed on the navigation.
         """
         return False
 
@@ -55,7 +51,6 @@ class BreadcrumbMixin(TitleMixin):
             {
                 "breadcrumbs_title": self.get_breadcrumbs_title(),
                 "is_home": self.is_home(),
-                "is_settings_page": self.is_settings_page(),
                 "breadcrumbs": self.get_breadcrumbs(),
             }
         )

@@ -7,7 +7,7 @@ from typing import Optional
 
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse, HttpResponseNotFound
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 
 from backend.models import Document, Revision, Project
 from backend.size_calculator.manager import size_calculator_manager
@@ -66,13 +66,8 @@ class DocumentAccessMixin(ProjectAccessMixin):
         return self.document.get_shortened_name()
 
     def get_breadcrumbs(self) -> list[Breadcrumb]:
-        if self.revision.is_latest:
-            revision_str = ""
-        else:
-            revision_str = f" (rev: {self.revision.number})"
-        project_title = f"{self.project.name}{revision_str}"
-        project_url = reverse("project", kwargs={"pk": self.project.pk})
-        result: list[Breadcrumb] = [Breadcrumb(project_title, project_url)]
+        result = super().get_breadcrumbs().copy()
+        result.append(Breadcrumb(self.get_project_title(), self.get_project_url()))
         return result
 
     def get_context_data(self, **kwargs):

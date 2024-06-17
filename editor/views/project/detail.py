@@ -23,9 +23,6 @@ class ProjectDetailView(ProjectAccessMixin, ActionDetailView):
     page_title_prefix = _("Project")
     page_icon_name = "folder-tree"
 
-    def get_breadcrumbs_title(self) -> str:
-        return self.project.name
-
     @cached_property
     def document_tree(self):
         return DocumentTree(self.revision, with_document_details=True)

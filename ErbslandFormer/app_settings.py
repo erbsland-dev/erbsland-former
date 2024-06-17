@@ -26,7 +26,6 @@ INSTALLED_APPS = [
     "design.apps.DesignConfig",
     "bulma_auth.apps.BulmaAuthConfig",
     "bulma_forms.apps.BulmaFormsConfig",
-    "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
@@ -88,6 +87,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
     {
         "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
+        "OPTIONS": {
+            "min_length": 16,
+        },
     },
     {
         "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
@@ -101,7 +103,7 @@ LANGUAGE_CODE = "en-us"
 TIME_ZONE = "UTC"
 USE_I18N = True
 USE_TZ = True
-
+LOGIN_URL = "/accounts/login"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 MESSAGE_TAGS = {

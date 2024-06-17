@@ -43,7 +43,7 @@ class ProjectAssistantMixin(AssistantMixin, Generic[AssistantStepsType, Assistan
         return self.get_project_url()  # Assuming this method will exist.
 
     def get_breadcrumbs(self) -> list[Breadcrumb]:
-        return [Breadcrumb(self.project.name, self.get_project_url())]
+        return [Breadcrumb(_("Project"), "user_home"), Breadcrumb(self.project.name, self.get_project_url())]
 
     def create_assistant_instance(self, *, step: AssistantStepEnumType = None, **kwargs) -> None:
         """

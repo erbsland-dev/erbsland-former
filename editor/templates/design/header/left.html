@@ -7,6 +7,7 @@
         <span><abbr title="{% translate 'Documentation' %}">{% translate 'Docs' %}</abbr></span>
     </span>
 </a>
+{% if not user.is_staff %}
 <a class="navbar-item" href="{% url 'transformer' %}">
     <span class="icon-text">
         <span class="icon">
@@ -23,3 +24,4 @@
         <span>{% translate 'User Settings' %}</span>
     </span>
 </a>
+{% endif %}

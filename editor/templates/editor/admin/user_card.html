@@ -1,0 +1,100 @@
+{% load i18n humanize js_triggers %}
+<div class="column is-full-mobile is-3-fullhd is-4-desktop is-6-tablet" {% if not user_entry.is_active  %}style="opacity: 0.5;"{% endif %}>
+    <div class="card">
+        <header class="card-header {% if user_entry.is_superuser %}has-background-dark{% elif user_entry.is_staff %}has-background-danger{% else %}has-background-link{% endif %} has-text-text-invert">
+            <h1 class="card-header-title has-text-text-invert" title="{{ user_entry.username }}">
+                {{ user_entry.username }}
+            </h1>
+            <a class="card-header-icon has-text-text-invert" href="{% url 'admin_user_edit' pk=user_entry.pk %}">
+                <span class="icon">
+                    <i class="fas fa-user"></i>
+                </span>
+            </a>
+        </header>
+        <div class="card-content">
+            <div class="content">
+                <div class="field">
+                    <div class="control">
+                        {% translate 'Id:' %} <strong>{{ user_entry.id }}</strong><br>
+                        {% translate 'Email:' %} <strong>{{ user_entry.email|default:"—" }}</strong><br>
+                        {% translate 'First name:' %} <strong>{{ user_entry.first_name|default:"—" }}</strong><br>
+                        {% translate 'Last name:' %} <strong>{{ user_entry.last_name|default:"—" }}</strong><br>
+                        {% translate "Last Login:" %} <time datetime="{{ user_entry.last_login.isoformat }}" title="{{ user_entry.last_login|date:'Y-m-d H:i:s' }}">{{ user_entry.last_login|naturaltime }}</time><br>
+                        {% translate "Created:" %} <time datetime="{{ user_entry.date_joined.isoformat }}" title="{{ user_entry.date_joined|date:'Y-m-d H:i:s' }}">{{ user_entry.date_joined|naturaltime }}</time>
+                        </p>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <div class="tags are-small">
+                            {% if user_entry.is_staff %}
+                                <span class="tag is-warning">{% translate "Admin" %}</span>
+                            {% endif %}
+                            {% if user_entry.is_superuser %}
+                                <span class="tag is-dark">{% translate "Superuser" %}</span>
+                            {% endif %}
+                            {% if user_entry.is_active %}
+                                <span class="tag is-success">{% translate "Active" %}</span>
+                            {% else %}
+                                <span class="tag is-light">{% translate "Inactive" %}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="card-footer">
+            <a class="card-footer-item" {% if user.is_superuser or not user_entry.is_staff %}href="{% url 'admin_user_edit' pk=user_entry.pk %}" {% else %}disabled{% endif %} style="flex-grow: 10;">
+                <span class="icon-text">
+                    <span class="icon">
+                        <i class="fa-solid fa-edit"></i>
+                    </span>
+                    <span>{% translate 'Edit' %}</span>
+                </span>
+            </a>
+            <div class="card-footer-item dropdown is-hoverable is-up is-right">
+                <div class="dropdown-trigger">
+                    <a class="block" aria-haspopup="true" aria-controls="card-dropdown-{{ user_entry.pk }}">
+                        <span class="icon is-small">
+                            <i class="fas fa-ellipsis-vertical" aria-hidden="true"></i>
+                        </span>
+                    </a>
+                </div>
+                <div class="dropdown-menu" style="min-width: 15em;" id="card-dropdown-{{ user_entry.pk }}" role="menu">
+                    <div class="dropdown-content mr-3">
+                        <a class="dropdown-item is-nowrap" {% if user.is_superuser or not user_entry.is_staff %}href="{% url "admin_user_reset_pw" pk=user_entry.pk %}" {% else %}disabled{% endif %}>
+                            <span class="icon-text">
+                                <span class="icon"><i class="fa-solid fa-key"></i></span>
+                                <span>{% translate 'Reset Password' %}</span>
+                            </span>
+                        </a>
+                        {% if user_entry.is_active %}
+                        <a class="dropdown-item is-nowrap" {% if user.is_superuser or not user_entry.is_staff %}{% action_button_trigger "user_make_inactive" user_entry.pk %}{% else %}disabled{% endif %}>
+                            <span class="icon-text">
+                                <span class="icon"><i class="fa-solid fa-lock"></i></span>
+                                <span>{% translate 'Make Inactive' %}</span>
+                            </span>
+                        </a>
+                        {% else %}
+                        <a class="dropdown-item is-nowrap" {% if user.is_superuser or not user_entry.is_staff %}{% action_button_trigger "user_make_active" user_entry.pk %}{% else %}disabled{% endif %}>
+                            <span class="icon-text">
+                                <span class="icon"><i class="fa-solid fa-lock-open"></i></span>
+                                <span>{% translate 'Make Active' %}</span>
+                            </span>
+                        </a>
+                        {% endif %}
+                        <hr class="dropdown-divider">
+                        <a class="dropdown-item has-text-danger" {% if user.is_superuser and not user.username == user_entry.username %}href="{% url "admin_user_edit" pk=user_entry.pk %}" {% else %}disabled{% endif %}>
+                            <span class="icon-text">
+                                <span class="icon">
+                                    <i class="fa-solid fa-trash"></i>
+                                </span>
+                                <span>{% translate 'Delete' %}</span>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>

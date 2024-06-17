@@ -1,0 +1,26 @@
+{% extends 'design/detail/cards.html' %}
+{% load i18n level_items %}
+{% block header_items_right %}
+    {% translate "Add New Admin" as button_text %}
+    {% url "admin_user_add_admin" as button_url %}
+    {% if user.is_superuser %}
+        {% action_button text=button_text url=button_url icon="plus" button_classes="is-primary" %}
+    {% else %}
+        <a class="button is-primary" disabled title="{% translate "Only superusers can create new administrators." %}"><span class="icon"><i class="fas fa-plus"></i></span><span>{{ button_text }}</span></a>
+    {% endif %}
+    {% translate "Add New User" as button_text %}
+    {% url "admin_user_add" as button_url %}
+    {% action_button text=button_text url=button_url icon="plus" %}
+{% endblock %}
+{% block content %}
+    <div class="is-flex is-justify-content-space-around is-flex-wrap-wrap">
+        {% for user_entry in users %}
+            {% include 'editor/admin/user_card.html' %}
+        {% endfor %}
+    </div>
+{% endblock %}
+{% block footer_items %}
+    {% translate "Add New User" as button_text %}
+    {% url "admin_user_add" as button_url %}
+    {% action_button text=button_text url=button_url icon="plus" %}
+{% endblock %}

@@ -6,9 +6,17 @@
             <a class="navbar-link is-arrowless">
                 <span class="icon-text">
                     <span class="icon">
-                        <i class="fa-solid fa-user"></i>
+                        {% if user.is_staff %}
+                            <i class="fas fa-user-tie"></i>
+                        {% else %}
+                            <i class="fas fa-user"></i>
+                        {% endif %}
                     </span>
-                    <span>{{ user.username }}</span>
+                    {% if user.first_name %}
+                        <span>{{ user.first_name }}</span>
+                    {% else %}
+                        <span>{{ user.username }}</span>
+                    {% endif %}
                 </span>
             </a>
             <div class="navbar-dropdown is-right">

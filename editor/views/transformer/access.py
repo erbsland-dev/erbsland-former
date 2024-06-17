@@ -79,6 +79,3 @@ class TransformerAccessMixin:
 
     def get_breadcrumbs(self) -> list[Breadcrumb]:
         return [Breadcrumb(_("Transformer Profiles"), reverse("transformer"))]
-
-    def is_settings_page(self):
-        return True

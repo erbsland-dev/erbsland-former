@@ -1,0 +1,7 @@
+{% extends 'design/detail/box.html' %}
+{% load i18n design bulma_forms %}
+{% block content %}
+    <p class="block subtitle">{% translate "New Admin Details" %}</p>
+    {% bulma_form form %}
+{% endblock %}
+{% block content_footer %}{% endblock %}

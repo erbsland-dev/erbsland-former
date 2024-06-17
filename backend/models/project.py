@@ -188,7 +188,7 @@ class Project(models.Model):
         """
         if self.owner == user:
             return True
-        return self.editors.filter(user=user).exists()
+        return self.editors.filter(id=user.id).exists()
 
     class Meta:
         verbose_name = _("Project")

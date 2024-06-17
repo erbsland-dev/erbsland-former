@@ -18,6 +18,7 @@ from django.utils.translation import gettext_lazy as _
 
 from backend.models import Project, Revision
 from backend.models.project_assistant import ProjectAssistant
+from design.views.breadcrumbs import Breadcrumb
 
 
 class ProjectAccessMixin:
@@ -38,9 +39,9 @@ class ProjectAccessMixin:
         Test is the currently logged-in user has access to this project.
         """
         if not self.request.user or not self.request.user.is_authenticated:
-            return HttpResponseForbidden("You don't have the required permission.")
+            return self.handle_no_permission()
         if not self.project.can_user_edit(self.request.user):
-            return HttpResponseForbidden("You don't have the required permission.")
+            return self.handle_no_permission()
         return None
 
     def initialize_db_objects(self) -> Optional[HttpResponse]:
@@ -70,6 +71,13 @@ class ProjectAccessMixin:
     def get_project(self) -> Project:
         return Project.objects.get(pk=self.kwargs["pk"])
 
+    def get_project_title(self) -> str:
+        if self.revision.is_latest:
+            revision_str = ""
+        else:
+            revision_str = f" (rev: {self.revision.number})"
+        return f"{self.project.name}{revision_str}"
+
     def get_project_url(self) -> str:
         if not self.revision.is_latest:
             return reverse("project", kwargs={"pk": self.project.pk, "revision": self.revision.number})
@@ -93,6 +101,12 @@ class ProjectAccessMixin:
 
     def get_page_title(self) -> str:
         return self.project.name
+
+    def get_breadcrumbs(self) -> list[Breadcrumb]:
+        return [Breadcrumb(_("Projects"), reverse_lazy("user_home"))]
+
+    def get_breadcrumbs_title(self) -> str:
+        return self.get_project_title()
 
     @property
     def project(self) -> Project:

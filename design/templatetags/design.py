@@ -187,7 +187,10 @@ def page_end_scripts(context: RenderContext) -> PageEndScripts:
     :return: The page end script instance.
     """
     if CONTEXT_PAGE_END_SCRIPTS not in context:
-        raise ValueError("Please include the context processor `design.context_processors.end_page_scripts`.")
+        if settings.DEBUG:
+            raise ValueError("Please include the context processor `design.context_processors.end_page_scripts`.")
+        else:
+            return PageEndScripts()
     return context[CONTEXT_PAGE_END_SCRIPTS]
 
 

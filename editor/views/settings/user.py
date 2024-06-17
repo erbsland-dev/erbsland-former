@@ -119,9 +119,6 @@ class UserSettingsView(ActionPageView):
             return []
         return [Breadcrumb(_("User Settings"), reverse_lazy("user_settings"))]
 
-    def is_settings_page(self):
-        return True
-
     def get_settings_handler(self) -> SettingsHandler:
         settings_obj = TransformerUserSettings.objects.get_or_create_default(
             self.request.user, self.selected_setting_page_name

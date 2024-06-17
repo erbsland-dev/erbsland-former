@@ -15,6 +15,36 @@ from bulma_forms.views import BulmaFormsMixin
 from design.views.breadcrumbs import BreadcrumbMixin
 
 
+class AuthenticationLevel(enum.Enum):
+    """
+    The authentication level required for a view.
+    """
+
+    USER = enum.auto()
+    ADMIN = enum.auto()
+    SUPERUSER = enum.auto()
+
+
+class AuthenticationRequiredMixin(LoginRequiredMixin):
+    """
+    Mixin for views that require authentication.
+    """
+
+    login_url = reverse_lazy("login")
+    authentication_level = AuthenticationLevel.USER
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return self.handle_no_permission()
+        if self.authentication_level == AuthenticationLevel.ADMIN and not (
+            request.user.is_staff or request.user.is_superuser
+        ):
+            return self.handle_no_permission()
+        if self.authentication_level == AuthenticationLevel.SUPERUSER and not request.user.is_superuser:
+            return self.handle_no_permission()
+        return super().dispatch(request, *args, **kwargs)
+
+
 class DesignMixin(BreadcrumbMixin):
     """
     A mixin that contains all basic elements for the design views.
@@ -23,7 +53,7 @@ class DesignMixin(BreadcrumbMixin):
     pass
 
 
-class PageView(DesignMixin, generic_views.TemplateView):
+class PageView(DesignMixin, AuthenticationRequiredMixin, generic_views.TemplateView):
     """
     Base class for all page views.
     """
@@ -31,7 +61,7 @@ class PageView(DesignMixin, generic_views.TemplateView):
     pass
 
 
-class FormView(BulmaFormsMixin, DesignMixin, LoginRequiredMixin, generic_views.FormView):
+class FormView(BulmaFormsMixin, DesignMixin, AuthenticationRequiredMixin, generic_views.FormView):
     """
     Base class for all form views.
     """
@@ -101,7 +131,7 @@ class MessageView(FormView):
         return context
 
 
-class CreateView(DesignMixin, LoginRequiredMixin, generic_views.CreateView):
+class CreateView(DesignMixin, AuthenticationRequiredMixin, generic_views.CreateView):
     """
     Base class for all create views.
     """
@@ -109,7 +139,7 @@ class CreateView(DesignMixin, LoginRequiredMixin, generic_views.CreateView):
     pass
 
 
-class UpdateView(BulmaFormsMixin, DesignMixin, LoginRequiredMixin, generic_views.UpdateView):
+class UpdateView(BulmaFormsMixin, DesignMixin, AuthenticationRequiredMixin, generic_views.UpdateView):
     """
     Base class for all update views.
     """
@@ -121,7 +151,7 @@ class UpdateView(BulmaFormsMixin, DesignMixin, LoginRequiredMixin, generic_views
         return _("Update")
 
 
-class DeleteView(BulmaFormsMixin, DesignMixin, LoginRequiredMixin, generic_views.DeleteView):
+class DeleteView(BulmaFormsMixin, DesignMixin, AuthenticationRequiredMixin, generic_views.DeleteView):
     """
     Base class for all delete-views.
     """
@@ -180,7 +210,7 @@ class DeleteView(BulmaFormsMixin, DesignMixin, LoginRequiredMixin, generic_views
         return result
 
 
-class DetailView(DesignMixin, LoginRequiredMixin, generic_views.DetailView):
+class DetailView(DesignMixin, AuthenticationRequiredMixin, generic_views.DetailView):
     """
     Base class for all details views.
     """

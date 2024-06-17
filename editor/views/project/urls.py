@@ -5,11 +5,13 @@
 from django.urls import path
 
 from editor.views.project import ProjectDetailView
+from editor.views.project.home import UserHome
 from editor.views.project.message import ProjectCannotEditView, ProjectNoPendingFragments
 from editor.views.project.create import ProjectCreateView
 from editor.views.project.delete import ProjectDeleteView
 
 urlpatterns = [
+    path("", UserHome.as_view(), name="user_home"),
     path("create/", ProjectCreateView.as_view(), name="project_create"),
     path("<int:pk>/", ProjectDetailView.as_view(), name="project"),
     path("<int:pk>/delete/", ProjectDeleteView.as_view(), name="project_delete"),

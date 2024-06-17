@@ -5,12 +5,12 @@
 from django.urls import path, include
 
 import editor.views as views
+import editor.views.welcome
 from editor.views.document.detail import DocumentView
 from editor.views.settings.user import UserSettingsView
 
 urlpatterns = [
-    path("", views.home.Home.as_view(), name="home"),
-    path("welcome/", views.Welcome.as_view(), name="welcome"),
+    path("", editor.views.welcome.Welcome.as_view(), name="home"),
     path("project/", include("editor.views.project.urls")),
     path("project/<int:pk>/new_revision/", include("editor.views.new_revision.urls")),
     path("project/<int:pk>/ingest/", include("editor.views.ingest.urls")),
@@ -22,4 +22,5 @@ urlpatterns = [
     path("transformer/", include("editor.views.transformer.urls")),
     path("user_settings/", UserSettingsView.as_view(), name="user_settings"),
     path("user_settings/<str:setting_page>/", UserSettingsView.as_view(), name="user_settings"),
+    path("admin/", include("editor.views.admin.urls")),
 ]

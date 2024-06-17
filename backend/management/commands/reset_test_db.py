@@ -1,7 +1,7 @@
 #  Copyright © 2023-2024 Tobias Erbsland https://erbsland.dev/ and EducateIT GmbH https://educateit.ch/
 #  According to the copyright terms specified in the file "COPYRIGHT.md".
 #  SPDX-License-Identifier: GPL-3.0-or-later
-
+import argparse
 import re
 import shutil
 import subprocess
@@ -25,8 +25,8 @@ class Command(BaseCommand):
         Deletes the existing test database and recreates it with prefilled data. 
         Make sure Django isn't running."""
 
-    def add_arguments(self, parser):
-        pass
+    def add_arguments(self, parser: argparse.ArgumentParser):
+        parser.add_argument("--erase-database", action="store_true")
 
     def execute_manage_cmd(self, args: list[str]):
         cmd_args = [sys.executable, "manage.py"]
@@ -39,6 +39,10 @@ class Command(BaseCommand):
             raise CommandError("Failed to run the management command.")
 
     def handle(self, *args, **options):
+        if not settings.DEBUG:
+            return "Don't call this command in a production environment. It will erase the whole database!"
+        if not options["erase_database"]:
+            return "If you really want to erase your database, use the --erase-database option."
         # Manually specify the SQLite db to prevent deleting anything useful.
         print("Scanning for new migration files.")
         re_migration_name = re.compile(R"^(\d{4})_.*\.py$")
