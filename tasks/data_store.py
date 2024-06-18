@@ -2,7 +2,6 @@
 #  According to the copyright terms specified in the file "COPYRIGHT.md".
 #  SPDX-License-Identifier: GPL-3.0-or-later
 
-import enum
 import json
 import logging
 from dataclasses import dataclass

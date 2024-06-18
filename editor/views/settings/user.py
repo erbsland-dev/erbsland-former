@@ -119,10 +119,11 @@ class UserSettingsView(ActionPageView):
             return []
         return [Breadcrumb(_("User Settings"), reverse_lazy("user_settings"))]
 
+    def get_settings_object(self) -> TransformerUserSettings:
+        return TransformerUserSettings.objects.get_or_create_default(self.request.user, self.selected_setting_page_name)
+
     def get_settings_handler(self) -> SettingsHandler:
-        settings_obj = TransformerUserSettings.objects.get_or_create_default(
-            self.request.user, self.selected_setting_page_name
-        )
+        settings_obj = self.get_settings_object()
         handler = settings_obj.transformer.user_settings_handler
         handler.settings = settings_obj.get_settings()
         handler.action_name = self.action_name
@@ -153,6 +154,7 @@ class UserSettingsView(ActionPageView):
         # If the handler returns a `HttpResponse`, do not save the settings.
         if isinstance(result, HttpResponse) and result.status_code != 200:
             return result
+        # Save all settings in the database.
         settings_obj = self.get_settings_object()
         settings_obj.update_settings(settings_handler.settings)
         if result == SettingsHandler.SAVE_AND_CLOSE_RESPONSE:

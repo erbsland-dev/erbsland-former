@@ -106,7 +106,7 @@ class ProjectAccessMixin:
         return [Breadcrumb(_("Projects"), reverse_lazy("user_home"))]
 
     def get_breadcrumbs_title(self) -> str:
-        return self.get_project_title()
+        return self.get_page_title()
 
     @property
     def project(self) -> Project:

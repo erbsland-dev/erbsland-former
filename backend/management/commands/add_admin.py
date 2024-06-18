@@ -8,7 +8,5 @@ from backend.management.commands.base.add_user_base import AddUserCommand
 
 class Command(AddUserCommand):
 
-    def create_user(self, username: str, email: str, password: str = None) -> User:
-        user = super().create_user(username, email, password)
-        user.is_staff = True
-        return user
+    def is_staff(self):
+        return True

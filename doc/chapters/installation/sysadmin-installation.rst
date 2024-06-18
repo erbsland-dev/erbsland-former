@@ -7,7 +7,7 @@
 Installation for System Administrators
 ======================================
 
-This guide provides a concise overview of how to install *ErbslandFORMER* for system administrators. It focuses on the key elements without detailing the execution of each task. For a more detailed guide, refer to the :ref:`step-by-step-installation`.
+This guide provides a concise overview of how to do a manual server installation of *ErbslandFORMER* for system administrators. It focuses on the key elements without detailing the execution of each task. For a more detailed guide, refer to the :ref:`step-by-step-installation`.
 
 Requirements
 ============

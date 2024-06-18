@@ -2,11 +2,9 @@
 #  According to the copyright terms specified in the file "COPYRIGHT.md".
 #  SPDX-License-Identifier: GPL-3.0-or-later
 
-from celery import Celery
-from django.conf import settings
+import os
 
-app = Celery("tasks")
-app.config_from_object(settings, namespace="TASKS_CELERY")
+from django.core.wsgi import get_wsgi_application
 
-# Load task modules from all registered Django app configs.
-app.autodiscover_tasks()
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "ErbslandFormer.settings")
+application = get_wsgi_application()

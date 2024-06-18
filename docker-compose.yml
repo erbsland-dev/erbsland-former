@@ -1,0 +1,61 @@
+networks:
+  default:
+
+volumes:
+  static:
+  mariadb_data:
+
+services:
+  app:
+    container_name: erbsland-former-app
+    image: erbsland-former:latest
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    env_file:
+      - ".env"
+    environment:
+      DJANGO_SETTINGS_MODULE: ErbslandFormer.settings
+    restart: always
+    volumes:
+      - "static:/var/www/erbsland-former/static/"
+    networks:
+      - default
+    depends_on:
+      - mariadb
+      - redis
+
+  mariadb:
+    container_name: erbsland-former-mariadb
+    image: mariadb:11.4.2
+    restart: always
+    environment:
+      MARIADB_PASSWORD: ${MARIADB_PASSWORD}
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+      MARIADB_DATABASE: erbsland_former
+      MARIADB_USER: erbsland_former
+    volumes:
+      - "mariadb_data:/var/lib/mysql"
+    networks:
+      - default
+
+  redis:
+    container_name: erbsland-former-redis
+    image: redis:6.2-alpine
+    restart: always
+    command: redis-server --save 20 1 --loglevel warning
+    networks:
+      - default
+
+  nginx:
+    container_name: erbsland-former-nginx
+    image: nginx:1.27-alpine
+    ports:
+      - "8080:80"
+    volumes:
+      - "static:/var/www/erbsland-former/static/"
+      - "./docker/nginx.conf:/etc/nginx/conf.d/default.conf"
+    depends_on:
+      - app
+    networks:
+      - default

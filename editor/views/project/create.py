@@ -5,11 +5,12 @@ import datetime
 
 from django import forms
 from django.http import HttpResponseRedirect
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.utils.translation import gettext_lazy as _
 
 from backend import models
 from backend.syntax_handler import syntax_manager
+from design.views.breadcrumbs import Breadcrumb
 from design.views.generic import CreateView
 
 
@@ -46,6 +47,9 @@ class ProjectCreateView(CreateView):
 
     def get_success_url(self):
         return reverse("project", kwargs={"pk": self.object.pk})
+
+    def get_breadcrumbs(self) -> list[Breadcrumb]:
+        return [Breadcrumb(_("Projects"), reverse_lazy("user_home"))]
 
     def form_valid(self, form: forms.Form):
         # Manually create the project using the manager
