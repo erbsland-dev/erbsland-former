@@ -22,7 +22,6 @@ class UserEditForm(forms.ModelForm):
             "first_name",
             "last_name",
             "email",
-            "is_active",
         ]
         help_texts = {"username": ""}
 

@@ -20,6 +20,8 @@ Each edit is tracked per fragment, with a review system to keep track on the cha
 
     chapters/preface
     chapters/quick-start
+    chapters/user/index
+    chapters/administrator/index
     chapters/installation/index
     chapters/architecture
     chapters/settings

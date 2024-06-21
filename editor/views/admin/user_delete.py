@@ -6,6 +6,7 @@ from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 
 from design.views.generic import DeleteView, AuthenticationLevel
+from tasks.models import Task
 
 
 class UserDeleteView(DeleteView):
@@ -27,10 +28,14 @@ class UserDeleteView(DeleteView):
 
     def form_valid(self, form):
         # Checks to prevent disasters.
-        if self.object.is_superuser:
-            form.add_error(None, _("You must not delete a superuser!"))
+        if self.object.is_superuser and User.objects.filter(is_superuser=True).count() <= 1:
+            form.add_error(None, _("You cannot delete the last superuser!"))
             return self.form_invalid(form)
         if self.object.username == self.request.user.username:
-            form.add_error(None, _("You must not delete your own user!"))
+            form.add_error(None, _("You cannot delete the user you are currently logged in as!"))
             return self.form_invalid(form)
+        # Cleanup tasks that may prevent the user from being deleted.
+        Task.objects.clean_up()
+        if Task.objects.filter(owner=self.object).exists():
+            form.add_error(None, _("The user has running tasks that must be completed or stopped first."))
         return super().form_valid(form)

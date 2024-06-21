@@ -69,3 +69,5 @@ class EgressAssistant(ProjectAssistant):
             self.step = EgressStep.RUNNING
             self.task = task
             self.save()
+        # Clean up old tasks.
+        Task.objects.clean_up()

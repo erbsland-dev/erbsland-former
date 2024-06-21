@@ -84,7 +84,7 @@
                         </a>
                         {% endif %}
                         <hr class="dropdown-divider">
-                        <a class="dropdown-item has-text-danger" {% if user.is_superuser and not user.username == user_entry.username %}href="{% url "admin_user_edit" pk=user_entry.pk %}" {% else %}disabled{% endif %}>
+                        <a class="dropdown-item has-text-danger" {% if user.is_superuser and not user.username == user_entry.username %}href="{% url "admin_user_delete" pk=user_entry.pk %}" {% else %}disabled{% endif %}>
                             <span class="icon-text">
                                 <span class="icon">
                                     <i class="fa-solid fa-trash"></i>
