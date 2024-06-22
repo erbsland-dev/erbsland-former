@@ -28,6 +28,9 @@ class ProjectCreateForm(forms.ModelForm):
             "description": _("Brief Description"),
             "default_syntax": _("Primary Document Syntax"),
         }
+        widgets = {
+            "description": forms.Textarea(attrs={"rows": 2}),
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
