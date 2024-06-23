@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Import Documents &mdash; ErbslandFORMER 0.9.8-beta documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=b8b656fd"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="The Project View" href="project-view.html" />
+    <link rel="prev" title="Manage Existing Projects" href="manage-projects.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            ErbslandFORMER
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../features.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../requirements.html">Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick-start.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download.html">Download and Sources</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">User Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="login.html">Log In</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create-project.html">Create a New Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manage-projects.html">Manage Existing Projects</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Import Documents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#the-import-setup">The Import Setup</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#configuring-size-unit-and-range">Configuring Size Unit and Range</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#document-list-overview">Document List Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#the-import-preview">The Import Preview</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="project-view.html">The Project View</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transform-documents.html">Transform Documents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="export-documents.html">Export Documents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="revisions.html">Revisions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transformer-profiles.html">Transformer Profiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ai-transformer.html">AI Transformer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regex-transformer.html">RegEx Transformer</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../administrator/index.html">Administrator Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../settings.html">Settings Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../screenshots.html">Screenshots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acknowledgements.html">Acknowledgements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License and Copyright</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">ErbslandFORMER</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">User Manual</a></li>
+      <li class="breadcrumb-item active">Import Documents</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/chapters/user/import-documents.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="import-documents">
+<span id="index-0"></span><h1>Import Documents<a class="headerlink" href="#import-documents" title="Link to this heading"></a></h1>
+<p>To import initial or additional documents into your project, click the green <span class="guilabel">Import Documents</span> button when the project is empty, or select <span class="guilabel">Import Documents</span> from the <span class="guilabel">Project Actions</span> menu.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can only import new documents into the latest revision of a project.</p>
+</div>
+<p>After clicking the <span class="guilabel">Import Documents</span> button or menu entry, the import assistant will be displayed.</p>
+<figure class="align-default" id="id1">
+<a class="reference internal image-reference" href="../../_images/screenshot-user-import-upload-file.webp"><img alt="../../_images/screenshot-user-import-upload-file.webp" src="../../_images/screenshot-user-import-upload-file.webp" style="width: 100%;" /></a>
+<figcaption>
+<p><span class="caption-text">The first page of the import assistant.</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>Select either a single text document or a ZIP archive containing multiple documents, then click the green <span class="guilabel">Upload File</span> button to start the analysis of the selected file.</p>
+<figure class="align-default" id="id2">
+<a class="reference internal image-reference" href="../../_images/screenshot-user-import-analyze-files.webp"><img alt="../../_images/screenshot-user-import-analyze-files.webp" src="../../_images/screenshot-user-import-analyze-files.webp" style="width: 100%;" /></a>
+<figcaption>
+<p><span class="caption-text">The progress view while the upload is analyzed.</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<section id="the-import-setup">
+<h2>The Import Setup<a class="headerlink" href="#the-import-setup" title="Link to this heading"></a></h2>
+<p>After the analysis is complete, the setup page will display a list of all suitable documents for import.</p>
+<figure class="align-default" id="id3">
+<a class="reference internal image-reference" href="../../_images/screenshot-user-import-setup.webp"><img alt="../../_images/screenshot-user-import-setup.webp" src="../../_images/screenshot-user-import-setup.webp" style="width: 100%;" /></a>
+<figcaption>
+<p><span class="caption-text">The import setup with the list of documents from the upload.</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<section id="configuring-size-unit-and-range">
+<h3>Configuring Size Unit and Range<a class="headerlink" href="#configuring-size-unit-and-range" title="Link to this heading"></a></h3>
+<p>On the setup page, configure the size unit you want to use for splitting the documents into fragments. When you select a new unit from the <span class="guilabel">Unit for Size</span> dropdown, the <span class="guilabel">Fragment Range</span> below will update with the recommended range.</p>
+<p>The size unit should match the transformation method you intend to use, allowing the splitting algorithm to choose optimal fragment sizes. For example, if you plan to transform the text using the <em>GPT-4o language model</em>, select “Tokens for GPT-4o” with the recommended range.</p>
+<ul class="simple">
+<li><p><span class="guilabel">Minimum Size</span>: The minimum size a fragment should be. Depending on the situation, the splitter may need to create smaller fragments.</p></li>
+<li><p><span class="guilabel">Maximum Size</span>: The maximum size of a fragment. If the splitter cannot keep fragments smaller or equal to this size, the splitting process will stop with an error.</p></li>
+</ul>
+</section>
+<section id="document-list-overview">
+<h3>Document List Overview<a class="headerlink" href="#document-list-overview" title="Link to this heading"></a></h3>
+<p>The document list shows all documents found in your import. Here are the columns you’ll see:</p>
+<ul class="simple">
+<li><p><span class="guilabel">Name</span>: The name of the document in your project. You can edit this to simplify or shorten names, but remember that these names will also be used for export.</p></li>
+<li><p><span class="guilabel">Folder</span>: The folder where the document will be stored in your project. This can also be edited.</p></li>
+<li><p><span class="guilabel">Document Syntax</span>: The detected document syntax. Choosing the correct syntax is crucial, as the splitting algorithm depends on it. For example, the algorithm for Markdown files differs from that for Python source code.</p></li>
+<li><p><span class="guilabel">Planned Action</span>: Indicates whether the document will be added to the project (<span class="guilabel">Add</span>) or ignored (<span class="guilabel">Ignore</span>).</p></li>
+</ul>
+<p>Click the green <span class="guilabel">Generate Preview</span> button at the end of the document list to proceed with the assistant.</p>
+</section>
+</section>
+<section id="the-import-preview">
+<h2>The Import Preview<a class="headerlink" href="#the-import-preview" title="Link to this heading"></a></h2>
+<p><em>More documentation is coming soon</em></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="manage-projects.html" class="btn btn-neutral float-left" title="Manage Existing Projects" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="project-view.html" class="btn btn-neutral float-right" title="The Project View" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023-2024, Erbsland DEV.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

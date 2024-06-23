@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Update Existing Installation &mdash; ErbslandFORMER 0.9.8-beta documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=b8b656fd"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Architecture" href="../architecture.html" />
+    <link rel="prev" title="Installation for System Administrators" href="sysadmin-installation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            ErbslandFORMER
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../features.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../requirements.html">Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick-start.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download.html">Download and Sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/index.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../administrator/index.html">Administrator Manual</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Installation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="docker-installation.html">Installation via Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step-by-step-installation.html">Installation, Step by Step</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sysadmin-installation.html">Installation for System Administrators</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Update Existing Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../settings.html">Settings Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../screenshots.html">Screenshots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acknowledgements.html">Acknowledgements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License and Copyright</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">ErbslandFORMER</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Installation</a></li>
+      <li class="breadcrumb-item active">Update Existing Installation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/chapters/installation/update-installation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="update-existing-installation">
+<span id="index-0"></span><h1>Update Existing Installation<a class="headerlink" href="#update-existing-installation" title="Link to this heading"></a></h1>
+<p>Updating a local installation of the <em>ErbslandFORMER</em> application requires a few straightforward steps. Follow the instructions below to ensure a smooth update process.</p>
+<ol class="arabic">
+<li><p><strong>Stop the Apache Web Server</strong></p>
+<p>Connect to the server and stop the Apache web server.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">test@erbsland-former:~$ </span>sudo<span class="w"> </span>systemctl<span class="w"> </span>stop<span class="w"> </span>apache2
+</pre></div>
+</div>
+</li>
+<li><p><strong>Switch to the Application User and Navigate to the Application Directory</strong></p>
+<p>Change to the application user and set the current directory to the application directory.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">test@erbsland-former:~$ </span>sudo<span class="w"> </span>su<span class="w"> </span>erbsland_former
+<span class="gp">erbsland_former@erbsland-former:/home/test$ </span><span class="nb">cd</span><span class="w"> </span>/var/www/erbsland-former/app/
+<span class="gp">erbsland_former@erbsland-former:/var/www/erbsland-former/app$ </span>█
+</pre></div>
+</div>
+</li>
+<li><p><strong>Activate the Python Virtual Environment</strong></p>
+<p>Activate the Python virtual environment.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">source</span><span class="w"> </span>/var/www/erbsland-former/venv/bin/activate
+<span class="gp">$ </span>█
+</pre></div>
+</div>
+</li>
+<li><p><strong>Stash Any Local Changes</strong></p>
+<p>If there are any local changes, make sure to stash them.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>git<span class="w"> </span>stash
+<span class="go">Saved working directory and index state WIP on main: 7c66a87 Preparation for release version.</span>
+<span class="gp">$ </span>█
+</pre></div>
+</div>
+</li>
+<li><p><strong>Pull the Latest Version of the Application</strong></p>
+<p>Pull the latest version of the application from the repository.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>git<span class="w"> </span>pull
+<span class="go">Updating a1d1368..7c66a87</span>
+<span class="go">Fast-forward</span>
+<span class="gp gp-VirtualEnv">(...)</span>
+<span class="gp">$ </span>█
+</pre></div>
+</div>
+</li>
+<li><p><strong>Reapply Stashed Changes (If Any)</strong></p>
+<p>If you have stashed any changes, re-apply them and remove the stash.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>git<span class="w"> </span>stash<span class="w"> </span>pop
+<span class="gp gp-VirtualEnv">(...)</span>
+<span class="gp">$ </span>█
+</pre></div>
+</div>
+</li>
+<li><p><strong>Set the Environment Variable for Custom Settings</strong></p>
+<p>Set the environment variable for your custom settings module.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">export</span><span class="w"> </span><span class="nv">DJANGO_SETTINGS_MODULE</span><span class="o">=</span>ErbslandFormer.my_settings
+<span class="gp">$ </span>█
+</pre></div>
+</div>
+</li>
+<li><p><strong>Update Static Files</strong></p>
+<p>Update the static files. In most cases, nothing will change.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python<span class="w"> </span>manage.py<span class="w"> </span>collectstatic
+
+<span class="go">You have requested to collect static files at the destination</span>
+<span class="go">location as specified in your settings:</span>
+
+<span class="go">    /var/www/erbsland-former/static</span>
+
+<span class="go">This will overwrite existing files!</span>
+<span class="go">Are you sure you want to do this?</span>
+
+<span class="go">Type &#39;yes&#39; to continue, or &#39;no&#39; to cancel: yes</span>
+
+<span class="go">3 static files copied to &#39;/var/www/erbsland-former/static&#39;, 186 unmodified.</span>
+<span class="gp">$ </span>█
+</pre></div>
+</div>
+</li>
+<li><p><strong>Migrate the Database</strong></p>
+<p>Migrate the database. In most cases, there are no migrations required.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python<span class="w"> </span>manage.py<span class="w"> </span>migrate
+<span class="gp gp-VirtualEnv">(...)</span>
+<span class="gp">$ </span>█
+</pre></div>
+</div>
+</li>
+<li><p><strong>Exit the Application User Shell and Restart Apache</strong></p>
+<p>Exit the application user shell and restart Apache.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(venv)</span> <span class="gp">erbsland_former@erbsland-former:/var/www/erbsland-former/app$ </span><span class="nb">exit</span>
+<span class="gp">test@erbsland-former:~$ </span>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>apache2
+<span class="gp">test@erbsland-former:~$ </span>█
+</pre></div>
+</div>
+</li>
+</ol>
+<p>You have now successfully updated your <em>ErbslandFORMER</em> application.</p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="sysadmin-installation.html" class="btn btn-neutral float-left" title="Installation for System Administrators" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../architecture.html" class="btn btn-neutral float-right" title="Architecture" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023-2024, Erbsland DEV.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

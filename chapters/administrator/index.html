@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Administrator Manual &mdash; ErbslandFORMER 0.9.8-beta documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=b8b656fd"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Installation" href="../installation/index.html" />
+    <link rel="prev" title="RegEx Transformer" href="../user/regex-transformer.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            ErbslandFORMER
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../features.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../requirements.html">Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick-start.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download.html">Download and Sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/index.html">User Manual</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Administrator Manual</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#user-roles">User Roles</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#common-user-setups">Common User Setups</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#superusers">Superusers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#user-management">User Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#permissions">Permissions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#add-new-user">Add New User</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#add-new-admin">Add New Admin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#edit-user">Edit User</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reset-password">Reset Password</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#make-inactive">Make Inactive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#make-active">Make Active</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#delete-user">Delete User</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-use-the-management-commands">How to Use the Management Commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#regular-server">Regular Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#docker">Docker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#useful-management-commands">Useful Management Commands</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#important-application-wide-settings">Important Application-Wide Settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-change-global-settings">How to Change Global Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#preselect-a-default-document-syntax-or-size-unit">Preselect a Default Document Syntax or Size Unit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#disabling-a-document-syntax-transformer-or-size-unit">Disabling a Document Syntax, Transformer, or Size Unit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#limiting-the-upload-size">Limiting the Upload Size</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ai-transformer-application-settings">AI Transformer Application Settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#set-an-application-wide-api-key">Set an Application-Wide API Key</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#limit-the-allowed-language-models">Limit the Allowed Language Models</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../settings.html">Settings Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../screenshots.html">Screenshots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acknowledgements.html">Acknowledgements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License and Copyright</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">ErbslandFORMER</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Administrator Manual</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/chapters/administrator/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="index-0">
+<span id="administrator-manual"></span><span id="id1"></span><h1>Administrator Manual<a class="headerlink" href="#index-0" title="Link to this heading"></a></h1>
+<p>This chapter of the manual is designed for administrators of an <em>ErbslandFORMER</em> application installation. It covers the different user roles, how to manage users on the system, and highlights a few important settings that affect all users on a server.</p>
+<section id="user-roles">
+<h2>User Roles<a class="headerlink" href="#user-roles" title="Link to this heading"></a></h2>
+<p>There are three different user roles in <em>ErbslandFORMER</em>: superusers, administrators, and regular users.</p>
+<figure class="align-default" id="id2">
+<a class="reference internal image-reference" href="../../_images/user-roles.svg"><img alt="../../_images/user-roles.svg" src="../../_images/user-roles.svg" width="100%" /></a>
+<figcaption>
+<p><span class="caption-text">The three user roles.</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>A superuser can manage administrator accounts, administrators can manage user accounts, and regular users are limited to using the system. To enforce this separation, superusers and administrators can only manage the system but cannot use it for regular work. This separation is in place to prevent accidents when administrator accounts are used for routine tasks.</p>
+<section id="common-user-setups">
+<h3>Common User Setups<a class="headerlink" href="#common-user-setups" title="Link to this heading"></a></h3>
+<p>The number of different user roles required mainly depends on the size and complexity of the installation:</p>
+<ul class="simple">
+<li><p><strong>Single User</strong>: One user account.</p></li>
+<li><p><strong>Small Team</strong>: One admin account and several user accounts.</p></li>
+<li><p><strong>Company</strong>: One superuser account, one admin per team, and several user accounts.</p></li>
+</ul>
+<p>Each admin requires a regular user account along with their admin account if they intend to perform regular tasks.</p>
+</section>
+<section id="superusers">
+<h3>Superusers<a class="headerlink" href="#superusers" title="Link to this heading"></a></h3>
+<p>Typically, there is either none or just a single superuser account on the system. A superuser is also considered a user who has access to the management commands or the configuration on the server. Therefore, if the superuser (e.g., sysadmin) has access to the management commands, they don’t need a superuser account in the database.</p>
+<p>To create a superuser on the system, use the <code class="docutils literal notranslate"><span class="pre">createsuperuser</span></code> management command. Refer to <a class="reference internal" href="#admin-how-use-management-cmd"><span class="std std-ref">How to Use the Management Commands</span></a> for details on how to use a management command.</p>
+</section>
+</section>
+<section id="user-management">
+<span id="index-1"></span><h2>User Management<a class="headerlink" href="#user-management" title="Link to this heading"></a></h2>
+<p>When logging into the application with an <em>administrator</em> or <em>superuser</em> account, you will be automatically redirected to the user management interface.</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../../_images/screenshot-admin-home.webp"><img alt="../../_images/screenshot-admin-home.webp" src="../../_images/screenshot-admin-home.webp" style="width: 100%;" /></a>
+</figure>
+<p>In this interface, you will see a list of all users registered in the application. If you are logged in as an administrator, you will see both administrators and users. If you are logged in as a superuser, you will also see other superusers.</p>
+<p>Each user card displays basic information about the user, such as their username, ID, email address, first and last name. Additionally, you can see when the user last logged into the system and when their account was created.</p>
+<p>At the bottom of each row, you will find a button to edit the user details and three vertical dots that reveal a menu with more actions.</p>
+<figure class="align-center" id="id3">
+<a class="reference internal image-reference" href="../../_images/screenshot-admin-user-popup.webp"><img alt="../../_images/screenshot-admin-user-popup.webp" src="../../_images/screenshot-admin-user-popup.webp" style="width: 50%;" /></a>
+<figcaption>
+<p><span class="caption-text">The popup that appears when the vertical dots are clicked or hovered over.</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<section id="permissions">
+<span id="index-2"></span><h3>Permissions<a class="headerlink" href="#permissions" title="Link to this heading"></a></h3>
+<p>There are a few limitations on what administrators and superusers can do:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt><strong>Administrators</strong>:</dt><dd><ul>
+<li><p>Can mark user accounts as active and inactive.</p></li>
+<li><p>Can reset user account passwords.</p></li>
+<li><p>Can edit user account details.</p></li>
+<li><p>Cannot see or change superuser accounts.</p></li>
+<li><p>Cannot create new admin accounts or change any details of other admin accounts.</p></li>
+<li><p>Cannot delete user accounts</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Superusers</strong>:</dt><dd><ul>
+<li><p>Have no such limitations and can perform all administrative tasks.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Because superusers have no administrative limitations, it is recommended to only create admin accounts for user management.</p>
+</div>
+</section>
+<section id="add-new-user">
+<span id="index-3"></span><h3>Add New User<a class="headerlink" href="#add-new-user" title="Link to this heading"></a></h3>
+<p>Clicking the <span class="guilabel">Add New User</span> button brings up the interface to add a new user.</p>
+<figure class="align-default" id="id4">
+<a class="reference internal image-reference" href="../../_images/screenshot-admin-user-add.webp"><img alt="../../_images/screenshot-admin-user-add.webp" src="../../_images/screenshot-admin-user-add.webp" style="width: 100%;" /></a>
+<figcaption>
+<p><span class="caption-text">The user interface to add a new user.</span><a class="headerlink" href="#id4" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>Use this interface to define a <span class="guilabel">Username</span>, <span class="guilabel">First name</span>, <span class="guilabel">Last name</span>, and <span class="guilabel">Email address</span> for the user. The <span class="guilabel">Initial password</span> field contains a secure randomly generated password that you can send to the new user.</p>
+<p>The user is created when you click the <span class="guilabel">Add New User</span> button.</p>
+</section>
+<section id="add-new-admin">
+<span id="index-4"></span><h3>Add New Admin<a class="headerlink" href="#add-new-admin" title="Link to this heading"></a></h3>
+<p>When logged in with a superuser account, there is also a <span class="guilabel">Add New Admin</span> button that allows you to add a new admin account. This process is similar to adding a new user, but the created account will have admin permissions.</p>
+</section>
+<section id="edit-user">
+<span id="index-5"></span><h3>Edit User<a class="headerlink" href="#edit-user" title="Link to this heading"></a></h3>
+<p>Clicking on the <span class="guilabel">Edit</span> button brings up the interface with the user details.</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../../_images/screenshot-admin-user-details.webp"><img alt="../../_images/screenshot-admin-user-details.webp" src="../../_images/screenshot-admin-user-details.webp" style="width: 100%;" /></a>
+</figure>
+<p>In this interface, you can edit the user’s <span class="guilabel">First name</span>, <span class="guilabel">Last name</span>, and <span class="guilabel">Email address</span>. Clicking <span class="guilabel">Back</span> will discard your changes, while clicking <span class="guilabel">Save and Close</span> will save your changes.</p>
+</section>
+<section id="reset-password">
+<span id="index-6"></span><h3>Reset Password<a class="headerlink" href="#reset-password" title="Link to this heading"></a></h3>
+<p>Clicking on <span class="guilabel">Reset Password</span> allows you to reset the user’s password. Enter the new password in both fields in the interface that appears.</p>
+</section>
+<section id="make-inactive">
+<span id="index-7"></span><h3>Make Inactive<a class="headerlink" href="#make-inactive" title="Link to this heading"></a></h3>
+<p>Instead of deleting a user, you should mark them as inactive. Clicking the <span class="guilabel">Make Inactive</span> action will mark the user as inactive. An inactive user cannot log into the application.</p>
+</section>
+<section id="make-active">
+<span id="index-8"></span><h3>Make Active<a class="headerlink" href="#make-active" title="Link to this heading"></a></h3>
+<p>The <span class="guilabel">Make Active</span> button appears for inactive users. Clicking it will reactivate the user, allowing them to log into the application again.</p>
+</section>
+<section id="delete-user">
+<span id="index-9"></span><h3>Delete User<a class="headerlink" href="#delete-user" title="Link to this heading"></a></h3>
+<p>Only superusers can delete users. However, it is generally not recommended to delete users who have already performed tasks in the application. Instead, mark the user as inactive. The delete user action is available for cases where a user or administrator was accidentally created and has not yet been used.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Deleting users who have actively worked with the application may cause various side effects and is not recommended.</p>
+</div>
+</section>
+</section>
+<section id="how-to-use-the-management-commands">
+<span id="index-10"></span><span id="admin-how-use-management-cmd"></span><h2>How to Use the Management Commands<a class="headerlink" href="#how-to-use-the-management-commands" title="Link to this heading"></a></h2>
+<p>The management commands are an alternative for system administrators to perform administrative tasks on the command line. To use the management commands for the server, you need to be logged in as the same user under which the application is running. If a system administrator set up the server for you, ask them to run the management commands or create a limited login for you to execute these commands.</p>
+<section id="regular-server">
+<h3>Regular Server<a class="headerlink" href="#regular-server" title="Link to this heading"></a></h3>
+<p>After logging into a regular server as an administrator, you can run management commands as follows:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">test@erbsland-former:~$ </span>sudo<span class="w"> </span>su<span class="w"> </span>erbsland_former
+<span class="gp">erbsland_former@erbsland-former:/home/test$ </span><span class="nb">cd</span><span class="w"> </span>/var/www/erbsland-former
+<span class="gp">erbsland_former@erbsland-former:/var/www/erbsland-former$ </span><span class="nb">source</span><span class="w"> </span>venv/bin/activate
+<span class="gp gp-VirtualEnv">(venv)</span> <span class="gp">erbsland_former@erbsland-former:/var/www/erbsland-former$ </span>python<span class="w"> </span>app/manage.py<span class="w"> </span>add_user<span class="w"> </span>test1
+<span class="gp gp-VirtualEnv">(...)</span>
+<span class="gp gp-VirtualEnv">(venv)</span> <span class="gp">erbsland_former@erbsland-former:/var/www/erbsland-former$ </span>█
+</pre></div>
+</div>
+</section>
+<section id="docker">
+<h3>Docker<a class="headerlink" href="#docker" title="Link to this heading"></a></h3>
+<p>After logging into the Docker management server, you can run management commands as follows:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">test@erbsland-former:~$ </span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>erbsland-former-app<span class="w"> </span>python<span class="w"> </span>manage.py<span class="w"> </span>add_user<span class="w"> </span>test1
+<span class="gp gp-VirtualEnv">(...)</span>
+<span class="gp">test@erbsland-former:~$ </span>█
+</pre></div>
+</div>
+</section>
+<section id="useful-management-commands">
+<span id="index-11"></span><h3>Useful Management Commands<a class="headerlink" href="#useful-management-commands" title="Link to this heading"></a></h3>
+<p>Here are several useful commands for administering the server:</p>
+<ul class="simple">
+<li><p><strong>changepassword</strong>: Use this command to change a user’s password.</p></li>
+<li><p><strong>add_user</strong>: Use this command to add a new regular user to the application.</p></li>
+<li><p><strong>add_admin</strong>: Use this command to add a new administrator to the application.</p></li>
+<li><p><strong>createsuperuser</strong>: Use this command to create a superuser for the application.</p></li>
+<li><p><strong>list_extensions</strong>: Use this command to get a list of all activated extensions.</p></li>
+</ul>
+<p>Use the command line argument <code class="docutils literal notranslate"><span class="pre">--help</span></code> with any of these commands to get additional usage information.</p>
+</section>
+</section>
+<section id="important-application-wide-settings">
+<span id="index-12"></span><h2>Important Application-Wide Settings<a class="headerlink" href="#important-application-wide-settings" title="Link to this heading"></a></h2>
+<p>The application provides several settings that can only be configured on the server. These settings affect all users and allow you to customize, extend, or limit the application’s capabilities.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you are unfamiliar with server administration, please ask your system administrator to set up these options for you.</p>
+</div>
+<section id="how-to-change-global-settings">
+<h3>How to Change Global Settings<a class="headerlink" href="#how-to-change-global-settings" title="Link to this heading"></a></h3>
+<p>In the server setup, you created a new settings file named <cite>my_settings.py</cite>. To modify global settings, simply add the variable at the end of this file to overwrite its default value.</p>
+</section>
+<section id="preselect-a-default-document-syntax-or-size-unit">
+<span id="index-13"></span><h3>Preselect a Default Document Syntax or Size Unit<a class="headerlink" href="#preselect-a-default-document-syntax-or-size-unit" title="Link to this heading"></a></h3>
+<p>You can preselect the default document syntax and size unit displayed in the user interface if a user does not have a preference for a task. Set the defaults using the settings <a class="reference internal" href="../settings.html#setting-backend-default-syntax-handler"><span class="std std-ref">BACKEND_DEFAULT_SYNTAX_HANDLER</span></a> and <a class="reference internal" href="../settings.html#setting-backend-default-size-calculator"><span class="std std-ref">BACKEND_DEFAULT_SIZE_CALCULATOR</span></a>. Specify the correct <em>identifier</em> for the syntax handler or size calculator. Use the management command <cite>list_extensions</cite> to get a list of all identifiers.</p>
+</section>
+<section id="disabling-a-document-syntax-transformer-or-size-unit">
+<h3>Disabling a Document Syntax, Transformer, or Size Unit<a class="headerlink" href="#disabling-a-document-syntax-transformer-or-size-unit" title="Link to this heading"></a></h3>
+<p>If you want to hide a certain document syntax, transformer, or size unit, use the settings <a class="reference internal" href="../settings.html#setting-backend-ignore-syntax-handler"><span class="std std-ref">BACKEND_IGNORE_SYNTAX_HANDLER</span></a>, <a class="reference internal" href="../settings.html#setting-backend-ignore-size-calculator"><span class="std std-ref">BACKEND_IGNORE_SIZE_CALCULATOR</span></a>, and <a class="reference internal" href="../settings.html#setting-backend-transformer"><span class="std std-ref">BACKEND_TRANSFORMER</span></a>.</p>
+</section>
+<section id="limiting-the-upload-size">
+<h3>Limiting the Upload Size<a class="headerlink" href="#limiting-the-upload-size" title="Link to this heading"></a></h3>
+<p>To limit the size of uploaded files, change the settings <a class="reference internal" href="../settings.html#setting-backend-ingest-upload-file-size"><span class="std std-ref">BACKEND_INGEST_UPLOAD_FILE_SIZE</span></a>, <a class="reference internal" href="../settings.html#setting-backend-ingest-document-size"><span class="std std-ref">BACKEND_INGEST_DOCUMENT_SIZE</span></a>, or <a class="reference internal" href="../settings.html#setting-backend-ingest-file-count"><span class="std std-ref">BACKEND_INGEST_FILE_COUNT</span></a>.</p>
+</section>
+</section>
+<section id="ai-transformer-application-settings">
+<h2>AI Transformer Application Settings<a class="headerlink" href="#ai-transformer-application-settings" title="Link to this heading"></a></h2>
+<p>The AI transformer can be configured to require, allow, or disallow personal API keys for its processing.</p>
+<section id="set-an-application-wide-api-key">
+<h3>Set an Application-Wide API Key<a class="headerlink" href="#set-an-application-wide-api-key" title="Link to this heading"></a></h3>
+<p>Use the settings <a class="reference internal" href="../settings.html#setting-ai-api-key"><span class="std std-ref">AI_API_KEY</span></a>, <a class="reference internal" href="../settings.html#setting-ai-organization-id"><span class="std std-ref">AI_ORGANIZATION_ID</span></a>, and <a class="reference internal" href="../settings.html#setting-ai-project-id"><span class="std std-ref">AI_PROJECT_ID</span></a> to set an application-wide API key for the AI transformer profiles. When set at the application level, the key is never exposed to the users.</p>
+<p>If there is no application-wide setting, each user must provide their own API key for the transformer. An individual key per user allows you to track individual usage but also means that the key is exposed to the user.</p>
+<p>By default, users are allowed to overwrite the application-wide key with a custom one. If you want to enforce the application-wide key, set <a class="reference internal" href="../settings.html#setting-ai-allow-user-overrides"><span class="std std-ref">AI_ALLOW_USER_OVERRIDES</span></a> to <cite>False</cite>.</p>
+</section>
+<section id="limit-the-allowed-language-models">
+<h3>Limit the Allowed Language Models<a class="headerlink" href="#limit-the-allowed-language-models" title="Link to this heading"></a></h3>
+<p>By configuring a custom list of identifiers with the <a class="reference internal" href="../settings.html#setting-ai-allowed-models"><span class="std std-ref">AI_ALLOWED_MODELS</span></a>, you can limit the language models a user can select and use.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../user/regex-transformer.html" class="btn btn-neutral float-left" title="RegEx Transformer" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../installation/index.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023-2024, Erbsland DEV.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

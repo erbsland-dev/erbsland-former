@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Settings Reference &mdash; ErbslandFORMER 0.9.8-beta documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=b8b656fd"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Screenshots" href="screenshots.html" />
+    <link rel="prev" title="Architecture" href="architecture.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            ErbslandFORMER
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="requirements.html">Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quick-start.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="download.html">Download and Sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user/index.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="administrator/index.html">Administrator Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation/index.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Settings Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#backend">Backend</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#backend-encryption-key">BACKEND_ENCRYPTION_KEY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#backend-encryption-key-fallbacks">BACKEND_ENCRYPTION_KEY_FALLBACKS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#backend-ignore-syntax-handler">BACKEND_IGNORE_SYNTAX_HANDLER</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#backend-default-syntax-handler">BACKEND_DEFAULT_SYNTAX_HANDLER</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#backend-ignore-size-calculator">BACKEND_IGNORE_SIZE_CALCULATOR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#backend-transformer">BACKEND_TRANSFORMER</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#backend-default-size-calculator">BACKEND_DEFAULT_SIZE_CALCULATOR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#backend-ingest-upload-file-size">BACKEND_INGEST_UPLOAD_FILE_SIZE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#backend-ingest-document-size">BACKEND_INGEST_DOCUMENT_SIZE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#backend-ingest-file-count">BACKEND_INGEST_FILE_COUNT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#backend-working-dir">BACKEND_WORKING_DIR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#backend-size-calculation-max-block-size">BACKEND_SIZE_CALCULATION_MAX_BLOCK_SIZE</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#tasks-system">Tasks System</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tasks-celery-broker-url">TASKS_CELERY_BROKER_URL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tasks-celery-broker-connection-retry-on-startup">TASKS_CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tasks-celery-task-soft-time-limit">TASKS_CELERY_TASK_SOFT_TIME_LIMIT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tasks-celery-task-time-limit">TASKS_CELERY_TASK_TIME_LIMIT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tasks-data-redis-host">TASKS_DATA_REDIS_HOST</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tasks-data-redis-port">TASKS_DATA_REDIS_PORT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tasks-data-redis-db-num">TASKS_DATA_REDIS_DB_NUM</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ai-transformer">AI Transformer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ai-api-key">AI_API_KEY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ai-organization-id">AI_ORGANIZATION_ID</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ai-project-id">AI_PROJECT_ID</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ai-base-url">AI_BASE_URL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ai-allow-user-overrides">AI_ALLOW_USER_OVERRIDES</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ai-allowed-models">AI_ALLOWED_MODELS</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="screenshots.html">Screenshots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acknowledgements.html">Acknowledgements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License and Copyright</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ErbslandFORMER</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Settings Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/chapters/settings.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="settings-reference">
+<span id="index-0"></span><span id="settings"></span><h1>Settings Reference<a class="headerlink" href="#settings-reference" title="Link to this heading"></a></h1>
+<section id="backend">
+<h2>Backend<a class="headerlink" href="#backend" title="Link to this heading"></a></h2>
+<section id="backend-encryption-key">
+<span id="index-1"></span><span id="setting-backend-encryption-key"></span><h3>BACKEND_ENCRYPTION_KEY<a class="headerlink" href="#backend-encryption-key" title="Link to this heading"></a></h3>
+<p><strong>Default:</strong> “”</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">BACKEND_ENCRYPTION_KEY</span></code> is used to synchronously encrypt and decrypt sensitive user settings. This key ensures that all sensitive data, such as passwords and API keys, are securely stored. Make sure to set this key to a secure, random string to maintain the integrity of your data.</p>
+</section>
+<section id="backend-encryption-key-fallbacks">
+<span id="index-2"></span><span id="setting-backend-encryption-key-fallbacks"></span><h3>BACKEND_ENCRYPTION_KEY_FALLBACKS<a class="headerlink" href="#backend-encryption-key-fallbacks" title="Link to this heading"></a></h3>
+<p><strong>Default:</strong> []</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">BACKEND_ENCRYPTION_KEY_FALLBACKS</span></code> is a list of fallback encryption keys. These keys are used to decrypt data that was encrypted with a previous encryption key. When you rotate the encryption key, add the old key to this list to ensure that existing data can still be decrypted. Note that user settings encrypted with fallback keys will not be automatically migrated to the new key without user interaction. Provide users sufficient time to update their passwords and API keys before removing an old key from this list.</p>
+</section>
+<section id="backend-ignore-syntax-handler">
+<span id="index-3"></span><span id="setting-backend-ignore-syntax-handler"></span><h3>BACKEND_IGNORE_SYNTAX_HANDLER<a class="headerlink" href="#backend-ignore-syntax-handler" title="Link to this heading"></a></h3>
+<p><strong>Default:</strong> []</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">BACKEND_IGNORE_SYNTAX_HANDLER</span></code> specifies a list of syntax handler identifiers that should be ignored by the backend. This setting is useful for excluding certain syntax handlers that are not needed or might cause conflicts.</p>
+</section>
+<section id="backend-default-syntax-handler">
+<span id="index-4"></span><span id="setting-backend-default-syntax-handler"></span><h3>BACKEND_DEFAULT_SYNTAX_HANDLER<a class="headerlink" href="#backend-default-syntax-handler" title="Link to this heading"></a></h3>
+<p><strong>Default:</strong> “markdown”</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">BACKEND_DEFAULT_SYNTAX_HANDLER</span></code> sets the default syntax handler to be used by the application. The default value is “markdown”. This handler processes and converts text according to the specified syntax rules.</p>
+</section>
+<section id="backend-ignore-size-calculator">
+<span id="index-5"></span><span id="setting-backend-ignore-size-calculator"></span><h3>BACKEND_IGNORE_SIZE_CALCULATOR<a class="headerlink" href="#backend-ignore-size-calculator" title="Link to this heading"></a></h3>
+<p><strong>Default:</strong> []</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">BACKEND_IGNORE_SIZE_CALCULATOR</span></code> contains a list of size calculator identifiers that should be ignored. Size calculators determine the size of data for various operations. Use this setting to exclude specific size calculators that are unnecessary for your application.</p>
+</section>
+<section id="backend-transformer">
+<span id="index-6"></span><span id="setting-backend-transformer"></span><h3>BACKEND_TRANSFORMER<a class="headerlink" href="#backend-transformer" title="Link to this heading"></a></h3>
+<p><strong>Default:</strong> [“regex_transformer.transformers.RegexTransformer”, “openai_transformer.transformers.OpenAiTransformer”]</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">BACKEND_TRANSFORMER</span></code> is a list of active transformer classes used to process and transform data. This list includes default transformers like <cite>RegexTransformer</cite> and <cite>OpenAiTransformer</cite>. You can extend this list with custom transformers or remove the ones you do not need.</p>
+</section>
+<section id="backend-default-size-calculator">
+<span id="index-7"></span><span id="setting-backend-default-size-calculator"></span><h3>BACKEND_DEFAULT_SIZE_CALCULATOR<a class="headerlink" href="#backend-default-size-calculator" title="Link to this heading"></a></h3>
+<p><strong>Default:</strong> “char”</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">BACKEND_DEFAULT_SIZE_CALCULATOR</span></code> sets the default size calculator for the application. The default calculator measures data size in characters. You can change this to other units of measurement as required by your application.</p>
+</section>
+<section id="backend-ingest-upload-file-size">
+<span id="index-8"></span><span id="setting-backend-ingest-upload-file-size"></span><h3>BACKEND_INGEST_UPLOAD_FILE_SIZE<a class="headerlink" href="#backend-ingest-upload-file-size" title="Link to this heading"></a></h3>
+<p><strong>Default:</strong> 10_000_000</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">BACKEND_INGEST_UPLOAD_FILE_SIZE</span></code> defines the maximum allowable size for uploaded data, in bytes. The default limit is set to 10,000,000 bytes (approximately 10 MB). Adjust this value according to your application’s requirements and server capacity.</p>
+</section>
+<section id="backend-ingest-document-size">
+<span id="index-9"></span><span id="setting-backend-ingest-document-size"></span><h3>BACKEND_INGEST_DOCUMENT_SIZE<a class="headerlink" href="#backend-ingest-document-size" title="Link to this heading"></a></h3>
+<p><strong>Default:</strong> 10_000_000</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">BACKEND_INGEST_DOCUMENT_SIZE</span></code> specifies the maximum size for a single document, either uploaded or extracted, in bytes. The default value is 10,000,000 bytes (approximately 10 MB). This limit helps manage storage and processing requirements.</p>
+</section>
+<section id="backend-ingest-file-count">
+<span id="index-10"></span><span id="setting-backend-ingest-file-count"></span><h3>BACKEND_INGEST_FILE_COUNT<a class="headerlink" href="#backend-ingest-file-count" title="Link to this heading"></a></h3>
+<p><strong>Default:</strong> 100</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">BACKEND_INGEST_FILE_COUNT</span></code> sets the maximum number of files that can be imported in a single upload session. The default limit is 100 files. Adjust this number based on your application’s needs and server capabilities.</p>
+</section>
+<section id="backend-working-dir">
+<span id="index-11"></span><span id="setting-backend-working-dir"></span><h3>BACKEND_WORKING_DIR<a class="headerlink" href="#backend-working-dir" title="Link to this heading"></a></h3>
+<p><strong>Default:</strong> “[project]/working_dir”</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">BACKEND_WORKING_DIR</span></code> specifies the directory where temporary files are created during the import and export processes to and from the database. This directory must have read and write access for both the frontend and backend processes. It is crucial that this directory is not publicly accessible via the web server, as it is not intended to serve as a public <code class="docutils literal notranslate"><span class="pre">MEDIA</span></code> directory.</p>
+</section>
+<section id="backend-size-calculation-max-block-size">
+<span id="index-12"></span><span id="setting-backend-size-calculation-max-block-size"></span><h3>BACKEND_SIZE_CALCULATION_MAX_BLOCK_SIZE<a class="headerlink" href="#backend-size-calculation-max-block-size" title="Link to this heading"></a></h3>
+<p><strong>Default:</strong> 200_000</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">BACKEND_SIZE_CALCULATION_MAX_BLOCK_SIZE</span></code> setting defines the maximum size of a block of data held in memory for size calculations. Individual size calculation modules can lower this value further but cannot increase this limit. This ensures that the memory usage for size calculations is controlled and optimized.</p>
+</section>
+</section>
+<section id="tasks-system">
+<h2>Tasks System<a class="headerlink" href="#tasks-system" title="Link to this heading"></a></h2>
+<p>The settings module for the “tasks” application includes configurations for the Celery system and Redis. Use keys prefixed with <code class="docutils literal notranslate"><span class="pre">TASKS_CELERY_*</span></code> to configure Celery. Redis serves as the broker for Celery, as well as for real-time task updates and logs. Ensure that Celery (<code class="docutils literal notranslate"><span class="pre">TASKS_CELERY_...</span></code>) and the application (<code class="docutils literal notranslate"><span class="pre">TASKS_DATA_REDIS_...</span></code>) do not share the same Redis instance or database.</p>
+<section id="tasks-celery-broker-url">
+<span id="index-13"></span><span id="setting-tasks-celery-broker-url"></span><h3>TASKS_CELERY_BROKER_URL<a class="headerlink" href="#tasks-celery-broker-url" title="Link to this heading"></a></h3>
+<p><strong>Default:</strong> “redis://127.0.0.1/”</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">TASKS_CELERY_BROKER_URL</span></code> setting specifies the URL of the broker used by the Celery application. By default, it uses a local Redis instance. Adjust this URL according to your broker setup if you are using a different broker or hosting Redis remotely.</p>
+</section>
+<section id="tasks-celery-broker-connection-retry-on-startup">
+<span id="index-14"></span><span id="setting-tasks-celery-broker-connection-retry-on-startup"></span><h3>TASKS_CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP<a class="headerlink" href="#tasks-celery-broker-connection-retry-on-startup" title="Link to this heading"></a></h3>
+<p><strong>Default:</strong> True</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">TASKS_CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP</span></code> setting determines whether Celery should retry connecting to the broker on startup if the initial connection attempt fails. The default value is <cite>True</cite>, which helps ensure that temporary network issues do not prevent Celery from starting.</p>
+</section>
+<section id="tasks-celery-task-soft-time-limit">
+<span id="index-15"></span><span id="setting-tasks-celery-task-soft-time-limit"></span><h3>TASKS_CELERY_TASK_SOFT_TIME_LIMIT<a class="headerlink" href="#tasks-celery-task-soft-time-limit" title="Link to this heading"></a></h3>
+<p><strong>Default:</strong> 24 * 60 * 60</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">TASKS_CELERY_TASK_SOFT_TIME_LIMIT</span></code> setting specifies the maximum time, in seconds, that a task is allowed to run before a soft timeout occurs. The default value is 24 hours. This soft limit allows tasks to handle cleanup operations before being forcibly terminated.</p>
+</section>
+<section id="tasks-celery-task-time-limit">
+<span id="index-16"></span><span id="setting-tasks-celery-task-time-limit"></span><h3>TASKS_CELERY_TASK_TIME_LIMIT<a class="headerlink" href="#tasks-celery-task-time-limit" title="Link to this heading"></a></h3>
+<p><strong>Default:</strong> 24 * 60 * 60 + 60</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">TASKS_CELERY_TASK_TIME_LIMIT</span></code> setting specifies the hard timeout for a task, which is the maximum time in seconds a task is allowed to run, including an additional 60 seconds after the soft timeout. The default value is 24 hours and 60 seconds. This ensures that tasks do not run indefinitely and are terminated if they exceed the soft timeout.</p>
+</section>
+<section id="tasks-data-redis-host">
+<span id="index-17"></span><span id="setting-tasks-data-redis-host"></span><h3>TASKS_DATA_REDIS_HOST<a class="headerlink" href="#tasks-data-redis-host" title="Link to this heading"></a></h3>
+<p><strong>Default:</strong> “127.0.0.1”</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">TASKS_DATA_REDIS_HOST</span></code> setting specifies the hostname or IP address of the Redis server used by the tasks system. By default, it points to a local Redis instance. Update this value if your Redis server is hosted remotely or has a different hostname.</p>
+</section>
+<section id="tasks-data-redis-port">
+<span id="index-18"></span><span id="setting-tasks-data-redis-port"></span><h3>TASKS_DATA_REDIS_PORT<a class="headerlink" href="#tasks-data-redis-port" title="Link to this heading"></a></h3>
+<p><strong>Default:</strong> 6379</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">TASKS_DATA_REDIS_PORT</span></code> setting specifies the port on which the Redis server for the tasks system is running. The default value is 6379, which is the standard port for Redis. Change this value if your Redis server uses a different port.</p>
+</section>
+<section id="tasks-data-redis-db-num">
+<span id="index-19"></span><span id="setting-tasks-data-redis-db-num"></span><h3>TASKS_DATA_REDIS_DB_NUM<a class="headerlink" href="#tasks-data-redis-db-num" title="Link to this heading"></a></h3>
+<p><strong>Default:</strong> 1</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">TASKS_DATA_REDIS_DB_NUM</span></code> setting specifies the database number used by Redis for the tasks system. Redis allows multiple databases to be used on the same server instance, identified by an index number. The default value is 1. Ensure that this value does not conflict with other applications using the same Redis instance.</p>
+</section>
+</section>
+<section id="ai-transformer">
+<h2>AI Transformer<a class="headerlink" href="#ai-transformer" title="Link to this heading"></a></h2>
+<section id="ai-api-key">
+<span id="index-20"></span><span id="setting-ai-api-key"></span><h3>AI_API_KEY<a class="headerlink" href="#ai-api-key" title="Link to this heading"></a></h3>
+<p><strong>Default:</strong> “”</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">AI_API_KEY</span></code> setting is used to configure the API key required to authenticate with the OpenAI API. This key is set globally and is shared by all users of the server. Ensure that you keep this key secure and do not expose it publicly. Obtain this key from the OpenAI platform and set it here to enable AI functionalities.</p>
+</section>
+<section id="ai-organization-id">
+<span id="index-21"></span><span id="setting-ai-organization-id"></span><h3>AI_ORGANIZATION_ID<a class="headerlink" href="#ai-organization-id" title="Link to this heading"></a></h3>
+<p><strong>Default:</strong> “”</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">AI_ORGANIZATION_ID</span></code> setting specifies the organization ID associated with your OpenAI account. This ID is used globally for all users on the server. It helps in organizing and managing access within a team or company structure. Set this ID to ensure proper tracking and billing under the correct organization.</p>
+</section>
+<section id="ai-project-id">
+<span id="index-22"></span><span id="setting-ai-project-id"></span><h3>AI_PROJECT_ID<a class="headerlink" href="#ai-project-id" title="Link to this heading"></a></h3>
+<p><strong>Default:</strong> “”</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">AI_PROJECT_ID</span></code> setting defines the project ID for your OpenAI API usage. This ID is also set globally for all users and helps in categorizing API usage under specific projects. This is useful for tracking and managing usage costs and performance metrics for different projects.</p>
+</section>
+<section id="ai-base-url">
+<span id="index-23"></span><span id="setting-ai-base-url"></span><h3>AI_BASE_URL<a class="headerlink" href="#ai-base-url" title="Link to this heading"></a></h3>
+<p><strong>Default:</strong> “<a class="reference external" href="https://api.openai.com/v1/">https://api.openai.com/v1/</a>”</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">AI_BASE_URL</span></code> setting specifies the base URL for the OpenAI API. This URL is used as the endpoint for all API requests made by the application. The default value is set to the official OpenAI API endpoint. Modify this URL only if you are using a custom or internal API endpoint.</p>
+</section>
+<section id="ai-allow-user-overrides">
+<span id="index-24"></span><span id="setting-ai-allow-user-overrides"></span><h3>AI_ALLOW_USER_OVERRIDES<a class="headerlink" href="#ai-allow-user-overrides" title="Link to this heading"></a></h3>
+<p><strong>Default:</strong> True</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">AI_ALLOW_USER_OVERRIDES</span></code> setting determines whether individual users can override the globally configured API key and organization ID with their own values. If set to <cite>True</cite>, users can provide their own API credentials, which will be used instead of the global settings. This flexibility allows users to test or use their own OpenAI accounts without affecting the global configuration.</p>
+</section>
+<section id="ai-allowed-models">
+<span id="index-25"></span><span id="setting-ai-allowed-models"></span><h3>AI_ALLOWED_MODELS<a class="headerlink" href="#ai-allowed-models" title="Link to this heading"></a></h3>
+<p><strong>Default:</strong> []</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">AI_ALLOWED_MODELS</span></code> setting specifies which language models from the OpenAI interface are available for users to select. When this list is empty, all implemented models can be used. To restrict access to certain models, provide a list of allowed model identifiers (e.g., “gpt-3.5-turbo”). This can be useful for controlling costs and ensuring that only approved models are utilized within the application.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="architecture.html" class="btn btn-neutral float-left" title="Architecture" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="screenshots.html" class="btn btn-neutral float-right" title="Screenshots" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023-2024, Erbsland DEV.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

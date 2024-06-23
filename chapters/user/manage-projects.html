@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manage Existing Projects &mdash; ErbslandFORMER 0.9.8-beta documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=b8b656fd"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Import Documents" href="import-documents.html" />
+    <link rel="prev" title="Create a New Project" href="create-project.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            ErbslandFORMER
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../features.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../requirements.html">Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick-start.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download.html">Download and Sources</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">User Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="login.html">Log In</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create-project.html">Create a New Project</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Manage Existing Projects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#open-a-project">Open a Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rename-a-project">Rename a Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#delete-a-project">Delete a Project</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="import-documents.html">Import Documents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="project-view.html">The Project View</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transform-documents.html">Transform Documents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="export-documents.html">Export Documents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="revisions.html">Revisions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transformer-profiles.html">Transformer Profiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ai-transformer.html">AI Transformer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regex-transformer.html">RegEx Transformer</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../administrator/index.html">Administrator Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../settings.html">Settings Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../screenshots.html">Screenshots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acknowledgements.html">Acknowledgements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License and Copyright</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">ErbslandFORMER</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">User Manual</a></li>
+      <li class="breadcrumb-item active">Manage Existing Projects</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/chapters/user/manage-projects.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="manage-existing-projects">
+<span id="index-0"></span><h1>Manage Existing Projects<a class="headerlink" href="#manage-existing-projects" title="Link to this heading"></a></h1>
+<section id="open-a-project">
+<span id="index-1"></span><h2>Open a Project<a class="headerlink" href="#open-a-project" title="Link to this heading"></a></h2>
+<p>If you have previously worked with <em>ErbslandFORMER</em>, you will see cards for all existing projects on the main screen.</p>
+<figure class="align-default" id="id1">
+<a class="reference internal image-reference" href="../../_images/screenshot-user-project-open.webp"><img alt="../../_images/screenshot-user-project-open.webp" src="../../_images/screenshot-user-project-open.webp" style="width: 100%;" /></a>
+<figcaption>
+<p><span class="caption-text">The view with all existing projects.</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>Each project card displays basic information, such as the number of documents and the latest revision of the project. An optional project description is also shown. The <span class="guilabel">Edit</span> button at the bottom of the card opens the detailed view with all documents, and the vertical dots reveal a menu with additional management actions for the project.</p>
+</section>
+<section id="rename-a-project">
+<span id="index-2"></span><h2>Rename a Project<a class="headerlink" href="#rename-a-project" title="Link to this heading"></a></h2>
+<p>To rename a project, click on the three vertical dots at the bottom of a project card to open the management actions menu. Select <span class="guilabel">Rename</span> to open the form where you can edit the project name and description.</p>
+<figure class="align-default" id="id2">
+<a class="reference internal image-reference" href="../../_images/screenshot-user-project-rename.webp"><img alt="../../_images/screenshot-user-project-rename.webp" src="../../_images/screenshot-user-project-rename.webp" style="width: 100%;" /></a>
+<figcaption>
+<p><span class="caption-text">The form to rename a project and change its description.</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>After making changes to the project name or description, click the green <span class="guilabel">Rename Project</span> button to save your changes and return to the project list.</p>
+</section>
+<section id="delete-a-project">
+<span id="index-3"></span><h2>Delete a Project<a class="headerlink" href="#delete-a-project" title="Link to this heading"></a></h2>
+<p>To delete a project, click on the three vertical dots at the bottom of a project card to open the management actions menu. Select <span class="guilabel">Delete</span> from this menu. A confirmation dialog will appear. Click the red <span class="guilabel">Delete</span> button to permanently delete the project and all its contents.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Deleting a project will permanently remove all revisions and contents of the project. This action cannot be undone.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="create-project.html" class="btn btn-neutral float-left" title="Create a New Project" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="import-documents.html" class="btn btn-neutral float-right" title="Import Documents" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023-2024, Erbsland DEV.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

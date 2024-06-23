@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installation for System Administrators &mdash; ErbslandFORMER 0.9.8-beta documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=b8b656fd"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Update Existing Installation" href="update-installation.html" />
+    <link rel="prev" title="Installation, Step by Step" href="step-by-step-installation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            ErbslandFORMER
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../features.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../requirements.html">Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick-start.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download.html">Download and Sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/index.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../administrator/index.html">Administrator Manual</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Installation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="docker-installation.html">Installation via Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step-by-step-installation.html">Installation, Step by Step</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Installation for System Administrators</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#requirements">Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#application-user">Application User</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#application-directory-structure">Application Directory Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#setup-redis-and-mariadb">Setup Redis and MariaDB</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#system-setup">System Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#setup-the-backend-process">Setup the Backend Process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#configure-apache">Configure Apache</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#done">Done</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="update-installation.html">Update Existing Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../settings.html">Settings Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../screenshots.html">Screenshots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acknowledgements.html">Acknowledgements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License and Copyright</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">ErbslandFORMER</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Installation</a></li>
+      <li class="breadcrumb-item active">Installation for System Administrators</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/chapters/installation/sysadmin-installation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="installation-for-system-administrators">
+<span id="index-0"></span><span id="sysadmin-installation"></span><h1>Installation for System Administrators<a class="headerlink" href="#installation-for-system-administrators" title="Link to this heading"></a></h1>
+<p>This guide provides a concise overview of how to do a manual server installation of <em>ErbslandFORMER</em> for system administrators. It focuses on the key elements without detailing the execution of each task. For a more detailed guide, refer to the <a class="reference internal" href="step-by-step-installation.html#step-by-step-installation"><span class="std std-ref">Installation, Step by Step</span></a>.</p>
+<section id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Link to this heading"></a></h2>
+<ul>
+<li><p><strong>Python 3.12+</strong></p>
+<p>The application requires Python 3.12 or newer and the packages listed in <cite>requirements.txt</cite> or <cite>requirements.in</cite>.</p>
+</li>
+<li><p><strong>Apache or nginx: Web Server to Run a WSGI Application</strong></p>
+<p>A web server or proxy, like Apache or nginx, is required to run the frontend application.</p>
+</li>
+<li><p><strong>Redis: Message Broker for Celery and the Frontend</strong></p>
+<p>Redis is necessary as a message broker for Celery to handle background tasks.</p>
+</li>
+<li><p><strong>MariaDB/MySQL/PostgreSQL Database</strong></p>
+<p>A database such as MySQL, MariaDB, or PostgreSQL is needed to store all application data.</p>
+</li>
+<li><p><strong>MySQL Database Client for Python</strong></p>
+<p>A MySQL database client for Python, such as <code class="docutils literal notranslate"><span class="pre">mysqlclient</span></code>, is required. This client is not part of the <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> and should be installed from the distribution.</p>
+</li>
+</ul>
+</section>
+<section id="application-user">
+<h2>Application User<a class="headerlink" href="#application-user" title="Link to this heading"></a></h2>
+<p>Create a system user for the application, e.g., <code class="docutils literal notranslate"><span class="pre">erbsland_former</span></code>, with a group and a shell. A home directory is not required.</p>
+</section>
+<section id="application-directory-structure">
+<h2>Application Directory Structure<a class="headerlink" href="#application-directory-structure" title="Link to this heading"></a></h2>
+<p>Preferably in <code class="docutils literal notranslate"><span class="pre">/var/www/erbsland-former</span></code>, create the following directory structure:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>├───◆ /var/www/erbsland-former
+    ├───◆ app            # Application files / Configuration (via git clone)
+    ├───◆ static         # Static files served by the web server.
+    ├───◆ venv           # Python virtual environment.
+    ├───◆ working_dir    # Directory for temporary files.
+
+drwxr-xr-x | erbsland_former erbsland_former | app/
+drwxr-xr-x | erbsland_former erbsland_former | static/
+drwxr-xr-x | erbsland_former erbsland_former | venv/
+drwx------ | erbsland_former erbsland_former | working_dir/
+</pre></div>
+</div>
+<p>Create the directories and set the appropriate permissions:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">test@erbsland-former:~$ </span>sudo<span class="w"> </span>mkdir<span class="w"> </span>/var/www/erbsland-former
+<span class="gp">test@erbsland-former:~$ </span>sudo<span class="w"> </span>chown<span class="w"> </span>erbsland_former:erbsland_former<span class="w"> </span>/var/www/erbsland-former
+<span class="gp">test@erbsland-former:~$ </span>sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">755</span><span class="w"> </span>/var/www/erbsland-former
+<span class="gp">test@erbsland-former:~$ </span>sudo<span class="w"> </span>mkdir<span class="w"> </span>/var/www/erbsland-former/static
+<span class="gp">test@erbsland-former:~$ </span>sudo<span class="w"> </span>chown<span class="w"> </span>erbsland_former:erbsland_former<span class="w"> </span>/var/www/erbsland-former/static
+<span class="gp">test@erbsland-former:~$ </span>sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">755</span><span class="w"> </span>/var/www/erbsland-former/static
+<span class="gp">test@erbsland-former:~$ </span>sudo<span class="w"> </span>mkdir<span class="w"> </span>/var/www/erbsland-former/working_dir
+<span class="gp">test@erbsland-former:~$ </span>sudo<span class="w"> </span>chown<span class="w"> </span>erbsland_former:erbsland_former<span class="w"> </span>/var/www/erbsland-former/working_dir
+<span class="gp">test@erbsland-former:~$ </span>sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">700</span><span class="w"> </span>/var/www/erbsland-former/working_dir
+</pre></div>
+</div>
+<p>Clone the application repository and set up the virtual environment:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">test@erbsland-former:~$ </span>sudo<span class="w"> </span>su<span class="w"> </span>erbsland_former
+<span class="gp">erbsland_former@erbsland-former:/home/test$ </span><span class="nb">cd</span><span class="w"> </span>/var/www/erbsland-former
+<span class="gp">erbsland_former@erbsland-former:/var/www/erbsland-former$ </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/erbsland-dev/erbsland-former.git<span class="w"> </span>app
+<span class="gp">erbsland_former@erbsland-former:/var/www/erbsland-former$ </span>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>--system-site-packages<span class="w"> </span>venv
+<span class="gp">erbsland_former@erbsland-former:/var/www/erbsland-former$ </span><span class="nb">source</span><span class="w"> </span>venv/bin/activate
+<span class="gp gp-VirtualEnv">(venv)</span> <span class="gp">erbsland_former@erbsland-former:/var/www/erbsland-former$ </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>app/requirements.txt
+</pre></div>
+</div>
+</section>
+<section id="setup-redis-and-mariadb">
+<h2>Setup Redis and MariaDB<a class="headerlink" href="#setup-redis-and-mariadb" title="Link to this heading"></a></h2>
+<p>Activate Redis:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">test@erbsland-former:~$ </span>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>redis-server
+<span class="gp">test@erbsland-former:~$ </span>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>redis-server
+<span class="gp">test@erbsland-former:~$</span>
+</pre></div>
+</div>
+<p>Set up MySQL:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">test@erbsland-former:~$ </span>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>mariadb
+<span class="gp">test@erbsland-former:~$ </span>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>mariadb
+<span class="gp">test@erbsland-former:~$ </span>sudo<span class="w"> </span>mariadb
+<span class="go">MariaDB [(none)]&gt; CREATE DATABASE erbsland_former CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;</span>
+<span class="go">MariaDB [(none)]&gt; CREATE USER erbsland_former@localhost IDENTIFIED BY &#39;[random password]&#39;;</span>
+<span class="go">MariaDB [(none)]&gt; GRANT ALL PRIVILEGES ON erbsland_former.* TO erbsland_former@localhost;</span>
+<span class="go">MariaDB [(none)]&gt; FLUSH PRIVILEGES;</span>
+</pre></div>
+</div>
+</section>
+<section id="system-setup">
+<h2>System Setup<a class="headerlink" href="#system-setup" title="Link to this heading"></a></h2>
+<p>Copy the file <code class="docutils literal notranslate"><span class="pre">settings.py</span></code> in the application directory <code class="docutils literal notranslate"><span class="pre">ErbslandFormer</span></code> and rename it to <code class="docutils literal notranslate"><span class="pre">my_settings.py</span></code>. Update <code class="docutils literal notranslate"><span class="pre">wsgi.py</span></code> with the name of your settings file.</p>
+<p>Update your <code class="docutils literal notranslate"><span class="pre">my_settings.py</span></code> file:</p>
+<ul class="simple">
+<li><p>Set a random <code class="docutils literal notranslate"><span class="pre">SECRET_KEY</span></code>.</p></li>
+<li><p>Set a random <code class="docutils literal notranslate"><span class="pre">BACKEND_ENCRYPTION_KEY</span></code>.</p></li>
+<li><p>Set the database host, name, user, and password.</p></li>
+<li><p>Set the <code class="docutils literal notranslate"><span class="pre">STATIC_ROOT</span></code> to the <code class="docutils literal notranslate"><span class="pre">static</span></code> directory.</p></li>
+<li><p>Set the <code class="docutils literal notranslate"><span class="pre">BACKEND_WORKING_DIR</span></code> to the <code class="docutils literal notranslate"><span class="pre">working_dir</span></code> directory.</p></li>
+<li><p>Configure all <code class="docutils literal notranslate"><span class="pre">EMAIL_...</span></code> settings to enable email functionality.</p></li>
+<li><p>Remove the last section enclosed in <code class="docutils literal notranslate"><span class="pre">[remove]</span></code>.</p></li>
+</ul>
+<p>Run a check, collect all static files, and initialize the database. Ensure you set the environment variable <code class="docutils literal notranslate"><span class="pre">DJANGO_SETTINGS_MODULE</span></code> to your settings file.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">export</span><span class="w"> </span><span class="nv">DJANGO_SETTINGS_MODULE</span><span class="o">=</span>ErbslandFormer.my_settings
+<span class="gp">$ </span>python<span class="w"> </span>app/manage.py<span class="w"> </span>check
+<span class="go">System check identified no issues (0 silenced).</span>
+<span class="gp">$ </span>python<span class="w"> </span>app/manage.py<span class="w"> </span>collectstatic
+<span class="go">189 static files copied to &#39;/var/www/erbsland-former/static&#39;.</span>
+<span class="gp">$ </span>python<span class="w"> </span>app/manage.py<span class="w"> </span>migrate
+</pre></div>
+</div>
+<p>Create a superuser and regular users for the system:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python<span class="w"> </span>app/manage.py<span class="w"> </span>createsuperuser<span class="w"> </span>--username<span class="w"> </span>ef_admin<span class="w"> </span>--email<span class="w"> </span>ef_admin@example.com
+<span class="gp">$ </span>python<span class="w"> </span>app/manage.py<span class="w"> </span>add_user<span class="w"> </span>user1<span class="w"> </span>user1@example.com
+<span class="gp">$ </span>python<span class="w"> </span>app/manage.py<span class="w"> </span>add_user<span class="w"> </span>user2<span class="w"> </span>user2@example.com
+<span class="gp">$ </span>python<span class="w"> </span>app/manage.py<span class="w"> </span>add_user<span class="w"> </span>user3<span class="w"> </span>user3@example.com
+</pre></div>
+</div>
+</section>
+<section id="setup-the-backend-process">
+<h2>Setup the Backend Process<a class="headerlink" href="#setup-the-backend-process" title="Link to this heading"></a></h2>
+<p>Set up <em>Celery</em> as a background process. Use the <code class="docutils literal notranslate"><span class="pre">erbsland-former.service</span></code> template for this setup.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">test@erbsland-former:~$ </span>sudo<span class="w"> </span>cp<span class="w"> </span>/var/www/erbsland-former/app/ErbslandFormer/erbsland-former.service<span class="w"> </span>/etc/systemd/system/
+<span class="gp">test@erbsland-former:~$ </span>sudo<span class="w"> </span>chown<span class="w"> </span>root:root<span class="w"> </span>/etc/systemd/system/erbsland-former.service
+<span class="gp">test@erbsland-former:~$ </span>sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">644</span><span class="w"> </span>/etc/systemd/system/erbsland-former.service
+<span class="gp">test@erbsland-former:~$ </span>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/systemd/system/erbsland-former.service
+<span class="gp">test@erbsland-former:~$ </span>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>erbsland-former
+<span class="gp">test@erbsland-former:~$ </span>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>erbsland-former
+</pre></div>
+</div>
+<p>Ensure the service is started successfully by checking the logs with <code class="docutils literal notranslate"><span class="pre">journalctl</span> <span class="pre">-r</span></code>.</p>
+<p>Example service file:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">[Unit]</span>
+<span class="linenos"> 2</span><span class="na">Description</span><span class="o">=</span><span class="s">ErbslandFORMER Celery Service</span>
+<span class="linenos"> 3</span><span class="na">After</span><span class="o">=</span><span class="s">network.target</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="k">[Service]</span>
+<span class="linenos"> 6</span><span class="na">Type</span><span class="o">=</span><span class="s">simple</span>
+<span class="hll"><span class="linenos"> 7</span><span class="na">User</span><span class="o">=</span><span class="s">erbsland_former</span>
+</span><span class="hll"><span class="linenos"> 8</span><span class="na">Group</span><span class="o">=</span><span class="s">erbsland_former</span>
+</span><span class="hll"><span class="linenos"> 9</span><span class="na">WorkingDirectory</span><span class="o">=</span><span class="s">/var/www/erbsland-former/app/</span>
+</span><span class="hll"><span class="linenos">10</span><span class="na">Environment</span><span class="o">=</span><span class="s">&quot;DJANGO_SETTINGS_MODULE=ErbslandFormer.my_settings&quot;</span>
+</span><span class="hll"><span class="linenos">11</span><span class="na">ExecStart</span><span class="o">=</span><span class="s">/usr/bin/env bash -c &#39;source /var/www/erbsland-former/venv/bin/activate &amp;&amp; exec python3 -m celery -A tasks.celery_app worker --loglevel=info&#39;</span>
+</span><span class="hll"><span class="linenos">12</span><span class="na">ExecStop</span><span class="o">=</span><span class="s">/usr/bin/env bash -c &#39;source /var/www/erbsland-former/venv/bin/activate &amp;&amp; exec python3 -m celery -A tasks.celery_app control shutdown&#39;</span>
+</span><span class="linenos">13</span><span class="na">Restart</span><span class="o">=</span><span class="s">always</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span><span class="k">[Install]</span>
+<span class="linenos">16</span><span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span>
+</pre></div>
+</div>
+</section>
+<section id="configure-apache">
+<h2>Configure Apache<a class="headerlink" href="#configure-apache" title="Link to this heading"></a></h2>
+<p>You will find an example Apache configuration file named <code class="docutils literal notranslate"><span class="pre">apache.conf</span></code> in the <code class="docutils literal notranslate"><span class="pre">ErbslandFormer</span></code> directory. Copy this file to the Apache configuration directory and enable the site. Adjust all paths and names according to your setup.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">test@erbsland-former:~$ </span>sudo<span class="w"> </span>cp<span class="w"> </span>/var/www/erbsland-former/app/ErbslandFormer/apache.conf<span class="w"> </span>/etc/apache2/sites-available/former.erbsland.com.conf
+<span class="gp">test@erbsland-former:~$ </span>sudo<span class="w"> </span>a2ensite<span class="w"> </span>former.erbsland.com.conf
+</pre></div>
+</div>
+<p>Below is an example of the Apache configuration. Ensure you modify the paths and user names as needed for your setup.</p>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;VirtualHost</span><span class="w"> </span><span class="s">*:80</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nb">ServerName</span><span class="w"> </span>former.erbsland.com
+<span class="w">    </span><span class="nb">DocumentRoot</span><span class="w"> </span><span class="sx">/var/www/html</span>
+<span class="w">    </span><span class="nb">ErrorLog</span><span class="w"> </span>${APACHE_LOG_DIR}/former.erbsland.com_error.log
+<span class="w">    </span><span class="nb">CustomLog</span><span class="w"> </span>${APACHE_LOG_DIR}/former.erbsland.com_access.log<span class="w"> </span>combined
+<span class="w">    </span><span class="nb">RewriteEngine</span><span class="w"> </span><span class="k">On</span>
+<span class="w">    </span><span class="nb">RewriteRule</span><span class="w"> </span>^<span class="w"> </span>https://%{SERVER_NAME}%{REQUEST_URI}<span class="w"> </span>[END,NE,R=permanent]
+<span class="nt">&lt;/VirtualHost&gt;</span>
+<span class="nt">&lt;VirtualHost</span><span class="w"> </span><span class="s">*:443</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nb">ServerName</span><span class="w"> </span>former.erbsland.com
+<span class="w">    </span><span class="nb">DocumentRoot</span><span class="w"> </span><span class="sx">/var/www/html</span>
+<span class="w">    </span><span class="nb">Alias</span><span class="w"> </span><span class="sx">/static/</span><span class="w"> </span><span class="sx">/var/www/erbsland-former/static/</span>
+
+<span class="w">    </span><span class="c"># WSGI</span>
+<span class="w">    </span><span class="nb">WSGIDaemonProcess</span><span class="w"> </span>former.erbsland.com<span class="w"> </span>\
+<span class="w">        </span>home=/var/www/erbsland-former/<span class="w"> </span>\
+<span class="w">        </span>python-home=/var/www/erbsland-former/venv<span class="w"> </span>\
+<span class="w">        </span>python-path=/var/www/erbsland-former/app:/var/www/erbsland-former/venv/lib/python3.12/site-packages<span class="w"> </span>\
+<span class="w">        </span><span class="k">user</span>=erbsland_former
+<span class="w">    </span><span class="nb">WSGIProcessGroup</span><span class="w"> </span>former.erbsland.com
+<span class="w">    </span><span class="nb">WSGIScriptAlias</span><span class="w"> </span>/<span class="w"> </span><span class="sx">/var/www/erbsland-former/app/ErbslandFormer/wsgi.py</span>
+<span class="w">    </span><span class="nt">&lt;Directory</span><span class="w"> </span><span class="s">/var/www/erbsland-former/app</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;Files</span><span class="w"> </span><span class="s">wsgi.py</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nb">Require</span><span class="w"> </span><span class="k">all</span><span class="w"> </span>granted
+<span class="w">        </span><span class="nt">&lt;/Files&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/Directory&gt;</span>
+<span class="w">    </span><span class="nt">&lt;Directory</span><span class="w"> </span><span class="s">/var/www/erbsland-former/static</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nb">Require</span><span class="w"> </span><span class="k">all</span><span class="w"> </span>granted
+<span class="w">    </span><span class="nt">&lt;/Directory&gt;</span>
+
+<span class="w">    </span><span class="c"># SSL Configuration</span>
+<span class="w">    </span><span class="nb">SSLEngine</span><span class="w"> </span><span class="k">on</span>
+<span class="w">    </span><span class="nb">SSLCertificateFile</span><span class="w"> </span><span class="sx">/etc/ssl/certs/former.erbsland.com.pem</span>
+<span class="w">    </span><span class="nb">SSLCertificateKeyFile</span><span class="w"> </span><span class="sx">/etc/ssl/private/former.erbsland.com.pem</span>
+<span class="w">    </span><span class="nb">SSLCertificateChainFile</span><span class="w"> </span><span class="sx">/etc/ssl/certs/former.erbsland.com_chain.pem</span>
+
+<span class="w">    </span><span class="c"># Security Enhancements</span>
+<span class="w">    </span><span class="nb">SSLProtocol</span><span class="w"> </span><span class="k">all</span><span class="w"> </span>-SSLv3<span class="w"> </span>-TLSv1<span class="w"> </span>-TLSv1.1
+<span class="w">    </span><span class="nb">SSLCipherSuite</span><span class="w"> </span>HIGH:!aNULL:!MD5:!3DES:!CAMELLIA:!DES:!eNULL
+<span class="w">    </span><span class="nb">SSLHonorCipherOrder</span><span class="w"> </span><span class="k">on</span>
+<span class="w">    </span><span class="nb">SSLCompression</span><span class="w"> </span><span class="k">off</span>
+<span class="w">    </span><span class="nb">SSLSessionTickets</span><span class="w"> </span><span class="k">off</span>
+
+<span class="w">    </span><span class="c"># HSTS (HTTP Strict Transport Security)</span>
+<span class="w">    </span><span class="nb">Header</span><span class="w"> </span>always<span class="w"> </span>set<span class="w"> </span>Strict-Transport-Security<span class="w"> </span><span class="s2">&quot;max-age=63072000; includeSubdomains; preload&quot;</span>
+
+<span class="w">    </span><span class="c"># OCSP Stapling</span>
+<span class="w">    </span><span class="nb">SSLUseStapling</span><span class="w"> </span><span class="k">on</span>
+<span class="w">    </span><span class="nb">SSLStaplingResponderTimeout</span><span class="w"> </span><span class="m">5</span>
+<span class="w">    </span><span class="nb">SSLStaplingReturnResponderErrors</span><span class="w"> </span><span class="k">off</span>
+<span class="w">    </span><span class="nb">SSLStaplingCache</span><span class="w"> </span>shmcb:/var/run/ocsp(128000)
+
+<span class="w">    </span><span class="c"># Logging</span>
+<span class="w">    </span><span class="nb">ErrorLog</span><span class="w"> </span>${APACHE_LOG_DIR}/former.erbsland.com_error.log
+<span class="w">    </span><span class="nb">CustomLog</span><span class="w"> </span>${APACHE_LOG_DIR}/former.erbsland.com_access.log<span class="w"> </span>combined
+<span class="nt">&lt;/VirtualHost&gt;</span>
+</pre></div>
+</div>
+<p>Ensure you adapt this example configuration to comply with the SSL standards of your company. Restart the web server to activate the new configuration.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">test@erbsland-former:~$ </span>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>apache2
+</pre></div>
+</div>
+</section>
+<section id="done">
+<h2>Done<a class="headerlink" href="#done" title="Link to this heading"></a></h2>
+<p>This is the basic setup for a single host installation of the application. The application can easily scale across multiple frontend and backend instances, using <em>Redis</em> and <em>Celery</em> to distribute the workload.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="step-by-step-installation.html" class="btn btn-neutral float-left" title="Installation, Step by Step" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="update-installation.html" class="btn btn-neutral float-right" title="Update Existing Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023-2024, Erbsland DEV.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
