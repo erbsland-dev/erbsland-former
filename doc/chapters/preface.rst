@@ -1,4 +1,3 @@
-
 .. index::
     !single: Preface
 
@@ -6,55 +5,40 @@
 Preface
 =======
 
-Welcome to the documentation for *ErbslandFORMER*. This guide will help you understand and utilize the application effectively.
+Welcome to the documentation for *ErbslandFORMER*. This guide is designed to help you understand and utilize the application effectively. The documentation is organized into chapters for users, application administrators, and system administrators. We have minimized redundancies by covering each topic comprehensively in the most relevant chapter, with cross-references provided where necessary.
 
-For a basic overview of the application, start with the :ref:`quick-start` chapter. If you are ready to begin setting up the application, you can proceed directly to the :ref:`installation` section.
+.. figure:: /images/screenshots/screenshot-project-reviewed.webp
+    :width: 80%
+    :align: center
 
-Key Features
-============
+    The main project view with transformed and reviewed documents.
 
-- Project, document, and document fragment-based text organization.
-- Automatic splitting into appropriately sized fragments for various tasks, based on units like LLM tokens, characters, words, lines, or bytes.
-- Special split point handling for formats such as Markdown, C/C++, Python, and plain text.
-- Simple revision system for incremental project transformation.
-- Integrated LLM processor using OpenAI's API, supporting models like GPT-4o, GPT-4 and GPT-3.5.
-- Integrated regular expression processor for pattern-based document transformation.
-- Import and export capabilities for single documents or ZIP files with folder structures.
-- Integrated user management, with a superuser, admin users and regular users.
+.. index::
+    single: What is ErbslandFORMER
 
-Requirements
-============
+What is *ErbslandFORMER*?
+=========================
 
-This application consists of a frontend, a Django/WSGI application, a database, and a backend that executes tasks in separate threads. The following are required:
+If you are not already familiar with *ErbslandFORMER*, it is a tool designed for mass text transformations with the convenience of a web interface. Its target audience includes writers, translators, software documentation authors, academic paper writers, and software developers. The application provides a straightforward workflow, allowing you to import multiple documents into a project and apply text transformations iteratively.
 
-- **Python 3.12+**
+For complex editing tasks, *ErbslandFORMER* allows you to create revisions, enabling you to revert to previous document states and track changes over time. The built-in review system helps you manage completed work and pending reviews, which is particularly useful if you return to a project after some time.
 
-  The application is written for Python 3.12 or newer and requires the packages listed in `requirements.txt` or `requirements.in`. While the listed versions are tested, you may update them to the latest versions if needed.
+This tool addresses the challenges of text processing using large language models, such as *ChatGPT 4o*. It can automatically process text using these models, capture and apply the output, and handle errors generated during the process. Transformation tasks can process entire books in the background, even if the process takes hours or days.
 
-- **Apache or nginx: Webserver to run a WSGI application**
+*ErbslandFORMER* is primarily designed to work with text documents in formats such as Markdown, reStructuredText, XML, JSON, and various programming languages like Python and C++. It is not intended for use with complex document formats from graphical text processors, unless those documents are converted to plaintext or Markdown.
 
-  A web server or proxy, like Apache or nginx, is required to run the frontend application. Refer to the documentation for setting up your chosen web service for a WSGI application. For testing purposes, you can use Django's built-in web server.
+In addition to processing with large language models, the application also supports text transformations using regular expressions. This feature allows you to easily perform tasks such as replacing a protagonist's name in a book or normalizing the spelling of a word across a paper.
 
-- **Redis: Message Broker for Celery and the Frontend**
+.. index::
+    single: Chapter Overview
 
-  Redis is necessary as a message broker for Celery to handle background tasks that may take extensive time to complete. Redis also facilitates communication between running tasks and the web interface to display progress and logs.
+The Chapters in this Documentation
+==================================
 
-- **MariaDB/MySQL/Postgres Database**
+For a basic overview of the application, start with the :ref:`quick-start` chapter. This chapter provides a concise overview of the project, ideal for those in a hurry. Each section in the quick start chapter links to more detailed parts of the documentation.
 
-  A database like MySQL, MariaDB, or Postgres is needed to store all processed data. For handling large amounts of data, ensure your database installation is appropriately scaled. You may also consider moving the text content table to a specialized database for better performance.
+If you are ready to set up the application, proceed directly to the :ref:`installation` section. This section contains various guides tailored to different levels of expertise, including a guide for installing the application as a *Docker* container and a detailed step-by-step installation guide for Ubuntu Linux servers.
 
-License and Copyright
-=====================
+If the application is already installed and you are a user, start with the :ref:`user manual<user-manual>`. This chapter covers how to work with projects, documents, transformations, and revisions. It provides detailed information about the entire workflow, from importing documents to transforming, reviewing, revising, and exporting the final processed documents.
 
-| Copyright ©2023-2024 Tobias Erbsland https://erbsland.dev/ and EducateIT GmbH https://educateit.ch/
-| According to the copyright terms specified in the file "COPYRIGHT.md".
-| SPDX-License-Identifier: GPL-3.0-or-later
-
-This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
-
-This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-See document ``COPYRIGHT.md`` for details.
-
+For system administrators, there is a dedicated :ref:`administrator manual<administrator-manual>`, which offers detailed information on user management and application settings. This chapter explains how to add new users, change user details and passwords, and customize the overall behavior of the application.

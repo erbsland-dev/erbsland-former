@@ -5,10 +5,10 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.utils.translation import gettext_lazy as _
 
-from design.views.action import ActionPageView
+from design.views.action import ActionPageView, ActionHandlerResponse
 from backend.models import Project
 
 
@@ -24,6 +24,15 @@ class UserHome(ActionPageView):
         if request.user and (request.user.is_staff or request.user.is_superuser):
             return HttpResponseRedirect(reverse_lazy("admin_home"))
         return super().dispatch(request, *args, **kwargs)
+
+    def handle_delete(self) -> ActionHandlerResponse:
+        return reverse("project_delete", kwargs={"pk": self.action_value})
+
+    def handle_edit(self) -> ActionHandlerResponse:
+        return reverse("project", kwargs={"pk": self.action_value})
+
+    def handle_rename(self) -> ActionHandlerResponse:
+        return reverse("project_rename", kwargs={"pk": self.action_value})
 
     def get_page_title(self) -> str:
         return _("Projects")

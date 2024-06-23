@@ -43,7 +43,7 @@ To create a superuser on the system, use the ``createsuperuser`` management comm
 
 .. index::
     !single: User Management
-    single: Administration, User Management
+    single: Administration; User Management
 
 User Management
 ===============
@@ -67,7 +67,7 @@ At the bottom of each row, you will find a button to edit the user details and t
 
 .. index::
     single: Permissions
-    single: User Management, Permissions
+    single: User Management; Permissions
 
 Permissions
 -----------
@@ -95,7 +95,7 @@ There are a few limitations on what administrators and superusers can do:
     single: First Name
     single: Last Name
     single: Email Address
-    single: User Management, Add New User
+    single: User Management; Add New User
 
 Add New User
 ------------
@@ -113,7 +113,7 @@ The user is created when you click the :guilabel:`Add New User` button.
 
 .. index::
     single: Add New Admin
-    single: User Management, Add New Admin
+    single: User Management; Add New Admin
 
 Add New Admin
 -------------
@@ -125,7 +125,7 @@ When logged in with a superuser account, there is also a :guilabel:`Add New Admi
     single: First Name
     single: Last Name
     single: Email Address
-    single: User Management, Edit User
+    single: User Management; Edit User
 
 Edit User
 ---------
@@ -139,7 +139,7 @@ In this interface, you can edit the user's :guilabel:`First name`, :guilabel:`La
 
 .. index::
     single: Reset Password
-    single: User Management, Reset Password
+    single: User Management; Reset Password
 
 Reset Password
 --------------
@@ -148,7 +148,7 @@ Clicking on :guilabel:`Reset Password` allows you to reset the user's password. 
 
 .. index::
     single: Make Inactive
-    single: User Management, Make Inactive
+    single: User Management; Make Inactive
 
 Make Inactive
 -------------
@@ -157,7 +157,7 @@ Instead of deleting a user, you should mark them as inactive. Clicking the :guil
 
 .. index::
     single: Make Active
-    single: User Management, Make Active
+    single: User Management; Make Active
 
 Make Active
 -----------
@@ -166,7 +166,7 @@ The :guilabel:`Make Active` button appears for inactive users. Clicking it will 
 
 .. index::
     single: Delete User
-    single: User Management, Delete User
+    single: User Management; Delete User
 
 Delete User
 -----------
@@ -181,8 +181,8 @@ Only superusers can delete users. However, it is generally not recommended to de
 .. _admin-how-use-management-cmd:
 .. index::
     !single: Management Commands
-    single: Management Commands, How to Use
-    single: Administration, Management Command
+    single: Management Commands; How to Use
+    single: Administration; Management Command
 
 How to Use the Management Commands
 ==================================
@@ -215,7 +215,7 @@ After logging into the Docker management server, you can run management commands
     test@erbsland-former:~$ █
 
 .. index::
-    single: Management Commands, Useful
+    single: Management Commands; Useful
     single: Useful Management Commands
 
 Useful Management Commands
